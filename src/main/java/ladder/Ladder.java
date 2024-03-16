@@ -5,6 +5,7 @@ public class Ladder {
     private Row[] rows;
 
     public Ladder(LadderSize ladderSize) {
+        ladderSize.validate();
         rows = new Row[ladderSize.getNumberOfRows()];
 
         for(int i = 0; i < ladderSize.getNumberOfRows(); i++) {

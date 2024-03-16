@@ -4,7 +4,6 @@ public class Row {
     private int[] row;
 
     public Row(int numberOfPerson) {
-        validateNumberOfPerson(numberOfPerson);
         row = new int[numberOfPerson];
     }
 
@@ -36,11 +35,6 @@ public class Row {
         return row[position] == LadderDirection.RIGHT.getValue();
     }
 
-    private void validateNumberOfPerson(int numberOfPerson) {
-        if(numberOfPerson < 1) {
-            throw new IllegalArgumentException("게임의 참여자 수는 1명 이상이어야 합니다.");
-        }
-    }
 
     private void validateDrawLinePosition(int lineStartPosition) {
         if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == -1 || row[lineStartPosition + 1] == 1) {
