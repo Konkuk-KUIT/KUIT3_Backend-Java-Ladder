@@ -10,8 +10,8 @@ public class Row {
 
     public void drawLine(int lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = 1;
-        row[lineStartPosition + 1] = -1;
+        row[lineStartPosition] = Direction.RIGHT.getValue();
+        row[lineStartPosition + 1] = Direction.LEFT.getValue();
     }
 
     public int nextPosition(int position) {
@@ -29,11 +29,11 @@ public class Row {
     }
 
     private boolean isLeft(int position) {
-        return row[position] == -1;
+        return row[position] == Direction.LEFT.getValue();
     }
 
     private boolean isRight(int position) {
-        return row[position] == 1;
+        return row[position] == Direction.RIGHT.getValue();
     }
 
     private void validateNumberOfPerson(int numberOfPerson) {
@@ -43,7 +43,7 @@ public class Row {
     }
 
     private void validateDrawLinePosition(int lineStartPosition) {
-        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == -1 || row[lineStartPosition + 1] == 1) {
+        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == Direction.LEFT.getValue() || row[lineStartPosition + 1] == Direction.RIGHT.getValue()) {
             throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
         }
     }
