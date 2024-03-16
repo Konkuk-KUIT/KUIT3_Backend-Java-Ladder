@@ -10,8 +10,8 @@ public class Row {
 
     public void drawLine(int lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = 1;
-        row[lineStartPosition + 1] = -1;
+        row[lineStartPosition] = LadderDirection.RIGHT.getValue();
+        row[lineStartPosition + 1] = LadderDirection.LEFT.getValue();
     }
 
     public int nextPosition(int position) {
@@ -29,11 +29,11 @@ public class Row {
     }
 
     private boolean isLeft(int position) {
-        return row[position] == -1;
+        return row[position] == LadderDirection.LEFT.getValue();
     }
 
     private boolean isRight(int position) {
-        return row[position] == 1;
+        return row[position] == LadderDirection.RIGHT.getValue();
     }
 
     private void validateNumberOfPerson(int numberOfPerson) {
