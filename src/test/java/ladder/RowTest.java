@@ -1,5 +1,6 @@
 package ladder;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -152,6 +153,20 @@ class RowTest {
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
 
+    }
+
+    @Test
+    void 라인_그리기_중복_예외() {
+        //given
+        int numberOfPerson = 3;
+        Row row = new Row(numberOfPerson);
+        row.drawLine(1);
+
+        //when
+        int lineStartPosition = 1;
+
+        //then
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
     }
 
 }

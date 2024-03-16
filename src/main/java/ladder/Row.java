@@ -43,7 +43,10 @@ public class Row {
     }
 
     private void validateDrawLinePosition(int lineStartPosition) {
-        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == Direction.LEFT.getValue() || row[lineStartPosition + 1] == Direction.RIGHT.getValue()) {
+        if(isInvalidPosition(lineStartPosition) ||
+                isLineAtPosition(lineStartPosition) ||
+                isLineAtPrevPosition(lineStartPosition) ||
+                isLineAtNextPosition(lineStartPosition)) {
             throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
         }
     }
@@ -52,6 +55,22 @@ public class Row {
         if(position >= row.length || position < 0 ) {
             throw new IllegalArgumentException("유효하지 않은 위치 입니다.");
         }
+    }
+
+    private boolean isInvalidPosition(int lineStartPosition) {
+        return lineStartPosition < 0 || lineStartPosition >= row.length - 1;
+    }
+
+    private boolean isLineAtPosition(int lineStartPosition) {
+        return row[lineStartPosition] == Direction.RIGHT.getValue() || row[lineStartPosition + 1] == Direction.LEFT.getValue();
+    }
+
+    private boolean isLineAtNextPosition(int lineStartPosition) {
+        return row[lineStartPosition + 1] == Direction.RIGHT.getValue();
+    }
+
+    private boolean isLineAtPrevPosition(int lineStartPosition) {
+        return row[lineStartPosition] == Direction.LEFT.getValue();
     }
 
 
