@@ -1,49 +1,39 @@
 package ladder;
 
 public class Row {
-    private int[] row;
+    private Node[] nodes;
 
     public Row(int numberOfPerson) {
-        row = new int[numberOfPerson];
+        nodes = new Node[numberOfPerson];
+        for (int i = 0; i < numberOfPerson; i++) {
+            nodes[i] = new Node(LadderDirection.STAY);
+        }
     }
 
-    public void drawLine(int lineStartPosition) {
+    public void drawLine(Position lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = LadderDirection.RIGHT.getValue();
-        row[lineStartPosition + 1] = LadderDirection.LEFT.getValue();
+        nodes[lineStartPosition.getPosition()] = new Node(LadderDirection.RIGHT);
+        nodes[lineStartPosition.increment().getPosition()] = new Node(LadderDirection.LEFT);
     }
 
-    public int nextPosition(int position) {
-
-        validatePosition(position);
-
-        if (isLeft(position)) {
-            return position - 1;
-        }
-        if (isRight(position)) {
-            return position + 1;
-        }
-
-        return position;
-    }
-
-    private boolean isLeft(int position) {
-        return row[position] == LadderDirection.LEFT.getValue();
-    }
-
-    private boolean isRight(int position) {
-        return row[position] == LadderDirection.RIGHT.getValue();
+    public Position nextPosition(Position currentPosition) {
+        validatePosition(currentPosition);
+        return nodes[currentPosition.getPosition()].next(currentPosition);
     }
 
 
-    private void validateDrawLinePosition(int lineStartPosition) {
-        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == -1 || row[lineStartPosition + 1] == 1) {
+
+    private void validateDrawLinePosition(Position lineStartPosition) {
+        if(lineStartPosition.getPosition() < 0
+                || lineStartPosition.getPosition() >= nodes.length - 1
+                || nodes[lineStartPosition.getPosition()].isLeft()
+                || nodes[lineStartPosition.increment().getPosition()].isRight()) {
             throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
         }
     }
 
-    private void validatePosition(int position) {
-        if(position >= row.length || position < 0 ) {
+    private void validatePosition(Position position) {
+        if(position.getPosition() >= nodes.length || position.getPosition() < 0 ) {
             throw new IllegalArgumentException("유효하지 않은 위치 입니다.");
         }
     }
