@@ -1,5 +1,7 @@
 package ladder;
 
+import static ladder.exception.ExceptionMessage.*;
+
 public class LadderSize {
     private final int numberOfRows;
     private final int numberOfPerson;
@@ -20,7 +22,7 @@ public class LadderSize {
 
     public void validate() {
         if (numberOfRows < 1 || numberOfPerson < 1) {
-            throw new IllegalArgumentException("사다리의 행과 참여자 수는 1명 이상이어야 한다.");
+            throw new IllegalArgumentException(INVALID_PARTICIPANT_COUNT.getMessage());
         }
     }
 }
