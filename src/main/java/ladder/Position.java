@@ -18,4 +18,8 @@ public class Position {
     public Position decrement(){
         return new Position(position-1);
     }
+
+    public static Position fromValue(int val){
+        return new Position(val);
+    }
 }
