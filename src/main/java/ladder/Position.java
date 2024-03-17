@@ -1,5 +1,7 @@
 package ladder;
 
+import static ladder.ExceptionMessage.INVALID_LADDER_POSITION;
+
 public class Position {
 
     private int position;
@@ -35,7 +37,7 @@ public class Position {
 
     public static void validatePosition(int position) {
         if(!isPosition(position)) {
-            throw new IllegalArgumentException("사다리 상의 위치는 0 이상의 정수 이어야 합니다.");
+            throw new IllegalArgumentException(INVALID_LADDER_POSITION.getMessage());
         }
     }
 

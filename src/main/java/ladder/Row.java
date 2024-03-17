@@ -1,5 +1,7 @@
 package ladder;
 
+import static ladder.ExceptionMessage.*;
+
 public class Row {
     private Node[] nodes;
 
@@ -29,7 +31,7 @@ public class Row {
 
     private void validateNumberOfPerson(int numberOfPerson) {
         if(numberOfPerson < 1) {
-            throw new IllegalArgumentException("게임의 참여자 수는 1명 이상이어야 합니다.");
+            throw new IllegalArgumentException(INVALID_NUMBER_OF_PERSON.getMessage());
         }
     }
 
@@ -38,13 +40,13 @@ public class Row {
                 || nodes[lineStartPosition.getValue()].isRight()
                 || nodes[lineStartPosition.next().getValue()].isRight()
                 || nodes[lineStartPosition.getValue()].isLeft()) {
-            throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
+            throw new IllegalArgumentException(INVALID_DRAW_POSITION.getMessage());
         }
     }
 
     private void validatePosition(Position position) {
         if(position.isBiggerThan(nodes.length - 1) || position.isSmallerThan(0) ) {
-            throw new IllegalArgumentException("유효하지 않은 위치 입니다.");
+            throw new IllegalArgumentException(INVALID_POSITION.getMessage());
         }
     }
 
