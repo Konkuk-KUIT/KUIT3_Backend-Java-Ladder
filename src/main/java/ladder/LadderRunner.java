@@ -21,6 +21,7 @@ public class LadderRunner {
         for(int i=0;i< rows.length;i++){
             StringBuilder sb = new StringBuilder();
             rows[i].printRow(sb,Position.fromValue(i),ladderPosition);
+            System.out.println(sb);
         }
     }
 }
