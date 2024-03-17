@@ -5,10 +5,9 @@ import static ladder.ExceptionMessage.*;
 public class Row {
     private Node[] nodes;
 
-    public Row(int numberOfPerson) {
-        validateNumberOfPerson(numberOfPerson);
-        nodes = new Node[numberOfPerson];
-        for(int i = 0; i < numberOfPerson; i++) {
+    public Row(NaturalNumber numberOfPerson) {
+        nodes = new Node[numberOfPerson.getNumber()];
+        for(int i = 0; i < numberOfPerson.getNumber(); i++) {
             nodes[i] = Node.of(Direction.NONE);
         }
     }
@@ -27,12 +26,6 @@ public class Row {
 
     private void setDirectionAtPosition(Position position, Direction direction) {
         nodes[position.getValue()] = Node.of(direction);
-    }
-
-    private void validateNumberOfPerson(int numberOfPerson) {
-        if(numberOfPerson < 1) {
-            throw new IllegalArgumentException(INVALID_NUMBER_OF_PERSON.getMessage());
-        }
     }
 
     private void validateDrawLinePosition(Position lineStartPosition) {
