@@ -22,6 +22,6 @@ public class CustomLadderCreator implements LadderCreator{
 
     @Override
     public Row[] getRows() {
-        return new Row[0];
+        return rows;
     }
 }
