@@ -14,10 +14,12 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int position = 0;
+        int nthOfPerson = 0;
+        Position position = Position.of(nthOfPerson);
+
 
         //then
-        assertEquals(0,row.nextPosition(position));
+        assertEquals(0,row.nextPosition(position).getValue());
     }
 
     @Test
@@ -25,18 +27,20 @@ class RowTest {
         //given
         int numberOfPerson = 2;
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.of(0));
 
         //when
-        int position = 0;
-        int resultPosition = row.nextPosition(position);
+        int nthOfPerson = 0;
+        Position position = Position.of(nthOfPerson);
+        int resultPosition = row.nextPosition(position).getValue();
         //then
         assertEquals(1,resultPosition);
 
 
         //when
-        position = 1;
-        resultPosition = row.nextPosition(position);
+        nthOfPerson = 1;
+        position = Position.of(nthOfPerson);
+        resultPosition = row.nextPosition(position).getValue();
         //then
         assertEquals(0, resultPosition);
     }
@@ -46,24 +50,27 @@ class RowTest {
         //given
         int numberOfPerson = 3;
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.of(0));
 
         //when
-        int position = 0;
-        int resultPosition = row.nextPosition(position);
+        int nthOfPerson = 0;
+        Position position = Position.of(nthOfPerson);
+        int resultPosition = row.nextPosition(position).getValue();
         //then
         assertEquals(1,resultPosition);
 
 
         //when
-        position = 1;
-        resultPosition = row.nextPosition(position);
+        nthOfPerson = 1;
+        position = Position.of(nthOfPerson);
+        resultPosition = row.nextPosition(position).getValue();
         //then
         assertEquals(0, resultPosition);
 
         //when
-        position = 2;
-        resultPosition = row.nextPosition(position);
+        nthOfPerson = 2;
+        position = Position.of(nthOfPerson);
+        resultPosition = row.nextPosition(position).getValue();
         //then
         assertEquals(2, resultPosition);
     }
@@ -83,7 +90,7 @@ class RowTest {
         int position = 3;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
+        assertThrows(IllegalArgumentException.class, () -> row.nextPosition(Position.of(position)));
     }
 
     @Test
@@ -96,7 +103,7 @@ class RowTest {
         int position = -1;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
+        assertThrows(IllegalArgumentException.class, () -> row.nextPosition(Position.of(position)));
     }
 
     @Test
@@ -109,7 +116,7 @@ class RowTest {
         int lineStartPosition = 2;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(lineStartPosition)));
     }
 
     @Test
@@ -122,7 +129,7 @@ class RowTest {
         int lineStartPosition = -1;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(lineStartPosition)));
     }
 
     @Test
@@ -130,13 +137,13 @@ class RowTest {
         //given
         int numberOfPerson = 3;
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.of(0));
 
         //when
         int lineStartPosition = 1;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(lineStartPosition)));
 
     }
 
@@ -145,13 +152,13 @@ class RowTest {
         //given
         int numberOfPerson = 3;
         Row row = new Row(numberOfPerson);
-        row.drawLine(1);
+        row.drawLine(Position.of(1));
 
         //when
         int lineStartPosition = 0;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(lineStartPosition)));
 
     }
 
@@ -160,13 +167,13 @@ class RowTest {
         //given
         int numberOfPerson = 3;
         Row row = new Row(numberOfPerson);
-        row.drawLine(1);
+        row.drawLine(Position.of(1));
 
         //when
         int lineStartPosition = 1;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(lineStartPosition)));
     }
 
 }

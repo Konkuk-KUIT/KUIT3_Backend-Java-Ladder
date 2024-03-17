@@ -8,32 +8,37 @@ public class Row {
         row = new int[numberOfPerson];
     }
 
-    public void drawLine(int lineStartPosition) {
+    public void drawLine(Position lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = Direction.RIGHT.getValue();
-        row[lineStartPosition + 1] = Direction.LEFT.getValue();
+
+        setDirectionAtPosition(lineStartPosition, Direction.RIGHT);
+        setDirectionAtPosition(lineStartPosition.next(), Direction.LEFT);
     }
 
-    public int nextPosition(int position) {
+    public Position nextPosition(Position currentPosition) {
 
-        validatePosition(position);
+        validatePosition(currentPosition);
 
-        if (isLeft(position)) {
-            return position - 1;
+        if (isLeft(currentPosition)) {
+            return currentPosition.prev();
         }
-        if (isRight(position)) {
-            return position + 1;
+        if (isRight(currentPosition)) {
+            return currentPosition.next();
         }
 
-        return position;
+        return currentPosition;
     }
 
-    private boolean isLeft(int position) {
-        return row[position] == Direction.LEFT.getValue();
+    private void setDirectionAtPosition(Position position, Direction direction) {
+        row[position.getValue()] = direction.getValue();
     }
 
-    private boolean isRight(int position) {
-        return row[position] == Direction.RIGHT.getValue();
+    private boolean isLeft(Position position) {
+        return row[position.getValue()] == Direction.LEFT.getValue();
+    }
+
+    private boolean isRight(Position position) {
+        return row[position.getValue()] == Direction.RIGHT.getValue();
     }
 
     private void validateNumberOfPerson(int numberOfPerson) {
@@ -42,35 +47,23 @@ public class Row {
         }
     }
 
-    private void validateDrawLinePosition(int lineStartPosition) {
-        if(isInvalidPosition(lineStartPosition) ||
-                isLineAtPosition(lineStartPosition) ||
-                isLineAtPrevPosition(lineStartPosition) ||
-                isLineAtNextPosition(lineStartPosition)) {
+    private void validateDrawLinePosition(Position lineStartPosition) {
+        if(isInvalidDrawPosition(lineStartPosition)
+                || isRight(lineStartPosition)
+                || isRight(lineStartPosition.next())
+                || isLeft(lineStartPosition)) {
             throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
         }
     }
 
-    private void validatePosition(int position) {
-        if(position >= row.length || position < 0 ) {
+    private void validatePosition(Position position) {
+        if(position.isBiggerThan(row.length - 1) || position.isSmallerThan(0) ) {
             throw new IllegalArgumentException("유효하지 않은 위치 입니다.");
         }
     }
 
-    private boolean isInvalidPosition(int lineStartPosition) {
-        return lineStartPosition < 0 || lineStartPosition >= row.length - 1;
-    }
-
-    private boolean isLineAtPosition(int lineStartPosition) {
-        return row[lineStartPosition] == Direction.RIGHT.getValue() || row[lineStartPosition + 1] == Direction.LEFT.getValue();
-    }
-
-    private boolean isLineAtNextPosition(int lineStartPosition) {
-        return row[lineStartPosition + 1] == Direction.RIGHT.getValue();
-    }
-
-    private boolean isLineAtPrevPosition(int lineStartPosition) {
-        return row[lineStartPosition] == Direction.LEFT.getValue();
+    private boolean isInvalidDrawPosition(Position lineStartPosition) {
+        return lineStartPosition.isBiggerThan(row.length - 1) || lineStartPosition.isSmallerThan(0);
     }
 
 
