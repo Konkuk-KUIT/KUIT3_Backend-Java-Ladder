@@ -30,8 +30,9 @@ public class Row {
     private void validateDrawLinePosition(Position lineStartPosition) {
         if(lineStartPosition.getPosition() < 0
                 || lineStartPosition.getPosition() >= nodes.length - 1
-                || nodes[lineStartPosition.getPosition()].isLeft()
-                || nodes[lineStartPosition.increment().getPosition()].isRight()) {
+                || nodes[lineStartPosition.getPosition()].isRight()
+                || nodes[lineStartPosition.increment().getPosition()].isRight()
+                || nodes[lineStartPosition.getPosition()].isLeft()) {
             throw new IllegalArgumentException(DUPLICATE_LINE.getMessage());
         }
     }
