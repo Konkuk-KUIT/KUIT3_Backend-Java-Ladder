@@ -32,7 +32,7 @@ public class LadderPosition {
             return false;
         }
         LadderPosition other = (LadderPosition) obj;
-        return Objects.equals(row, other.row) && Objects.equals(col, other.col);
+        return Objects.equals(getRow(), other.getRow()) && Objects.equals(getCol(), other.getCol());
     }
 
 
