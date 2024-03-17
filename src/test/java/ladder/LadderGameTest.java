@@ -1,10 +1,11 @@
 package ladder;
 
+import ladder.creator.LadderCreator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LadderTest {
+class LadderGameTest {
 
     @Test
     void 사다리_생성_확인() {
@@ -13,10 +14,10 @@ class LadderTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(5);
 
         //when
-        Ladder ladder  = new Ladder(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator  = new LadderCreator(numberOfRow, numberOfPerson);
 
         //then
-        assertNotNull(ladder);
+        assertNotNull(ladderCreator);
     }
 
     @Test
@@ -24,14 +25,15 @@ class LadderTest {
         //given
         NaturalNumber numberOfRow = NaturalNumber.of(1);
         NaturalNumber numberOfPerson = NaturalNumber.of(3);
-        Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator  = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderGame ladderGame = new LadderGame(ladderCreator);
 
         //when
         int nthOfPerson = 3;
         Position position = Position.of(nthOfPerson);
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> ladder.run(position));
+        assertThrows(IllegalArgumentException.class, () -> ladderGame.run(position));
     }
 
     @Test
@@ -39,38 +41,40 @@ class LadderTest {
         //given
         NaturalNumber numberOfRow = NaturalNumber.of(4);
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
-        Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator  = new LadderCreator(numberOfRow, numberOfPerson);
 
-        ladder.drawLine(Position.of(1), Position.of(0));
-        ladder.drawLine(Position.of(1), Position.of(2));
-        ladder.drawLine(Position.of(2), Position.of(1));
+        ladderCreator.drawLine(Position.of(1), Position.of(0));
+        ladderCreator.drawLine(Position.of(1), Position.of(2));
+        ladderCreator.drawLine(Position.of(2), Position.of(1));
+
+        LadderGame ladderGame = new LadderGame(ladderCreator);
 
 
         //when
         int nthOfPerson = 0;
         Position position = Position.of(nthOfPerson);
-        int resultPosition = ladder.run(position);
+        int resultPosition = ladderGame.run(position);
         //then
         assertEquals(2, resultPosition);
 
         //when
         nthOfPerson = 1;
         position = Position.of(nthOfPerson);
-        resultPosition = ladder.run(position);
+        resultPosition = ladderGame.run(position);
         //then
         assertEquals(0, resultPosition);
 
         //when
         nthOfPerson = 2;
         position = Position.of(nthOfPerson);
-        resultPosition = ladder.run(position);
+        resultPosition = ladderGame.run(position);
         //then
         assertEquals(3, resultPosition);
 
         //when
         nthOfPerson = 3;
         position = Position.of(nthOfPerson);
-        resultPosition = ladder.run(position);
+        resultPosition = ladderGame.run(position);
         //then
         assertEquals(1, resultPosition);
 
