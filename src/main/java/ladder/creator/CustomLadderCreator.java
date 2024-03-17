@@ -19,4 +19,9 @@ public class CustomLadderCreator implements LadderCreator{
         Position position = new Position(col);
         rows[row].drawLine(position);
     }
+
+    @Override
+    public Row[] getRows() {
+        return new Row[0];
+    }
 }
