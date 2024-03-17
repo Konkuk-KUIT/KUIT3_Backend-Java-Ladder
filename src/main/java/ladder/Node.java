@@ -26,6 +26,7 @@ public class Node {
         return ladderDirection == LadderDirection.RIGHT;
     }
 
-
-
+    public LadderDirection getLadderDirection() {
+        return ladderDirection;
+    }
 }
