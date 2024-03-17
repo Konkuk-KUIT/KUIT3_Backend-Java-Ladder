@@ -43,6 +43,15 @@ public class Row {
     }
 
 
-
+    public void printRow(StringBuilder sb,Position Row ,LadderPosition currentPosition){
+        for (int i = 0; i < nodes.length; i++) {
+            sb.append(nodes[i].getLadderDirection());
+            if (currentPosition.equals(LadderPosition.fromCoordinate(Row, Position.fromValue(i)))) {
+                sb.append("*");
+            }
+            sb.append(" ");
+        }
+        sb.append("\n");
+    }
 
 }
