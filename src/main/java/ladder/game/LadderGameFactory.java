@@ -1,6 +1,6 @@
 package ladder.game;
 
-import ladder.LadderSize;
+import ladder.model.LadderSize;
 import ladder.creator.CustomLadderCreator;
 import view.InputView;
 import view.OutputView;

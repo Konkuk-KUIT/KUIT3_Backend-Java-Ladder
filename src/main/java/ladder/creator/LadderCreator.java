@@ -1,7 +1,6 @@
 package ladder.creator;
 
-import ladder.Position;
-import ladder.Row;
+import ladder.model.Row;
 
 public interface LadderCreator {
     public void drawLine(int row, int col);

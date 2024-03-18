@@ -1,4 +1,8 @@
-package ladder;
+package ladder.game;
+
+import ladder.model.LadderPosition;
+import ladder.model.Position;
+import ladder.model.Row;
 
 public class LadderRunner {
     Row[] rows;

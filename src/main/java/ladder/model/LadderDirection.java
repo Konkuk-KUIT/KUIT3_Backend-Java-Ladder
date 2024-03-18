@@ -1,4 +1,4 @@
-package ladder;
+package ladder.model;
 
 public enum LadderDirection {
     RIGHT(1),

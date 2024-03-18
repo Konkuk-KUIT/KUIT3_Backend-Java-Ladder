@@ -1,7 +1,6 @@
 package ladder.game;
 
-import ladder.LadderRunner;
-import ladder.Position;
+import ladder.model.Position;
 import ladder.creator.LadderCreator;
 import view.InputView;
 import view.OutputView;
