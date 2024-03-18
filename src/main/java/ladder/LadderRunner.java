@@ -1,2 +1,4 @@
-package ladder;public class LadderRunner {
+package ladder;
+
+public class LadderRunner {
 }

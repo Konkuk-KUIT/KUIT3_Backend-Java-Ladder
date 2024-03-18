@@ -41,24 +41,20 @@ public class Row {
 
     private void validateNumberOfPerson(int numberOfPerson) {
         if(numberOfPerson < 1) {
-            throw new IllegalArgumentException("게임의 참여자 수는 1명 이상이어야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_OF_PERSON.getErrorMessage());
         }
     }
 
     private void validateDrawLinePosition(int lineStartPosition) {
         if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == Direction.LEFT
                 || row[lineStartPosition + 1] == Direction.RIGHT) {
-            throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_LINE_POSITION.getErrorMessage());
         }
     }
 
     private void validatePosition(int position) {
         if(position >= row.length || position < 0 ) {
-            throw new IllegalArgumentException("유효하지 않은 위치 입니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getErrorMessage());
         }
     }
-
-
-
-
 }

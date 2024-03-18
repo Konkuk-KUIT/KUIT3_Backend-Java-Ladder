@@ -1,9 +1,7 @@
 package ladder;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 public class LadderSpec {
     private final int row;
@@ -21,4 +19,10 @@ public class LadderSpec {
         this.col = col;
         this.startPosition = Collections.emptyList();
     }
+
+    private Boolean isRandom() {
+        return this.startPosition.isEmpty();
+    }
+
+
 }
