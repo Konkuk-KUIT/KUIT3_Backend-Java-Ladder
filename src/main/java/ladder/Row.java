@@ -55,4 +55,8 @@ public class Row {
         sb.append("\n");
     }
 
+    public int getSize(){
+        return nodes.length;
+    }
+
 }
