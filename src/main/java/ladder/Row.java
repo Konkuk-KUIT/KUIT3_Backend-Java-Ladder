@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class Row {
     private Direction[] row;
 
-    public Row(int numberOfPerson) {
-        validateNumberOfPerson(numberOfPerson);
-        row = new Direction[numberOfPerson];
+    public Row(NaturalNumber numberOfPerson) {
+        validateNumberOfPerson(numberOfPerson.get());
+        row = new Direction[numberOfPerson.get()];
         Arrays.fill(row, Direction.CENTER);
     }
 
