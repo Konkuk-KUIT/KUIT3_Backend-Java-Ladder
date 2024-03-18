@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.util.CustomException;
+import ladder.util.ErrorCode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,7 +32,9 @@ class LadderTest {
         int position = 3;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> ladder.run(3));
+        Throwable exception = assertThrows(RuntimeException.class, () -> ladder.run(3));
+        assertTrue(exception instanceof CustomException);
+        assertSame(ErrorCode.INVALID_POSITION.getMessage(),exception.getMessage());
     }
 
     @Test
