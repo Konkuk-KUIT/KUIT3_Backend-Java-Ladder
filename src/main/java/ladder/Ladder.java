@@ -4,11 +4,11 @@ public class Ladder {
 
     private Row[] rows;
 
-    public Ladder(int numberOfRows, int numberOfPerson) {
-        rows = new Row[numberOfPerson];
+    public Ladder(NaturalNumber numberOfRows, NaturalNumber numberOfPersons) {
+        rows = new Row[numberOfRows.toInt()];
 
-        for(int i = 0; i < numberOfRows; i++) {
-            rows[i] = new Row(numberOfPerson);
+        for(int i = 0; i < numberOfRows.toInt(); i++) {
+            rows[i] = new Row(numberOfPersons.toInt());
         }
     }
 
