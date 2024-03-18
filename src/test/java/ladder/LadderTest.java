@@ -68,4 +68,23 @@ public class LadderTest {
         //then
         assertEquals(2, resultPosition);
     }
+
+    @Test
+    void 사다리_출력하기() {
+        //given
+        int numberOfRows = 3;
+        int numberOfPerson = 4;
+        Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
+        ladder.drawLine(0, 0);
+        ladder.drawLine(1, 1);
+        ladder.drawLine(2, 0);
+        ladder.drawLine(2, 2);
+
+        //when
+        String ladderResult = ladder.printLadder();
+
+        //then
+        String expectedResult = "1 -1 0 0 \n0 1 -1 0 \n1 -1 1 -1 \n";
+        assertEquals(expectedResult, ladderResult);
+    }
 }

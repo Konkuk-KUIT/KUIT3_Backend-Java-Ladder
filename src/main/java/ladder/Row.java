@@ -46,4 +46,14 @@ public class Row {
     private boolean isRight(int position) {
         return row[position] == 1;
     }
+
+    public String printRow() {
+        StringBuilder rowResult = new StringBuilder();
+        for (int i = 0; i < row.length; i++) {
+            rowResult.append(String.valueOf(row[i]));
+            rowResult.append(' ');
+        }
+        rowResult.append('\n');
+        return rowResult.toString();
+    }
 }
