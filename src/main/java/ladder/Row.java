@@ -1,17 +1,20 @@
 package ladder;
 
+import java.util.Arrays;
+
 public class Row {
-    private int[] row;
+    private Direction[] row;
 
     public Row(int numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
-        row = new int[numberOfPerson];
+        row = new Direction[numberOfPerson];
+        Arrays.fill(row, Direction.CENTER);
     }
 
     public void drawLine(int lineStartPosition) {   // 오른쪽 찍 한줄 긋기
         validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = 1;
-        row[lineStartPosition + 1] = -1;
+        row[lineStartPosition] = Direction.RIGHT;
+        row[lineStartPosition + 1] = Direction.LEFT;
     }
 
     public int nextPosition(int position) { // run 할때 직접, 얼마나 내려왔는지 계산(?) 생각(?) 해야됨 -> 이미 ladder의 run에 이와 비슷하게 구현 되있슴
@@ -29,11 +32,11 @@ public class Row {
     }
 
     private boolean isLeft(int position) {
-        return row[position] == -1;
+        return row[position] == Direction.LEFT;
     }
 
     private boolean isRight(int position) {
-        return row[position] == 1;
+        return row[position] == Direction.RIGHT;
     }
 
     private void validateNumberOfPerson(int numberOfPerson) {
@@ -43,7 +46,8 @@ public class Row {
     }
 
     private void validateDrawLinePosition(int lineStartPosition) {
-        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == -1 || row[lineStartPosition + 1] == 1) {
+        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == Direction.LEFT
+                || row[lineStartPosition + 1] == Direction.RIGHT) {
             throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
         }
     }
