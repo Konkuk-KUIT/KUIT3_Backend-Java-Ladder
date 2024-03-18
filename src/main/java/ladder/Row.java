@@ -1,5 +1,9 @@
 package ladder;
 
+import ladder.util.CustomException;
+import ladder.util.ErrorCode;
+import ladder.util.RowConstant;
+
 public class Row {
     private int[] row;
 
@@ -10,8 +14,8 @@ public class Row {
 
     public void drawLine(int lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = 1;
-        row[lineStartPosition + 1] = -1;
+        row[lineStartPosition] = RowConstant.RIGHT_DRAW_CONSTANT;
+        row[lineStartPosition + RowConstant.ROW_BLOCK_SIZE] = RowConstant.LEFT_DRAW_CONSTANT;
     }
 
     public int nextPosition(int position) {
@@ -19,38 +23,40 @@ public class Row {
         validatePosition(position);
 
         if (isLeft(position)) {
-            return position - 1;
+            return position + RowConstant.LEFT_DRAW_CONSTANT;
         }
         if (isRight(position)) {
-            return position + 1;
+            return position + RowConstant.RIGHT_DRAW_CONSTANT;
         }
 
         return position;
     }
 
     private boolean isLeft(int position) {
-        return row[position] == -1;
+        return row[position] == RowConstant.LEFT_DRAW_CONSTANT;
     }
 
     private boolean isRight(int position) {
-        return row[position] == 1;
+        return row[position] == RowConstant.RIGHT_DRAW_CONSTANT;
     }
 
     private void validateNumberOfPerson(int numberOfPerson) {
         if(numberOfPerson < 1) {
-            throw new IllegalArgumentException("게임의 참여자 수는 1명 이상이어야 합니다.");
+
+            //throw new IllegalArgumentException("게임의 참여자 수는 1명 이상이어야 합니다.");
+            throw new CustomException(ErrorCode.LACK_PARTICIPANTS);
         }
     }
 
     private void validateDrawLinePosition(int lineStartPosition) {
-        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == -1 || row[lineStartPosition + 1] == 1) {
-            throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
+        if(lineStartPosition < RowConstant.START_INDEX || lineStartPosition >= row.length - 1 || row[lineStartPosition] == RowConstant.LEFT_DRAW_CONSTANT || row[lineStartPosition + RowConstant.ROW_BLOCK_SIZE] == RowConstant.RIGHT_DRAW_CONSTANT) {
+            throw new CustomException(ErrorCode.INVALID_LINE_POSITION);
         }
     }
 
     private void validatePosition(int position) {
-        if(position >= row.length || position < 0 ) {
-            throw new IllegalArgumentException("유효하지 않은 위치 입니다.");
+        if(position >= row.length || position < RowConstant.START_INDEX ) {
+            throw new CustomException(ErrorCode.INVALID_POSITION);
         }
     }
 
