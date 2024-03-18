@@ -22,4 +22,12 @@ public class Ladder {
 
         return position;
     }
+
+    public String printLadder() {
+        String ladderResult = "";
+        for (int i = 0; i < rows.length; i++) {
+            ladderResult += rows[i].printRow();
+        }
+        return ladderResult;
+    }
 }
