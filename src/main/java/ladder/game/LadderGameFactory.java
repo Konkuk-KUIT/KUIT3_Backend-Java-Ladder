@@ -2,10 +2,14 @@ package ladder.game;
 
 import ladder.LadderSize;
 import ladder.creator.CustomLadderCreator;
+import view.InputView;
+import view.OutputView;
 
 public class LadderGameFactory {
     public static LadderGame customLadderGame(LadderSize ladderSize) {
         CustomLadderCreator customLadderCreator = new CustomLadderCreator(ladderSize);
-        return new LadderGame(customLadderCreator);
+        OutputView outputView = new OutputView();
+        InputView inputView = new InputView();
+        return new LadderGame(customLadderCreator,outputView,inputView);
     }
 }
