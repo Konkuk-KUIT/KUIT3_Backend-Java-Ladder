@@ -8,13 +8,13 @@ public class Row {
         row = new int[numberOfPerson];
     }
 
-    public void drawLine(int lineStartPosition) {
+    public void drawLine(int lineStartPosition) {   // 오른쪽 찍 한줄 긋기
         validateDrawLinePosition(lineStartPosition);
         row[lineStartPosition] = 1;
         row[lineStartPosition + 1] = -1;
     }
 
-    public int nextPosition(int position) {
+    public int nextPosition(int position) { // run 할때 직접, 얼마나 내려왔는지 계산(?) 생각(?) 해야됨 -> 이미 ladder의 run에 이와 비슷하게 구현 되있슴
 
         validatePosition(position);
 

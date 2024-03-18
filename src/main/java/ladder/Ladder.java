@@ -4,8 +4,8 @@ public class Ladder {
 
     private Row[] rows;
 
-    public Ladder(int numberOfRows, int numberOfPerson) {
-        rows = new Row[numberOfPerson];
+    public Ladder(int numberOfRows, int numberOfPerson) {   // row와 col에 해당하는 사람의 수 까지 입력 받음
+        rows = new Row[numberOfPerson];     // Row객체를 가지고 있는 배열의 생성
 
         for(int i = 0; i < numberOfRows; i++) {
             rows[i] = new Row(numberOfPerson);
