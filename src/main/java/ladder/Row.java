@@ -25,7 +25,10 @@ public class Row {
         return nodes[currentPosition.getPosition()].next(currentPosition);
     }
 
-
+    public boolean hasLine(Position position) {
+        validatePosition(position);
+        return nodes[position.getPosition()].isRight() || nodes[position.getPosition()].isLeft();
+    }
 
     private void validateDrawLinePosition(Position lineStartPosition) {
         if(lineStartPosition.getPosition() < 0
