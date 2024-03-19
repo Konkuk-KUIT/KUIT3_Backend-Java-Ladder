@@ -1,5 +1,6 @@
 package game;
 
+import game.field.Field;
 import game.field.Ladder;
 import game.pipe.util.CustomException;
 import game.pipe.util.ErrorCode;
@@ -16,10 +17,10 @@ class LadderTest {
         int numberOfPerson = 5;
 
         //when
-        Ladder ladder  = new Ladder(numberOfRows, numberOfPerson);
+        Field field = new Ladder(numberOfRows, numberOfPerson);
 
         //then
-        assertNotNull(ladder);
+        assertNotNull(field);
     }
 
     @Test
@@ -27,13 +28,13 @@ class LadderTest {
         //given
         int numberOfPerson = 3;
         int numberOfRows = 1;
-        Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
+        Field field = new Ladder(numberOfRows, numberOfPerson);
 
         //when
         int position = 3;
 
         //then
-        Throwable exception = assertThrows(RuntimeException.class, () -> ladder.run(3));
+        Throwable exception = assertThrows(RuntimeException.class, () -> field.run(position));
         assertTrue(exception instanceof CustomException);
         assertSame(ErrorCode.INVALID_POSITION.getMessage(),exception.getMessage());
     }
