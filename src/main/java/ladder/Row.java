@@ -1,61 +1,73 @@
 package ladder;
 
 public class Row {
-    private static final int RIGHT = 1;
-    private static final int LEFT = -1;
-    private static final String ERROR_INVALID_NUMBER_OF_PERSON = "참여 인원은 1명 이상이어야 합니다.";
-    private static final String ERROR_INVALID_LINE_CREATE_POSITION = "라인 생성이 불가능한 위치 입니다.";
-    private static final String ERROR_INVALID_POSITION = "유효하지 않은 위치 입니다.";
-
-    private int[] row;
+    private Node[] row;
 
     public Row(int numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
-        row = new int[numberOfPerson];
+        row = new Node[numberOfPerson];
+        //모든 위치 초기 방향 NONE으로 설정
+        for (int i = 0; i < row.length; i++) {
+            row[i] = Node.of(Direction.NONE);
+        }
     }
 
     public void drawLine(int lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = RIGHT;
-        row[lineStartPosition + 1] = LEFT;
+        row[lineStartPosition] = Node.of(Direction.RIGHT);
+        row[lineStartPosition + 1] = Node.of(Direction.LEFT);
     }
 
     public int nextPosition(int position) {
         validatePosition(position);
 
-        if (isLeft(position)) {
-            return position - 1;
+        Position currentPosition = Position.of(position);
+        Position nextPosition = row[position].move(currentPosition);
+
+        return nextPosition.getPosition();
+    }
+
+    public String toString(LadderPosition starPosition,int y) {
+        StringBuilder sb = new StringBuilder();
+        for (int x = 0; x < row.length; x++) {
+            if (starPosition.isEqualPosition(x, y)) {
+                sb.append(row[x].getDirection().getValue()).append("* ");
+            } else {
+                sb.append(row[x].getDirection().getValue()).append("  ");
+            }
         }
-        if (isRight(position)) {
-            return position + 1;
-        }
-
-        return position;
+        return sb.toString().trim();
     }
 
-    private boolean isLeft(int position) {
-        return row[position] == LEFT;
-    }
-
-    private boolean isRight(int position) {
-        return row[position] == RIGHT;
-    }
+//    private boolean isLeft(int position) {
+//        return row[position] == Direction.LEFT.getValue();
+//    }
+//
+//    private boolean isRight(int position) {
+//        return row[position] == Direction.RIGHT.getValue();
+//    }
 
     private void validateNumberOfPerson(int numberOfPerson) {
         if(numberOfPerson < 1) {
-            throw new IllegalArgumentException(ERROR_INVALID_NUMBER_OF_PERSON);
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_OF_PERSON.getMessage());
         }
     }
 
+
     private void validateDrawLinePosition(int lineStartPosition) {
-        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == LEFT || row[lineStartPosition + 1] == RIGHT) {
-            throw new IllegalArgumentException(ERROR_INVALID_LINE_CREATE_POSITION);
+        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LINE_CREATE_POSITION.getMessage());
+        }
+        // Node 상태를 직접 확인하여 이전 노드나 다음 노드가 이미 연결되어 있는지 확인
+        if(row[lineStartPosition].getDirection() == Direction.LEFT || row[lineStartPosition + 1].getDirection() == Direction.RIGHT
+        || row[lineStartPosition].getDirection() == Direction.RIGHT || row[lineStartPosition + 1].getDirection() == Direction.LEFT) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LINE_CREATE_POSITION.getMessage());
         }
     }
 
     private void validatePosition(int position) {
         if(position >= row.length || position < 0 ) {
-            throw new IllegalArgumentException(ERROR_INVALID_POSITION);
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getMessage());
         }
     }
 }

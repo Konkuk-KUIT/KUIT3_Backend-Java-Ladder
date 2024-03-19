@@ -2,10 +2,16 @@ package ladder;
 
 public class Main {
     public static void main(String[] args) {
-        Ladder ladder = new Ladder(5, 5); // 5줄의 사다리와 5명의 참여자
-        ladder.drawLine(0, 1); // 첫 번째 줄에 1번 위치에 선을 그음
-        ladder.drawLine(2, 2); // 세 번째 줄에 2번 위치에 선을 그음
-        ladder.drawLine(4, 0); // 다섯 번째 줄에 0번 위치에 선을 그음
+//        NaturalNumber numberOfRows = NaturalNumber.of(4);
+//        NaturalNumber numberOfPersons = NaturalNumber.of(5);
+//
+//        LadderCreator ladderCreator = new LadderCreator(numberOfRows, numberOfPersons);
+//
+//        LadderGame ladderGame = new LadderGame(ladderCreator);
+        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(5,5);
+        Position startPosition = Position.of(0);
+        Position endPosition = ladderGame.runGame(startPosition);
+        System.out.println("Start Position: " + startPosition.getPosition() + " -> End Position: " + endPosition.getPosition());
 
     }
 }
