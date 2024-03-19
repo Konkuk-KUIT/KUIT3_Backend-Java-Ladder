@@ -1,11 +1,10 @@
-package ladder;
+package game.fieldComponent;
 
-import ladder.util.CustomException;
-import ladder.util.ErrorCode;
-import ladder.util.PipeConstant;
-import ladder.util.PipeStatus;
+import game.pipe.Pipe;
+import game.pipe.util.CustomException;
+import game.pipe.util.ErrorCode;
+import game.pipe.util.PipeConstant;
 
-import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class Row {

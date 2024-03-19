@@ -1,7 +1,8 @@
-package ladder;
+package game;
 
-import ladder.util.CustomException;
-import ladder.util.ErrorCode;
+import game.field.Ladder;
+import game.pipe.util.CustomException;
+import game.pipe.util.ErrorCode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

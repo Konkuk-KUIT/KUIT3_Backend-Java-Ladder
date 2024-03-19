@@ -1,6 +1,6 @@
-package ladder;
+package game.pipe;
 
-import ladder.util.PipeStatus;
+import game.pipe.util.PipeStatus;
 
 public class Pipe {
 

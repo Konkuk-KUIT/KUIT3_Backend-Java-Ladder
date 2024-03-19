@@ -1,4 +1,4 @@
-package ladder.util;
+package game.pipe.util;
 
 public enum PipeStatus {
     Left(PipeConstant.LEFT_DRAW_CONSTANT), Right(PipeConstant.RIGHT_DRAW_CONSTANT), Nothing(PipeConstant.NOTHING);

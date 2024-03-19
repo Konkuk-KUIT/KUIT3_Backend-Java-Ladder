@@ -1,4 +1,4 @@
-package ladder.util;
+package game.pipe.util;
 
 public final class PipeConstant {
 
