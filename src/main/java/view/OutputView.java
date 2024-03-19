@@ -10,8 +10,12 @@ public class OutputView {
         System.out.println("몇명인가요?");
     }
 
-    public void printResult(){
-        System.out.println("실행 결과");
+    public void printDestination(int destination){
+        System.out.println("도착지는: " + destination);
+    }
+
+    public void printSelectNumber(){
+        System.out.println("원하는 번호는?");
     }
 
 }

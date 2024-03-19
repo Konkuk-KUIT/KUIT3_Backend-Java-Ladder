@@ -18,4 +18,6 @@ public class InputView {
         String input = scanner.nextLine();
         return Integer.parseInt(input);
     }
+
+
 }
