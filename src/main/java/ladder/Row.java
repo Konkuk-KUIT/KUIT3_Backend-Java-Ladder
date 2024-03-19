@@ -18,6 +18,10 @@ public class Row {
         nodes[lineStartPosition.get()] = Node.from(Direction.LEFT);
     }
 
+    public Position slide(Position position) {
+        return nodes[position.get()].move(position);
+    }
+
     private void validateDrawLinePosition(Position lineStartPosition) {
         if(lineStartPosition.get() < 0 || lineStartPosition.get() >= nodes.length - 1 || Objects.equals(
                 nodes[lineStartPosition.get()], Node.from(Direction.LEFT))
