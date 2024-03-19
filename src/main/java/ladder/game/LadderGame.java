@@ -15,23 +15,25 @@ public class LadderGame {
         this.inputView = inputView;
     }
 
-    public void play(){
-
-
-        // 여기에 어느 곳에 선을 그을지 확인
-        ladderCreator.drawLine(0,1);
-        ladderCreator.drawLine(1,1);
-
-        // 원하는 번호 입력
-        outputView.printSelectNumber();
-//        int number = inputView.readLadderNumber();
-        int number = 1;
-
-        // runner로 돌리기
-        LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
+    public void play(int number){
+        drawLines();
         Position position = new Position(number);
-        int destination = ladderRunner.run(position);
-        System.out.println("도착지는?");
-        System.out.println(destination);
+        int destination = runLadder(position);
+        printDestination(destination);
+
+    }
+
+    private int runLadder(Position number) {
+        LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
+        return ladderRunner.run(number);
+    }
+
+    private void drawLines() {
+        // 이것도 변경 필요성 있음
+        ladderCreator.drawLine();
+    }
+
+    private void printDestination(int destination) {
+        outputView.printDestination(destination);
     }
 }
