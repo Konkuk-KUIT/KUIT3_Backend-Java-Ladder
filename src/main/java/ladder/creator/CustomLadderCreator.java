@@ -4,6 +4,8 @@ import ladder.model.LadderSize;
 import ladder.model.Position;
 import ladder.model.Row;
 
+import java.util.List;
+
 public class CustomLadderCreator implements LadderCreator{
     Row[] rows;
     public CustomLadderCreator(LadderSize ladderSize) {
@@ -15,9 +17,11 @@ public class CustomLadderCreator implements LadderCreator{
         }
     }
     @Override
-    public void drawLine(int row, int col) {
-        Position position = new Position(col);
-        rows[row].drawLine(position);
+    public void drawLine() {
+        Position position = Position.fromValue(1);
+        rows[0].drawLine(position);
+        position = Position.fromValue(1);
+        rows[1].drawLine(position);
     }
 
     @Override
