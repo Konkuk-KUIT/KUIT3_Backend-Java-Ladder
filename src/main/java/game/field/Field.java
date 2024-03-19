@@ -1,4 +1,7 @@
 package game.field;
 
-public abstract class Field {
+public interface Field {
+
+    public int run(int...position);
+
 }

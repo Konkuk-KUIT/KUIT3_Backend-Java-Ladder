@@ -2,7 +2,7 @@ package game.field;
 
 import game.fieldComponent.Row;
 
-public class Ladder extends Field{
+public class Ladder implements Field {
 
     private Row[] rows;
 
@@ -18,12 +18,14 @@ public class Ladder extends Field{
         rows[row].drawLine(col);
     }
 
-    public int run(int position) {
 
+    @Override
+    public int run(int... position) {
         for(int i = 0; i < rows.length; i++) {
-            position = rows[i].nextPosition(position);
+
+            position[0] = rows[i].nextPosition(position[0]);
         }
 
-        return position;
+        return position[0];
     }
 }
