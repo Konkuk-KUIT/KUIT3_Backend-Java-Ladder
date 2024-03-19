@@ -2,7 +2,7 @@ package game.field;
 
 import game.fieldComponent.Row;
 
-public class Ladder {
+public class Ladder extends Field{
 
     private Row[] rows;
 
