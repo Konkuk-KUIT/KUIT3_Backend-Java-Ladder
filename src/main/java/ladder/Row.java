@@ -2,26 +2,39 @@ package ladder;
 
 public class Row {
     private int[] row;
+    private Node[] nodes;
 
     public Row(int numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
         row = new int[numberOfPerson];
+
+        nodes = new Node[numberOfPerson];
+        for(int i=0;i<numberOfPerson;i++){
+            nodes[i] = Node.SetNode(Direction.NONE);
+        }
+
     }
 
     public void drawLine(int lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
         row[lineStartPosition] = 1;
         row[lineStartPosition + 1] = -1;
+
+        //validate
+        nodes[lineStartPosition] = Node.SetNode(Direction.RIGHT);
+        nodes[lineStartPosition+1] = Node.SetNode(Direction.LEFT);
     }
 
     public int nextPosition(int position) {
 
         validatePosition(position);
 
-        if (isLeft(position)) {
+        Direction Dir = nodes[position].NextPosition();
+
+        if (Direction.LEFT.equals(Dir)) {
             return position - 1;
         }
-        if (isRight(position)) {
+        if (Direction.RIGHT.equals(Dir)) {
             return position + 1;
         }
 

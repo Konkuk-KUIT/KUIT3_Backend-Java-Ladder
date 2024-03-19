@@ -16,6 +16,7 @@ public class LadderRunner {
         for(int i = 0; i < rows.length; i++) {
             position = rows[i].nextPosition(position);
         }
+
         return position;
     }
 
