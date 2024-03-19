@@ -3,25 +3,19 @@ package ladder;
 public class Ladder {
 
     private Row[] rows;
+    private LadderCreator laddercreator;
+    private LadderRunner ladderrunner;
 
     public Ladder(int numberOfRows, int numberOfPerson) {
-        rows = new Row[numberOfPerson];
-
-        for(int i = 0; i < numberOfRows; i++) {
-            rows[i] = new Row(numberOfPerson);
-        }
+        laddercreator = LadderCreator.of(numberOfRows,numberOfPerson);
     }
 
     public void drawLine(int row, int col) {
-        rows[row].drawLine(col);
+        laddercreator.DrawLine(row,col);
     }
 
     public int run(int position) {
-
-        for(int i = 0; i < rows.length; i++) {
-            position = rows[i].nextPosition(position);
-        }
-
-        return position;
+        ladderrunner = LadderRunner.of(laddercreator.getrows());
+        return ladderrunner.run(position);
     }
 }
