@@ -43,6 +43,16 @@ public class Row {
         }
     }
 
+    public boolean isDrawLine(Position lineStartPosition){
+        return nodes[lineStartPosition.getPosition()].isRight()
+                || nodes[lineStartPosition.increment().getPosition()].isRight()
+                || nodes[lineStartPosition.getPosition()].isLeft();
+    }
+
+    public boolean isRight(Position lineStartPosition){
+        return nodes[lineStartPosition.getPosition()].isRight();
+    }
+
     private void validatePosition(Position position) {
         if(position.getPosition() >= nodes.length || position.getPosition() < 0 ) {
             throw new IllegalArgumentException(INVALID_POSITION.getMessage());
