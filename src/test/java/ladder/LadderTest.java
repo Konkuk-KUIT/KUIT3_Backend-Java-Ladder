@@ -87,4 +87,58 @@ public class LadderTest {
         String expectedResult = "1 -1 0 0 \n0 1 -1 0 \n1 -1 1 -1 \n";
         assertEquals(expectedResult, ladderResult);
     }
+
+    @Test
+    void 임의_사다리_정상_생성_팩토리_없이() {
+        //given
+        RandomLadderCreator randomLadderCreator = new RandomLadderCreator();
+        Ladder ladder = randomLadderCreator.createLadder(3, 4);
+
+        //when
+        String ladderResult = ladder.printLadder();
+
+        //then
+        assertEquals(6, ladderResult.chars()
+                .filter(c -> c == '0')
+                .count());
+    }
+
+    @Test
+    void 임의_사다리_정상_생성_팩토리로() {
+        //given
+        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(3, 4);
+
+        //when
+        String ladderResult = ladderGame.printLadder();
+
+        //then
+        assertEquals(6, ladderResult.chars()
+                .filter(c -> c == '0')
+                .count());
+    }
+
+    @Test
+    void 사다리_게임_결과_정상_출력() {
+        //given
+        int numberOfRows = 3;
+        int numberOfPerson = 4;
+        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(numberOfRows, numberOfPerson);
+
+        //when
+        String gameResult = ladderGame.printGameResult();
+
+        //then
+        assertEquals(2, gameResult.chars()
+                .filter(c -> c == '0')
+                .count());
+        assertEquals(2, gameResult.chars()
+                .filter(c -> c == '1')
+                .count());
+        assertEquals(2, gameResult.chars()
+                .filter(c -> c == '2')
+                .count());
+        assertEquals(2, gameResult.chars()
+                .filter(c -> c == '3')
+                .count());
+    }
 }

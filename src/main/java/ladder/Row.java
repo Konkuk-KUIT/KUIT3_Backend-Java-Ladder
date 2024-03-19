@@ -49,8 +49,8 @@ public class Row {
 
     public String printRow() {
         StringBuilder rowResult = new StringBuilder();
-        for (int i = 0; i < row.length; i++) {
-            rowResult.append(String.valueOf(row[i]));
+        for (int point : row) {
+            rowResult.append(String.valueOf(point));
             rowResult.append(' ');
         }
         rowResult.append('\n');

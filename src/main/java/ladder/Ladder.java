@@ -16,18 +16,36 @@ public class Ladder {
     }
 
     public int run(int position) {
-        for (int i = 0; i < rows.length; i++) {
-            position = rows[i].nextPosition(position);
+        for (Row row : rows) {
+            position = row.nextPosition(position);
         }
 
         return position;
     }
 
     public String printLadder() {
-        String ladderResult = "";
-        for (int i = 0; i < rows.length; i++) {
-            ladderResult += rows[i].printRow();
+        StringBuilder ladderResult = new StringBuilder();
+        for (Row row : rows) {
+            ladderResult.append(row.printRow());
         }
-        return ladderResult;
+        return ladderResult.toString();
+    }
+
+    public String printGameResult() {
+        StringBuilder gameResult = new StringBuilder();
+        int nthPerson = 0;
+
+        while (true) {
+            try {
+                String nthPersonResult = String.valueOf(nthPerson) +
+                        " : " +
+                        String.valueOf(run(nthPerson++)) +
+                        " | ";
+                gameResult.append(nthPersonResult);
+            } catch (IllegalArgumentException e) {
+                break;
+            }
+        }
+        return gameResult.toString();
     }
 }
