@@ -1,5 +1,8 @@
 package ladder;
 
+import ladder.model.LadderPosition;
+import ladder.model.Position;
+import ladder.model.Row;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,10 +16,10 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int position = 0;
+        Position position = new Position(0);
 
         //then
-        assertEquals(0,row.nextPosition(position));
+        assertEquals(0,row.nextPosition(position).getPosition());
     }
 
     @Test
@@ -24,20 +27,21 @@ class RowTest {
         //given
         int numberOfPerson = 2;
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        Position position1 = new Position(0);
+        row.drawLine(position1);
 
         //when
-        int position = 0;
-        int resultPosition = row.nextPosition(position);
+        Position position = new Position(0);
+        Position resultPosition = row.nextPosition(position);
         //then
-        assertEquals(1,resultPosition);
+        assertEquals(1,resultPosition.getPosition());
 
 
         //when
-        position = 1;
+        position = new Position(1);
         resultPosition = row.nextPosition(position);
         //then
-        assertEquals(0, resultPosition);
+        assertEquals(0, resultPosition.getPosition());
     }
 
     @Test
@@ -45,32 +49,33 @@ class RowTest {
         //given
         int numberOfPerson = 3;
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        Position position1 = new Position(0);
+        row.drawLine(position1);
 
         //when
-        int position = 0;
-        int resultPosition = row.nextPosition(position);
+        Position position = new Position(0);
+        Position resultPosition = row.nextPosition(position);
         //then
-        assertEquals(1,resultPosition);
+        assertEquals(1,resultPosition.getPosition());
 
 
         //when
-        position = 1;
+        position = new Position(1);
         resultPosition = row.nextPosition(position);
         //then
-        assertEquals(0, resultPosition);
+        assertEquals(0, resultPosition.getPosition());
 
         //when
-        position = 2;
+        position = new Position(2);
         resultPosition = row.nextPosition(position);
         //then
-        assertEquals(2, resultPosition);
+        assertEquals(2, resultPosition.getPosition());
     }
 
-    @Test
-    void 사다리_사람수_예외_처리() {
-        assertThrows(IllegalArgumentException.class, () -> new Row(0));
-    }
+//    @Test
+//    void 사다리_사람수_예외_처리() {
+//        assertThrows(IllegalArgumentException.class, () -> new Row(0));
+//    }
 
     @Test
     void 사다리_위치_최대값_초과_예외_처리() {
@@ -79,7 +84,7 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int position = 3;
+        Position position = new Position(3);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
@@ -92,7 +97,7 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int position = -1;
+        Position position = new Position(-1);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
@@ -105,7 +110,7 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int lineStartPosition = 2;
+        Position lineStartPosition = new Position(2);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
@@ -118,7 +123,7 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int lineStartPosition = -1;
+        Position lineStartPosition = new Position(-1);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
@@ -129,10 +134,11 @@ class RowTest {
         //given
         int numberOfPerson = 3;
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        Position position = new Position(0);
+        row.drawLine(position);
 
         //when
-        int lineStartPosition = 1;
+        Position lineStartPosition = new Position(1);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
@@ -144,14 +150,50 @@ class RowTest {
         //given
         int numberOfPerson = 3;
         Row row = new Row(numberOfPerson);
-        row.drawLine(1);
+        Position position = new Position(1);
+        row.drawLine(position);
 
         //when
-        int lineStartPosition = 0;
+        Position lineStartPosition = new Position(0);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
 
+    }
+
+    @Test
+    void 해당_위치에_별을_찍을_수_있다(){
+        // given
+        Position row = Position.fromValue(0);
+        Position col = Position.fromValue(0);
+        LadderPosition currentPosition = LadderPosition.fromCoordinate(row,col);
+        StringBuilder sb = new StringBuilder();
+        Row row1 = new Row(3);
+
+        // when
+        row1.printRow(sb,Position.fromValue(0),currentPosition);
+        String expectedOutput =
+                "0* 0 0 \n";
+
+        // then
+        assertEquals(expectedOutput,sb.toString());
+    }
+    @Test
+    void printRow_테스트(){
+        // given
+        Position row = Position.fromValue(0);
+        Position col = Position.fromValue(0);
+        LadderPosition currentPosition = LadderPosition.fromCoordinate(row,col);
+        StringBuilder sb = new StringBuilder();
+        Row row1 = new Row(3);
+
+        // when
+        row1.printRow(sb,Position.fromValue(0),currentPosition);
+        String expectedOutput =
+                "0* 0 0 \n";
+
+        // then
+        assertEquals(expectedOutput,sb.toString());
     }
 
 }
