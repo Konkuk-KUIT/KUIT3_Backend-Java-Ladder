@@ -7,7 +7,7 @@ public abstract class Game implements Play {
     protected Field field;
 
     @Override
-    public void run() {
+    public void play() {
         System.out.println("Run Game");
     }
 }

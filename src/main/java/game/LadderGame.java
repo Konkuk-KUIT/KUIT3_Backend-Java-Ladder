@@ -9,8 +9,8 @@ public class LadderGame extends Game{
     }
 
     @Override
-    public void run() {
+    public void play() {
         //TODO
-        super.run();
+        super.play();
     }
 }
