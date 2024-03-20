@@ -19,7 +19,7 @@ public class LadderPosition {
         return col;
     }
 
-    public static LadderPosition fromCoordinate(Position row, Position col){
+    public static LadderPosition of(Position row, Position col){
         return new LadderPosition(row,col);
     }
 

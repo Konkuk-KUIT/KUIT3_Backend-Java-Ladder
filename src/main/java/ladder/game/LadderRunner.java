@@ -13,10 +13,10 @@ public class LadderRunner {
     public int run(Position position) {
 
         for(int i = 0; i < rows.length; i++) {
-            StringBuilder sb = printLadderLine(LadderPosition.fromCoordinate(Position.fromValue(i),position));
+            StringBuilder sb = printLadderLine(LadderPosition.of(Position.fromValue(i),position));
             System.out.println(sb);
             position = rows[i].nextPosition(position);
-            sb= printLadderLine(LadderPosition.fromCoordinate(Position.fromValue(i),position));
+            sb= printLadderLine(LadderPosition.of(Position.fromValue(i),position));
             System.out.println(sb);
         }
 

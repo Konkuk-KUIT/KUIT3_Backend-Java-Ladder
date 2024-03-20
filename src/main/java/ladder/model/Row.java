@@ -1,10 +1,5 @@
 package ladder.model;
 
-import ladder.model.LadderDirection;
-import ladder.model.LadderPosition;
-import ladder.model.Node;
-import ladder.model.Position;
-
 import static ladder.exception.ExceptionMessage.*;
 
 public class Row {
@@ -63,7 +58,7 @@ public class Row {
     public void printRow(StringBuilder sb, Position Row , LadderPosition currentPosition){
         for (int i = 0; i < nodes.length; i++) {
             sb.append(nodes[i].getLadderDirection());
-            if (currentPosition.equals(LadderPosition.fromCoordinate(Row, Position.fromValue(i)))) {
+            if (currentPosition.equals(LadderPosition.of(Row, Position.fromValue(i)))) {
                 sb.append("*");
             }
             sb.append(" ");
