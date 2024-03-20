@@ -1,8 +1,8 @@
 package game.fieldComponent;
 
 import game.component.Pipe;
-import game.component.util.CustomException;
-import game.component.util.ErrorCode;
+import game.exception.CustomException;
+import game.exception.ErrorCode;
 import game.component.util.PipeConstant;
 
 import java.util.stream.IntStream;

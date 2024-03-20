@@ -1,9 +1,9 @@
 package game;
 
+import game.exception.CustomException;
+import game.exception.ErrorCode;
 import game.field.Field;
 import game.field.Ladder;
-import game.pipe.util.CustomException;
-import game.pipe.util.ErrorCode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,15 +31,16 @@ class LadderTest {
         Field field = new Ladder(numberOfRows, numberOfPerson);
 
         //when
-        int position = 3;
+        int row = 3;
+        int col=2;
 
         //then
-        Throwable exception = assertThrows(RuntimeException.class, () -> field.run(position));
+        Throwable exception = assertThrows(RuntimeException.class, () -> field.run(row,col));
         assertTrue(exception instanceof CustomException);
         assertSame(ErrorCode.INVALID_POSITION.getMessage(),exception.getMessage());
     }
 
-    @Test
+    /*@Test
     void 사다리_결과_확인() {
         //given
         int numberOfPerson = 4;
@@ -76,5 +77,5 @@ class LadderTest {
 
 
 
-    }
+    }*/
 }

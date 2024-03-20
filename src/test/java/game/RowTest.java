@@ -1,8 +1,8 @@
 package game;
 
+import game.exception.CustomException;
+import game.exception.ErrorCode;
 import game.fieldComponent.Row;
-import game.pipe.util.CustomException;
-import game.pipe.util.ErrorCode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

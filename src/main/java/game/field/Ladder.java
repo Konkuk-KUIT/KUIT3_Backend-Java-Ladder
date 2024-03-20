@@ -3,6 +3,8 @@ package game.field;
 import game.component.Ball;
 import game.component.util.PipeConstant;
 import game.component.util.PipeStatus;
+import game.exception.CustomException;
+import game.exception.ErrorCode;
 import game.field.util.LadderConstant;
 import game.fieldComponent.Row;
 
@@ -26,13 +28,19 @@ public class Ladder implements Field {
 
     @Override
     public void run(int... position) {
+        validateBallPosition(position[0],position[1]);
         ball.initializePosition(position[0],position[1]);
+
         while(!canMove(ball)){
             ball.moveParallel(getBallNextCol());
             ball.moveVertical(getBallNextRow());
         }
     }
 
+    private void validateBallPosition(int row,int col){
+        if(row<0||row>=rows.length)
+            throw new CustomException(ErrorCode.INVALID_POSITION);
+    }
     private int getBallNextCol(){
         return rows[ball.getRow()].nextPosition(ball.getCol());
     }

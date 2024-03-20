@@ -1,4 +1,4 @@
-package game.component.util;
+package game.exception;
 
 public class CustomException extends RuntimeException {
     private final ErrorCode errorCode;
