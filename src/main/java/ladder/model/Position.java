@@ -2,6 +2,9 @@ package ladder.model;
 
 import java.util.Objects;
 
+import static ladder.exception.ExceptionMessage.DUPLICATE_LINE;
+import static ladder.exception.ExceptionMessage.INVALID_POSITION;
+
 public class Position {
     private int position;
 
@@ -14,16 +17,18 @@ public class Position {
     }
 
     public Position increment(){
-        return new Position(position+1);
+        return fromValue(position+1);
     }
 
     public Position decrement(){
-        return new Position(position-1);
+        return fromValue(position-1);
     }
 
     public static Position fromValue(int val){
+        if(val < 0) new IllegalArgumentException(INVALID_POSITION.getMessage());
         return new Position(val);
     }
+
 
     @Override
     public boolean equals(Object obj) {
