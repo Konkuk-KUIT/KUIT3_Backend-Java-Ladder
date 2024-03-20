@@ -2,6 +2,6 @@ package game.field;
 
 public interface Field {
 
-    int run(int...position);
+    void run(int...position);
 
 }

@@ -1,10 +1,14 @@
 package game.field;
 
+import game.component.Ball;
+import game.component.util.PipeConstant;
+import game.component.util.PipeStatus;
 import game.fieldComponent.Row;
 
 public class Ladder implements Field {
 
     private Row[] rows;
+    private Ball ball;
 
     public Ladder(int numberOfRows, int numberOfPerson) {
         rows = new Row[numberOfRows];
@@ -20,12 +24,22 @@ public class Ladder implements Field {
 
 
     @Override
-    public int run(int... position) {
-        for(int i = 0; i < rows.length; i++) {
-
-            position[0] = rows[i].nextPosition(position[0]);
+    public void run(int... position) {
+        ball.initializePosition(position[0],position[1]);
+        while(!canMove(ball)){
+            ball.moveParallel(getBallNextCol());
+            ball.moveVertical(getBallNextRow());
         }
+    }
 
-        return position[0];
+    private int getBallNextCol(){
+        return rows[ball.getRow()].nextPosition(ball.getCol());
+    }
+
+    private int getBallNextRow(){
+        return 1;
+    }
+    private boolean canMove(Ball ball){
+        return ball.canMoveDown(rows.length-1);
     }
 }
