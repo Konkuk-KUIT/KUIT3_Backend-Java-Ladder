@@ -4,25 +4,25 @@ import java.util.Collections;
 import java.util.List;
 
 public class LadderSpec {
-    private final int row;
-    private final int col;
-    private List<Integer> startPosition;    // final?
+    private final NaturalNumber numberOfRows;
+    private final NaturalNumber numberOfPerson;
+    private final List<SideLadder> sideLadders;
 
-    public LadderSpec(int row, int col, List<Integer> startPosition) {
-        this.row = row;
-        this.col = col;
-        this.startPosition = startPosition;
+    public LadderSpec(NaturalNumber numberOfRows, NaturalNumber numberOfPerson, List<SideLadder> sideLadders) {
+        this.numberOfRows = numberOfRows;
+        this.numberOfPerson = numberOfPerson;
+        this.sideLadders = sideLadders;
     }
 
-    public LadderSpec(int row, int col) {
-        this.row = row;
-        this.col = col;
-        this.startPosition = Collections.emptyList();
+    public int getNumberOfRows() {
+        return this.numberOfRows.get();
     }
 
-    private Boolean isRandom() {
-        return this.startPosition.isEmpty();
+    public int getNumberOfPerson() {
+        return this.numberOfPerson.get();
     }
 
-
+    public List<SideLadder> getSideLadders() {
+        return sideLadders;
+    }
 }

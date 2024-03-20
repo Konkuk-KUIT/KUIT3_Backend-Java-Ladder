@@ -1,5 +1,7 @@
 package ladder;
 
+import java.util.List;
+import ladder.ladderCreator.CustomLadderCreator;
 import ladder.ladderCreator.LadderCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,6 +27,19 @@ public class LadderRunnerTest {
     @Test
     void 사다리_타기_시험() {
         LadderRunner ladderRunner = new LadderRunner(new MockLadderCreator());
+        Position pos = ladderRunner.run(Position.initFrom(0, NaturalNumber.from(5)));
+        Assertions.assertEquals(pos.get(), 2);
+    }
+
+    @Test
+    void 사다리_타기_시험_with_custom_creator() {
+        LadderRunner ladderRunner = new LadderRunner(new CustomLadderCreator(
+            new LadderSpec(
+                    NaturalNumber.from(4), NaturalNumber.from(5),
+                    List.of(new SideLadder(0, Position.initFrom(0, NaturalNumber.from(5)))
+                            , new SideLadder(1, Position.initFrom(1, NaturalNumber.from(5))))
+            )
+        ));
         Position pos = ladderRunner.run(Position.initFrom(0, NaturalNumber.from(5)));
         Assertions.assertEquals(pos.get(), 2);
     }
