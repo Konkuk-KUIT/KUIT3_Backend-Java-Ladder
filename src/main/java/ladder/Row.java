@@ -11,7 +11,7 @@ public class Row {
     }
 
     public void drawLine(Position lineStartPosition) {
-        validateDrawLinePosition(lineStartPosition.getPosition());
+        validateDrawLinePosition(lineStartPosition);
         row[lineStartPosition.getPosition()] = Node.of(Direction.LEFT);
         row[lineStartPosition.getPosition() + 1] = Node.of(Direction.RIGHT);
     }
