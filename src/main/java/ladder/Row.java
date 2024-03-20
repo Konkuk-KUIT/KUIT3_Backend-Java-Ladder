@@ -3,17 +3,7 @@ package ladder;
 public class Row {
     private int[] row;
 
-    public enum Direction {
-        RIGHT(1),
-        LEFT(-1),
-        NONE(0);
 
-        private final int directionValue;
-
-        Direction(int directionValue) {
-            this.directionValue = directionValue;
-        }
-    }
 
     public Row(NaturalNumber numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
@@ -22,8 +12,8 @@ public class Row {
 
     public void drawLine(int lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = Direction.RIGHT.directionValue;
-        row[lineStartPosition + 1] = Direction.LEFT.directionValue;
+        row[lineStartPosition] = Direction.RIGHT.getDirectionValue();
+        row[lineStartPosition + 1] = Direction.LEFT.getDirectionValue();
     }
 
     public int nextPosition(int position) {
@@ -31,21 +21,21 @@ public class Row {
         validatePosition(position);
 
         if (isLeft(position)) {
-            return position + Direction.LEFT.directionValue;
+            return position + Direction.LEFT.getDirectionValue();
         }
         if (isRight(position)) {
-            return position + Direction.RIGHT.directionValue;
+            return position + Direction.RIGHT.getDirectionValue();
         }
 
         return position;
     }
 
     private boolean isLeft(int position) {
-        return row[position] == Direction.LEFT.directionValue;
+        return row[position] == Direction.LEFT.getDirectionValue();
     }
 
     private boolean isRight(int position) {
-        return row[position] == Direction.RIGHT.directionValue;
+        return row[position] == Direction.RIGHT.getDirectionValue();
     }
 
     private void validateNumberOfPerson(NaturalNumber numberOfPerson) {
@@ -55,7 +45,7 @@ public class Row {
     }
 
     private void validateDrawLinePosition(int lineStartPosition) {
-        if (lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == Direction.LEFT.directionValue || row[lineStartPosition + 1] == Direction.RIGHT.directionValue) {
+        if (lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == Direction.LEFT.getDirectionValue() || row[lineStartPosition + 1] == Direction.RIGHT.getDirectionValue()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_LINE_POSITION.getMessage());
         }
     }
