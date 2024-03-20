@@ -1,5 +1,8 @@
-package ladder;
+package game;
 
+import game.exception.CustomException;
+import game.exception.ErrorCode;
+import game.fieldComponent.Row;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -69,7 +72,10 @@ class RowTest {
 
     @Test
     void 사다리_사람수_예외_처리() {
-        assertThrows(IllegalArgumentException.class, () -> new Row(0));
+        Throwable exception = assertThrows(RuntimeException.class, () -> new Row(0));
+
+        assertTrue(exception instanceof CustomException);
+        assertSame(ErrorCode.LACK_PARTICIPANTS.getMessage(),exception.getMessage());
     }
 
     @Test
@@ -82,7 +88,9 @@ class RowTest {
         int position = 3;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
+        Throwable exception = assertThrows(RuntimeException.class, () -> row.nextPosition(position));
+        assertTrue(exception instanceof CustomException);
+        assertSame(ErrorCode.INVALID_POSITION.getMessage(),exception.getMessage());
     }
 
     @Test
@@ -95,7 +103,9 @@ class RowTest {
         int position = -1;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
+        Throwable exception = assertThrows(RuntimeException.class, () -> row.nextPosition(position));
+        assertTrue(exception instanceof CustomException);
+        assertSame(ErrorCode.INVALID_POSITION.getMessage(),exception.getMessage());
     }
 
     @Test
@@ -108,7 +118,9 @@ class RowTest {
         int lineStartPosition = 2;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
+        Throwable exception = assertThrows(RuntimeException.class, () -> row.drawLine(lineStartPosition));
+        assertTrue(exception instanceof CustomException);
+        assertSame(ErrorCode.INVALID_LINE_POSITION.getMessage(),exception.getMessage());
     }
 
     @Test
@@ -121,7 +133,9 @@ class RowTest {
         int lineStartPosition = -1;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
+        Throwable exception = assertThrows(RuntimeException.class, () -> row.drawLine(lineStartPosition));
+        assertTrue(exception instanceof CustomException);
+        assertSame(ErrorCode.INVALID_LINE_POSITION.getMessage(),exception.getMessage());
     }
 
     @Test
@@ -135,7 +149,9 @@ class RowTest {
         int lineStartPosition = 1;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
+        Throwable exception = assertThrows(RuntimeException.class, () -> row.drawLine(lineStartPosition));
+        assertTrue(exception instanceof CustomException);
+        assertSame(ErrorCode.INVALID_LINE_POSITION.getMessage(),exception.getMessage());
 
     }
 
@@ -150,7 +166,9 @@ class RowTest {
         int lineStartPosition = 0;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
+        Throwable exception = assertThrows(RuntimeException.class, () -> row.drawLine(lineStartPosition));
+        assertTrue(exception instanceof CustomException);
+        assertSame(ErrorCode.INVALID_LINE_POSITION.getMessage(),exception.getMessage());
 
     }
 
