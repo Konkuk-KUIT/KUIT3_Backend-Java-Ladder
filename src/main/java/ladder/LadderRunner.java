@@ -13,8 +13,9 @@ public class LadderRunner {
     }
     public int run(int position){
         //Row[] rows = rows.getrows();
+        /*Position CurrentPosition;*/
         for(int i = 0; i < rows.length; i++) {
-            position = rows[i].nextPosition(position);
+            position= rows[i].nextPosition(position);
         }
 
         return position;

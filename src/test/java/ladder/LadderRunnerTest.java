@@ -9,7 +9,9 @@ public class LadderRunnerTest {
         //given
         int rownum = 4;
         int colnum = 5;
-        LadderCreator ladderCreator = LadderCreator.of(rownum,colnum);
+        NaturalNum five = NaturalNum.of(5);
+        NaturalNum four = NaturalNum.of(4);
+        LadderCreator ladderCreator = LadderCreator.of(five,four);
         //when
         LadderRunner ladderRunner = LadderRunner.of(ladderCreator.getrows());
         //then

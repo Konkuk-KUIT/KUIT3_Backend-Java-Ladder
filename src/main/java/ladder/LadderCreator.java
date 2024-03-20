@@ -3,13 +3,13 @@ package ladder;
 public class LadderCreator {
     private Row[] rows;
 
-    private LadderCreator(int numberOfRows, int numberOfPerson) {
-        this.rows = new Row[numberOfPerson];
-        for(int i = 0; i < numberOfRows; i++) {
+    private LadderCreator(NaturalNum numberOfRows, NaturalNum numberOfPerson) {
+        this.rows = new Row[numberOfRows.get()];
+        for(int i = 0; i < numberOfRows.get(); i++) {
             this.rows[i] = new Row(numberOfPerson);
         }
     }
-    public static LadderCreator of(int numberOfRows, int numberOfPerson){
+    public static LadderCreator of(NaturalNum numberOfRows, NaturalNum numberOfPerson){
         return new LadderCreator(numberOfRows, numberOfPerson);
     }
 

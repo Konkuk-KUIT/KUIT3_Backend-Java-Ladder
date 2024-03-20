@@ -14,4 +14,26 @@ public class Node {
     public Direction NextPosition(){
         return Dir;
     }
+
+    private boolean isright(){
+        return Direction.RIGHT.equals(Dir);
+    }
+
+    private boolean isleft(){
+        return Direction.LEFT.equals(Dir);
+    }
+
+    private boolean isnone(){
+        return Direction.NONE.equals(Dir);
+    }
+    public Position Move(Position position){
+
+        if (isleft()) {
+            return position.prev();
+        }
+        if (isright()) {
+            return position.next();
+        }
+        return position;
+    }
 }

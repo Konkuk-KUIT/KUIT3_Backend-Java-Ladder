@@ -10,7 +10,8 @@ class RowTest {
     void 참여자_한_명_사다리_이동() {
         //given
         int numberOfPerson = 1;
-        Row row = new Row(numberOfPerson);
+        NaturalNum one = NaturalNum.of(1);
+        Row row = new Row(one);
 
         //when
         int position = 0;
@@ -22,7 +23,8 @@ class RowTest {
     @Test
     void 참여자_두_명_사다리_열간_이동() {
         //given
-        int numberOfPerson = 2;
+        //int numberOfPerson = 2;
+        NaturalNum numberOfPerson = NaturalNum.of(2);
         Row row = new Row(numberOfPerson);
         row.drawLine(0);
 
@@ -43,7 +45,8 @@ class RowTest {
     @Test
     void 참여자_세_명_사다리_열간_이동() {
         //given
-        int numberOfPerson = 3;
+        //int numberOfPerson = 3;
+        NaturalNum numberOfPerson = NaturalNum.of(3);
         Row row = new Row(numberOfPerson);
         row.drawLine(0);
 
@@ -69,13 +72,14 @@ class RowTest {
 
     @Test
     void 사다리_사람수_예외_처리() {
-        assertThrows(IllegalArgumentException.class, () -> new Row(0));
+        assertThrows(IllegalArgumentException.class, () -> new Row(NaturalNum.of(0)));
     }
 
     @Test
     void 사다리_위치_최대값_초과_예외_처리() {
         //given
-        int numberOfPerson = 3;
+
+        NaturalNum numberOfPerson = NaturalNum.of(3);
         Row row = new Row(numberOfPerson);
 
         //when
@@ -88,7 +92,7 @@ class RowTest {
     @Test
     void 사다리_위치_최소값_미만_예외_처리() {
         //given
-        int numberOfPerson = 3;
+        NaturalNum numberOfPerson = NaturalNum.of(3);
         Row row = new Row(numberOfPerson);
 
         //when
@@ -101,7 +105,7 @@ class RowTest {
     @Test
     void 사다리_라인_그리기_위치_초과_예외() {
         //given
-        int numberOfPerson = 3;
+        NaturalNum numberOfPerson = NaturalNum.of(3);
         Row row = new Row(numberOfPerson);
 
         //when
@@ -114,7 +118,7 @@ class RowTest {
     @Test
     void 사다리_라인_그리기_위치_미만_예외() {
         //given
-        int numberOfPerson = 3;
+        NaturalNum numberOfPerson = NaturalNum.of(3);
         Row row = new Row(numberOfPerson);
 
         //when
@@ -127,7 +131,7 @@ class RowTest {
     @Test
     void 라인_그리기_좌측_라인_중복_예외() {
         //given
-        int numberOfPerson = 3;
+        NaturalNum numberOfPerson = NaturalNum.of(3);
         Row row = new Row(numberOfPerson);
         row.drawLine(0);
 
@@ -142,7 +146,7 @@ class RowTest {
     @Test
     void 라인_그리기_우측_라인_중복_예외() {
         //given
-        int numberOfPerson = 3;
+        NaturalNum numberOfPerson = NaturalNum.of(3);
         Row row = new Row(numberOfPerson);
         row.drawLine(1);
 

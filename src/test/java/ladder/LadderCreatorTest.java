@@ -9,8 +9,10 @@ public class LadderCreatorTest {
         //given
         int rownum = 4;
         int colnum = 5;
+        NaturalNum five = NaturalNum.of(5);
+        NaturalNum four = NaturalNum.of(4);
         //when
-        LadderCreator ladderCreator = LadderCreator.of(rownum,colnum);
+        LadderCreator ladderCreator = LadderCreator.of(five,four);
 
         //then
         assertNotNull(ladderCreator);
@@ -23,8 +25,10 @@ public class LadderCreatorTest {
         int rownum = 4;
         int colnum = 5;
         Row[] rows;
+        NaturalNum five = NaturalNum.of(5);
+        NaturalNum four = NaturalNum.of(4);
         //when
-        LadderCreator ladderCreator = LadderCreator.of(rownum,colnum);
+        LadderCreator ladderCreator = LadderCreator.of(five,four);
         rows = ladderCreator.getrows();
 
         //then
