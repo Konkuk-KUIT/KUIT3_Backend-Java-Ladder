@@ -14,9 +14,11 @@ public class PositionTest {
         NaturalNumber numberOfPerson = NaturalNumber.from(5);
 
         // then
-        assertThrows(IllegalArgumentException.class, () -> {
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
             Position.initOf(6, numberOfPerson);
         });
+
+        assertEquals(ExceptionMessage.INVALID_POSITION.getErrorMessage(), exception.getMessage());
     }
 
     @Test
