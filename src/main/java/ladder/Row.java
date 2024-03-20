@@ -1,42 +1,22 @@
 package ladder;
 
 public class Row {
-    private int[] row;
+    private Node[] row;
 
 
 
     public Row(NaturalNumber numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
-        row = new int[numberOfPerson.get()];
+        row = new Node[numberOfPerson.get()];
     }
 
-    public void drawLine(int lineStartPosition) {
-        validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = Direction.RIGHT.getDirectionValue();
-        row[lineStartPosition + 1] = Direction.LEFT.getDirectionValue();
+    public void drawLine(Position lineStartPosition) {
+        validateDrawLinePosition(lineStartPosition.getPosition());
+        row[lineStartPosition.getPosition()] = Node.of(Direction.LEFT);
+        row[lineStartPosition.getPosition() + 1] = Node.of(Direction.RIGHT);
     }
 
-    public int nextPosition(int position) {
 
-        validatePosition(position);
-
-        if (isLeft(position)) {
-            return position + Direction.LEFT.getDirectionValue();
-        }
-        if (isRight(position)) {
-            return position + Direction.RIGHT.getDirectionValue();
-        }
-
-        return position;
-    }
-
-    private boolean isLeft(int position) {
-        return row[position] == Direction.LEFT.getDirectionValue();
-    }
-
-    private boolean isRight(int position) {
-        return row[position] == Direction.RIGHT.getDirectionValue();
-    }
 
     private void validateNumberOfPerson(NaturalNumber numberOfPerson) {
         if (numberOfPerson.get() < 1) {
@@ -45,7 +25,7 @@ public class Row {
     }
 
     private void validateDrawLinePosition(int lineStartPosition) {
-        if (lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == Direction.LEFT.getDirectionValue() || row[lineStartPosition + 1] == Direction.RIGHT.getDirectionValue()) {
+        if (lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == Direction.LEFT || row[lineStartPosition + 1] == Direction.RIGHT.getDirectionValue()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_LINE_POSITION.getMessage());
         }
     }
