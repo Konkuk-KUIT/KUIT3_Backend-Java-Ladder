@@ -7,7 +7,7 @@ import ladder.model.Row;
 import java.util.Random;
 
 public class RandomLadderCreator implements LadderCreator{
-    Row[] rows;
+    private final Row[] rows;
 
     public RandomLadderCreator(LadderSize ladderSize) {
         ladderSize.validate();

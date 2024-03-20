@@ -7,7 +7,7 @@ import ladder.model.Row;
 import java.util.List;
 
 public class CustomLadderCreator implements LadderCreator{
-    Row[] rows;
+    private final Row[] rows;
     public CustomLadderCreator(LadderSize ladderSize) {
         ladderSize.validate();
         rows = new Row[ladderSize.getNumberOfRows()];
