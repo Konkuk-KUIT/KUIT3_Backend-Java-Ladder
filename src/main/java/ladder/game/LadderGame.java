@@ -17,7 +17,7 @@ public class LadderGame {
 
     public void play(int number){
         drawLines();
-        Position position = new Position(number);
+        Position position = Position.fromValue(number);
         int destination = runLadder(position);
         printDestination(destination);
 
