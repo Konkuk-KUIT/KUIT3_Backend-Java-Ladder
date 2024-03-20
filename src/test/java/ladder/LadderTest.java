@@ -3,14 +3,14 @@ package ladder;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import ladder.NaturalNumber;
 class LadderTest {
 
     @Test
     void 사다리_생성_확인() {
         //given
-        int numberOfRows = 3;
-        int numberOfPerson = 5;
+        NaturalNumber numberOfRows = new NaturalNumber(3);
+        NaturalNumber numberOfPerson = new NaturalNumber(5) ;
 
         //when
         Ladder ladder  = new Ladder(numberOfRows, numberOfPerson);
@@ -22,8 +22,8 @@ class LadderTest {
     @Test
     void 사다리_시작위치_예외_처리() {
         //given
-        int numberOfPerson = 3;
-        int numberOfRows = 1;
+        NaturalNumber numberOfPerson = new NaturalNumber(3);
+        NaturalNumber numberOfRows = new NaturalNumber(1);
         Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
 
         //when
@@ -36,8 +36,8 @@ class LadderTest {
     @Test
     void 사다리_결과_확인() {
         //given
-        int numberOfPerson = 4;
-        int numberOfRows = 4;
+        NaturalNumber numberOfPerson = new NaturalNumber(4);
+        NaturalNumber numberOfRows =new NaturalNumber(4) ;
         Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
         ladder.drawLine(1,0);
         ladder.drawLine(1,2);
