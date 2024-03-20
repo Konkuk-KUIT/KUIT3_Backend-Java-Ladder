@@ -4,15 +4,20 @@ public class NaturalNumber {
     private final int num;
 
     public NaturalNumber(int num) {
-        validate();
         this.num =num;
     }
+    public static NaturalNumber of(int num) {
+        validate(num);
+        return new NaturalNumber(num);
+    }
+
+
     public int get(){
         return num;
     }
-    private void validate(){
+    private static void validate(int num){
         if(num<=0){
-            throw new IllegalArgumentException("자연수가 아닙니다");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NATURAL_NUMBER.getMessage());
         }
     }
 }

@@ -15,24 +15,9 @@ public class Row {
         }
     }
 
-
-    public enum ExceptionMessage {
-
-        INVALID_LADDER_POSITION("유효하지 않은 위치 입니다."),
-        INVALID_NUMBER_OF_PERSON("게임의 참여자 수는 1명 이상이어야 합니다."),
-        INVALID_DRAW_LINE_POSITION("라인 생성이 불가능한 위치 입니다.");
-
-        private String message;
-
-
-        ExceptionMessage(String message) {
-            this.message = message;
-        }
-    }
-
-    public Row(int numberOfPerson) {
+    public Row(NaturalNumber numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
-        row = new int[numberOfPerson];
+        row = new int[numberOfPerson.get()];
     }
 
     public void drawLine(int lineStartPosition) {
@@ -63,21 +48,21 @@ public class Row {
         return row[position] == Direction.RIGHT.directionValue;
     }
 
-    private void validateNumberOfPerson(int numberOfPerson) {
-        if (numberOfPerson < 1) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_OF_PERSON.message);
+    private void validateNumberOfPerson(NaturalNumber numberOfPerson) {
+        if (numberOfPerson.get() < 1) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_OF_PERSON.getMessage());
         }
     }
 
     private void validateDrawLinePosition(int lineStartPosition) {
         if (lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == Direction.LEFT.directionValue || row[lineStartPosition + 1] == Direction.RIGHT.directionValue) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_LINE_POSITION.message);
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_LINE_POSITION.getMessage());
         }
     }
 
     private void validatePosition(int position) {
         if (position >= row.length || position < 0) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LADDER_POSITION.message);
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LADDER_POSITION.getMessage());
         }
     }
 
