@@ -8,26 +8,26 @@ import game.component.util.PipeConstant;
 import java.util.stream.IntStream;
 
 public class Row {
-    private Pipe[] row;
+    private Pipe[] pipes;
 
     public Row(int numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
-        row= new Pipe[numberOfPerson];
-        IntStream.range(0, numberOfPerson).forEach(i -> row[i] = new Pipe());
+        pipes = new Pipe[numberOfPerson];
+        IntStream.range(0, numberOfPerson).forEach(i -> pipes[i] = new Pipe());
 
     }
 
     public void drawLine(int lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
 
-        row[lineStartPosition].setPipeStatusRight();
-        row[lineStartPosition + PipeConstant.COL_BLOCK_SIZE].setPipeStatusLeft();
+        pipes[lineStartPosition].setPipeStatusRight();
+        pipes[lineStartPosition + PipeConstant.COL_BLOCK_SIZE].setPipeStatusLeft();
     }
 
     public int nextPosition(int position) {
 
         validatePosition(position);
-        return position+row[position].getMoveWeight();
+        return position+ pipes[position].getMoveWeight();
     }
 
 
@@ -38,17 +38,16 @@ public class Row {
     }
 
     private void validateDrawLinePosition(int lineStartPosition) {
-        if(lineStartPosition < PipeConstant.START_INDEX || lineStartPosition >= row.length - 1 ||
-                row[lineStartPosition].isLeftExtended()||row[lineStartPosition+PipeConstant.COL_BLOCK_SIZE].isRightExtended()) {
+        if(lineStartPosition < PipeConstant.START_INDEX || lineStartPosition >= pipes.length - 1 ||
+                pipes[lineStartPosition].isLeftExtended()|| pipes[lineStartPosition+PipeConstant.COL_BLOCK_SIZE].isRightExtended()) {
             throw new CustomException(ErrorCode.INVALID_LINE_POSITION);
         }
     }
 
     private void validatePosition(int position) {
-        if(position >= row.length || position < PipeConstant.START_INDEX ) {
+        if(position >= pipes.length || position < PipeConstant.START_INDEX ) {
             throw new CustomException(ErrorCode.INVALID_POSITION);
         }
     }
-
 
 }
