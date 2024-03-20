@@ -13,6 +13,18 @@ public class LadderSpec {
         this.sideLadders = sideLadders;
     }
 
+    private void validate() {
+        for(SideLadder sideLadder : this.sideLadders) {
+            validateOutOfBound(sideLadder);
+        }
+    }
+
+    private void validateOutOfBound(SideLadder sideLadder) {
+        if(sideLadder.getRow() >= numberOfRows.get() || sideLadder.getPosition().get() >= numberOfPerson.get()) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_SIDE_LADDER.getErrorMessage());
+        }
+    }
+
     public int getNumberOfRows() {
         return this.numberOfRows.get();
     }
