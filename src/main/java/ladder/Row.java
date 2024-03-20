@@ -24,8 +24,8 @@ public class Row {
         }
     }
 
-    private void validateDrawLinePosition(int lineStartPosition) {
-        if (lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == Direction.LEFT || row[lineStartPosition + 1] == Direction.RIGHT.getDirectionValue()) {
+    private void validateDrawLinePosition(Position lineStartPosition) {
+        if (lineStartPosition.getPosition() < 0 || lineStartPosition.getPosition() >= row.length - 1 || row[lineStartPosition.getPosition()] ==  Node.of(Direction.LEFT) || row[lineStartPosition.getPosition() + 1] ==  Node.of(Direction.RIGHT) ) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_LINE_POSITION.getMessage());
         }
     }
