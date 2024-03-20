@@ -12,12 +12,9 @@ public class LadderGame {
         this.ladderRunner = ladderRunner;
     }
 
-    public void play() {
+    public Position play(Position position) {
         ladderCreator.create();
-        ladderRunner.run(new Position ());  // 임시값
-    }
 
-    private void createLadder() {
-        ladderCreator.create();
+        return ladderRunner.run(position);
     }
 }

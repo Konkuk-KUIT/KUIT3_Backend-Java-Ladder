@@ -1,6 +1,5 @@
 package ladder.ladderCreator;
 
-import ladder.Ladder;
 import ladder.LadderSpec;
 import ladder.NaturalNumber;
 import ladder.Row;

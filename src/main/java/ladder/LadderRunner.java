@@ -5,8 +5,8 @@ import ladder.ladderCreator.LadderCreator;
 public class LadderRunner {
     private final Row[] rows;
 
-    public LadderRunner(LadderCreator ladderCreator) {
-        this.rows = ladderCreator.create();
+    public LadderRunner(Row[] rows) {
+        this.rows = rows;
     }
 
     public Position run(Position position) {
