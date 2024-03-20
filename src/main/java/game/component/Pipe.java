@@ -1,6 +1,6 @@
-package game.pipe;
+package game.component;
 
-import game.pipe.util.PipeStatus;
+import game.component.util.PipeStatus;
 
 public class Pipe {
 

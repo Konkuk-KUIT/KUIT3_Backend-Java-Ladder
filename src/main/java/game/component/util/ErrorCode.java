@@ -1,4 +1,4 @@
-package game.pipe.util;
+package game.component.util;
 
 public enum ErrorCode {
     LACK_PARTICIPANTS("게임의 참여자 수는 1명 이상이어야 합니다."),

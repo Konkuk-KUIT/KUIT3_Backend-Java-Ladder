@@ -1,4 +1,4 @@
-package game.pipe.util;
+package game.component.util;
 
 public final class PipeConstant {
 
