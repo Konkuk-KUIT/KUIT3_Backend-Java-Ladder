@@ -10,12 +10,15 @@ public class Row {
     public Row(NaturalNumber numberOfPerson) {
         nodes = new Node[numberOfPerson.get()];     // TODO: node들의 배열에서 각 노드들 초기화 해줘야 하는가?
 //        Arrays.fill(row, Direction.CENTER);
+        for(int i = 0; i < numberOfPerson.get(); i++) {
+            nodes[i] = Node.from(Direction.CENTER);
+        }
     }
 
     public void drawLine(Position lineStartPosition) {   // 오른쪽 찍 한줄 긋기
         validateDrawLinePosition(lineStartPosition);
         nodes[lineStartPosition.get()] = Node.from(Direction.RIGHT);
-        nodes[lineStartPosition.get()] = Node.from(Direction.LEFT);
+        nodes[lineStartPosition.next().get()] = Node.from(Direction.LEFT);
     }
 
     public Position slide(Position position) {
