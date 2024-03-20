@@ -45,4 +45,15 @@ public class Node {
         Node node = (Node) obj;
         return Objects.equals(this.direction, node.direction);
     }
+
+    @Override
+    public String toString() {      // TODO: 이거 지워라 Just for debugging
+        if(this.direction == Direction.RIGHT) {
+            return "Right";
+        }
+        if(this.direction == Direction.LEFT) {
+            return "Left  ";
+        }
+        return "Center";
+    }
 }

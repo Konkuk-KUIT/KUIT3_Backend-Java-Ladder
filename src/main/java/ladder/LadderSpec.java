@@ -1,6 +1,5 @@
 package ladder;
 
-import java.util.Collections;
 import java.util.List;
 
 public class LadderSpec {

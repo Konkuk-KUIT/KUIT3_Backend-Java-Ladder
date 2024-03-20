@@ -1,11 +1,20 @@
-//package ladder;
-//
-//import org.junit.jupiter.api.Test;
-//
-//import static org.junit.jupiter.api.Assertions.*;
-//
-//class RowTest {
-//
+package ladder;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class RowTest {
+    @Test
+    void Right_Left_셋트로_그리나() {
+        Row row = new Row(NaturalNumber.from(4));
+        row.drawLine(Position.initFrom(1, NaturalNumber.from(4)));
+        Assertions.assertEquals(row.getNodes()[1], Node.from(Direction.RIGHT));
+        Assertions.assertEquals(row.getNodes()[2], Node.from(Direction.LEFT));
+
+    }
+//      Refactoring 전 Test입니다.
 //    @Test
 //    void 참여자_한_명_사다리_이동() {
 //        //given
@@ -154,4 +163,4 @@
 //
 //    }
 //
-//}
+}

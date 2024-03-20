@@ -1,6 +1,5 @@
 package ladder;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class Row {
@@ -30,5 +29,9 @@ public class Row {
                 || Objects.equals(nodes[lineStartPosition.get() + 1], Node.from(Direction.RIGHT))) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_LINE_POSITION.getErrorMessage());
         }
+    }
+
+    public Node[] getNodes() {
+        return nodes;
     }
 }
