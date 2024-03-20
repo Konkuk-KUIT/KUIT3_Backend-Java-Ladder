@@ -29,4 +29,7 @@ public class Node {
         return new Node(direction);
     }
 
+    public void appendSymbol(StringBuilder sb) {
+        sb.append(this.direction.getValue());
+    }
 }
