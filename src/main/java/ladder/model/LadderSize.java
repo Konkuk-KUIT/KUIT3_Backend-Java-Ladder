@@ -7,6 +7,7 @@ public class LadderSize {
     private final int numberOfPerson;
 
     public LadderSize(int numberOfRows, int numberOfPerson) {
+        validate();
         this.numberOfRows = numberOfRows;
         this.numberOfPerson = numberOfPerson;
     }

@@ -8,7 +8,6 @@ public abstract class LadderCreator {
     public abstract void drawLine();
 
     public LadderCreator(LadderSize ladderSize) {
-        ladderSize.validate();
         rows = new Row[ladderSize.getNumberOfRows()];
 
         for(int i = 0; i < ladderSize.getNumberOfRows(); i++) {
