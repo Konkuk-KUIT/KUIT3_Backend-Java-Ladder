@@ -71,7 +71,7 @@ public class Ladder implements Field {
         return ball.getRow()+LadderConstant.ROW_BLOCK_SIZE;
     }
     private boolean canMove(Ball ball){
-        return ball.canMoveDown(rows.length-1);
+        return ball.canMoveDown(rows.length);
     }
 
 
