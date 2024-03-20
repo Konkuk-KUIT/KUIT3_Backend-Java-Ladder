@@ -9,8 +9,8 @@ public class LadderTest {
     @Test
     void 사다리_생성_확인() {
         //given
-        int numberOfRows = 3;
-        int numberOfPerson = 4;
+        NaturalNumber numberOfRows = new NaturalNumber(3);
+        NaturalNumber numberOfPerson = new NaturalNumber(4);
 
         //when
         Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
@@ -22,8 +22,8 @@ public class LadderTest {
     @Test
     void 사다리_시작위치_예외_처리() {
         //given
-        int numberOfRows = 3;
-        int numberOfPerson = 4;
+        NaturalNumber numberOfRows = new NaturalNumber(3);
+        NaturalNumber numberOfPerson = new NaturalNumber(4);
         Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
 
         //when
@@ -36,8 +36,8 @@ public class LadderTest {
     @Test
     void 사다리_결과_확인() {
         //given
-        int numberOfRows = 3;
-        int numberOfPerson = 4;
+        NaturalNumber numberOfRows = new NaturalNumber(3);
+        NaturalNumber numberOfPerson = new NaturalNumber(4);
         Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
         ladder.drawLine(0, 0);
         ladder.drawLine(1, 1);
@@ -72,8 +72,8 @@ public class LadderTest {
     @Test
     void 사다리_출력하기() {
         //given
-        int numberOfRows = 3;
-        int numberOfPerson = 4;
+        NaturalNumber numberOfRows = new NaturalNumber(3);
+        NaturalNumber numberOfPerson = new NaturalNumber(4);
         Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
         ladder.drawLine(0, 0);
         ladder.drawLine(1, 1);
@@ -92,7 +92,7 @@ public class LadderTest {
     void 임의_사다리_정상_생성_팩토리_없이() {
         //given
         RandomLadderCreator randomLadderCreator = new RandomLadderCreator();
-        Ladder ladder = randomLadderCreator.createLadder(3, 4);
+        Ladder ladder = randomLadderCreator.createLadder(new NaturalNumber(3), new NaturalNumber(4));
 
         //when
         String ladderResult = ladder.printLadder();
@@ -106,7 +106,7 @@ public class LadderTest {
     @Test
     void 임의_사다리_정상_생성_팩토리로() {
         //given
-        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(3, 4);
+        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(new NaturalNumber(3), new NaturalNumber(4));
 
         //when
         String ladderResult = ladderGame.printLadder();
@@ -120,8 +120,8 @@ public class LadderTest {
     @Test
     void 사다리_게임_결과_정상_출력() {
         //given
-        int numberOfRows = 3;
-        int numberOfPerson = 4;
+        NaturalNumber numberOfRows = new NaturalNumber(3);
+        NaturalNumber numberOfPerson = new NaturalNumber(4);
         LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(numberOfRows, numberOfPerson);
 
         //when

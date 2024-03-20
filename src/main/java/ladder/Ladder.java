@@ -3,10 +3,10 @@ package ladder;
 public class Ladder {
     private Row[] rows;
 
-    public Ladder(int numberOfRows, int numberOfPerson) {
-        rows = new Row[numberOfRows];
+    public Ladder(NaturalNumber numberOfRows, NaturalNumber numberOfPerson) {
+        rows = new Row[numberOfRows.size()];
 
-        for (int i = 0; i < numberOfRows; i++) {
+        for (int i = 0; i < numberOfRows.size(); i++) {
             rows[i] = new Row(numberOfPerson);
         }
     }
