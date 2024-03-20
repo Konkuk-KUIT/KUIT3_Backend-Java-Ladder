@@ -7,7 +7,7 @@ public class LadderSize {
     private final int numberOfPerson;
 
     public LadderSize(int numberOfRows, int numberOfPerson) {
-        validate();
+        validate(numberOfRows, numberOfPerson);
         this.numberOfRows = numberOfRows;
         this.numberOfPerson = numberOfPerson;
     }
@@ -21,7 +21,7 @@ public class LadderSize {
     }
 
 
-    public void validate() {
+    public void validate(int numberOfRows,int numberOfPerson) {
         if (numberOfRows < 1 || numberOfPerson < 1) {
             throw new IllegalArgumentException(INVALID_PARTICIPANT_COUNT.getMessage());
         }
