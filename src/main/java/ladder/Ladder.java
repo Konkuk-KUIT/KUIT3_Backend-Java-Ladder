@@ -1,27 +1,19 @@
 package ladder;
 
 public class Ladder {
+    private final LadderCreator ladderCreator;
+    private final LadderRunner ladderRunner;
 
-    private Row[] rows;
-
-    public Ladder(int numberOfRows, int numberOfPerson) {
-        rows = new Row[numberOfPerson];
-
-        for(int i = 0; i < numberOfRows; i++) {
-            rows[i] = new Row(numberOfPerson);
-        }
+    public Ladder(NaturalNumber numberOfRows, NaturalNumber numberOfPerson) {
+        ladderCreator = new LadderCreator(numberOfRows, numberOfPerson);
+        ladderRunner = new LadderGame(ladderCreator).startGame();
     }
 
-    public void drawLine(int row, int col) {
-        rows[row].drawLine(col);
+    public void drawLine(Position row, Position col) {
+        ladderCreator.drawLine(row, col);
     }
 
-    public int run(int position) {
-
-        for(int i = 0; i < rows.length; i++) {
-            position = rows[i].nextPosition(position);
-        }
-
-        return position;
+    public Position run(Position position) {
+        return ladderRunner.run(position);
     }
 }
