@@ -15,7 +15,7 @@ public class Ladder implements Field {
 
     public Ladder(int numberOfRows, int numberOfPerson) {
         rows = new Row[numberOfRows];
-
+        ball=new Ball();
         for(int i = 0; i < numberOfRows; i++) {
             rows[i] = new Row(numberOfPerson);
         }
@@ -27,16 +27,38 @@ public class Ladder implements Field {
 
 
     @Override
-    public void run(int... position) {
+    public int run(int... position) {
         validateBallPosition(position[0],position[1]);
         ball.initializePosition(position[0],position[1]);
 
-        while(!canMove(ball)){
+        while(canMove(ball)){
             ball.moveParallel(getBallNextCol());
             ball.moveVertical(getBallNextRow());
         }
+        return ball.getCol();
+    }
+    public int runWithPrint(int... position) {
+        validateBallPosition(position[0],position[1]);
+        ball.initializePosition(position[0],position[1]);
+
+        while(canMove(ball)){
+            System.out.println("Before");
+            print();
+            ball.moveParallel(getBallNextCol());
+
+            System.out.println("After");
+            print();
+            ball.moveVertical(getBallNextRow());
+            System.out.println();
+        }
+        return ball.getCol();
     }
 
+    public void print(){
+        for(int i=0;i<rows.length;i++){
+            rows[i].print(ball,i);
+        }
+    }
     private void validateBallPosition(int row,int col){
         if(row<0||row>=rows.length)
             throw new CustomException(ErrorCode.INVALID_POSITION);
@@ -46,9 +68,11 @@ public class Ladder implements Field {
     }
 
     private int getBallNextRow(){
-        return LadderConstant.ROW_BLOCK_SIZE;
+        return ball.getRow()+LadderConstant.ROW_BLOCK_SIZE;
     }
     private boolean canMove(Ball ball){
         return ball.canMoveDown(rows.length-1);
     }
+
+
 }

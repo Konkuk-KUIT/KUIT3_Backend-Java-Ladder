@@ -1,5 +1,6 @@
 package game.fieldComponent;
 
+import game.component.Ball;
 import game.component.Pipe;
 import game.exception.CustomException;
 import game.exception.ErrorCode;
@@ -50,4 +51,16 @@ public class Row {
         }
     }
 
+    public void print(Ball ball,int row) {
+        for(int i=0;i<pipes.length;i++){
+            System.out.printf("%2d",pipes[i].getMoveWeight());
+            System.out.printf("%s",getBallStringIfSamePosition(ball,row,i));
+        }
+        System.out.println();
+    }
+    public String getBallStringIfSamePosition(Ball ball,int row,int col){
+        if(ball.getRow()==row&&ball.getCol()==col)
+            return "*";
+        return " ";
+    }
 }

@@ -29,4 +29,8 @@ public class Ball {
     public void moveVertical(int ballNextRow){
         this.row=ballNextRow;
     }
+
+    public String getBallStringIfSamePosition() {
+        return null;
+    }
 }
