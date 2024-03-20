@@ -6,16 +6,10 @@ import ladder.model.Row;
 
 import java.util.Random;
 
-public class RandomLadderCreator implements LadderCreator{
-    private final Row[] rows;
+public class RandomLadderCreator extends LadderCreator{
 
     public RandomLadderCreator(LadderSize ladderSize) {
-        ladderSize.validate();
-        rows = new Row[ladderSize.getNumberOfRows()];
-
-        for(int i = 0; i < ladderSize.getNumberOfRows(); i++) {
-            rows[i] = new Row(ladderSize.getNumberOfPerson());
-        }
+        super(ladderSize); // 부모 클래스의 생성자 호출
     }
 
     // 사다리 행 * 열 * 0.3
