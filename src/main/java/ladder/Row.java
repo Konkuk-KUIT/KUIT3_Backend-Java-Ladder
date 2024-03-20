@@ -8,7 +8,11 @@ public class Row {
 
     public Row(NaturalNumber numberOfPerson) {
         nodes = new Node[numberOfPerson.get()];     // TODO: node들의 배열에서 각 노드들 초기화 해줘야 하는가?
-        for(int i = 0; i < numberOfPerson.get(); i++) {
+        init();
+    }
+
+    private void init() {
+        for(int i  = 0; i < nodes.length; i++) {
             nodes[i] = Node.from(Direction.CENTER);
         }
     }
@@ -19,16 +23,16 @@ public class Row {
         nodes[lineStartPosition.next().get()] = Node.from(Direction.LEFT);
     }
 
-    public Position slide(Position position) {
-        return nodes[position.get()].move(position);
-    }
-
     private void validateDrawLinePosition(Position lineStartPosition) {
         if(lineStartPosition.get() < 0 || lineStartPosition.get() >= nodes.length - 1 || Objects.equals(
                 nodes[lineStartPosition.get()], Node.from(Direction.LEFT))
                 || Objects.equals(nodes[lineStartPosition.get() + 1], Node.from(Direction.RIGHT))) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_LINE_POSITION.getErrorMessage());
         }
+    }
+
+    public Position slide(Position position) {
+        return nodes[position.get()].move(position);
     }
 
     public Node[] getNodes() {
