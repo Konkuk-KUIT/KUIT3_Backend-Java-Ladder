@@ -21,7 +21,7 @@ public class Row {
         validateDrawLinePosition(lineStartPosition);
 
         row[lineStartPosition].setPipeStatusRight();
-        row[lineStartPosition + PipeConstant.ROW_BLOCK_SIZE].setPipeStatusLeft();
+        row[lineStartPosition + PipeConstant.COL_BLOCK_SIZE].setPipeStatusLeft();
     }
 
     public int nextPosition(int position) {
@@ -39,7 +39,7 @@ public class Row {
 
     private void validateDrawLinePosition(int lineStartPosition) {
         if(lineStartPosition < PipeConstant.START_INDEX || lineStartPosition >= row.length - 1 ||
-                row[lineStartPosition].isLeftExtended()||row[lineStartPosition+PipeConstant.ROW_BLOCK_SIZE].isRightExtended()) {
+                row[lineStartPosition].isLeftExtended()||row[lineStartPosition+PipeConstant.COL_BLOCK_SIZE].isRightExtended()) {
             throw new CustomException(ErrorCode.INVALID_LINE_POSITION);
         }
     }

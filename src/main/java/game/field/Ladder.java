@@ -3,6 +3,7 @@ package game.field;
 import game.component.Ball;
 import game.component.util.PipeConstant;
 import game.component.util.PipeStatus;
+import game.field.util.LadderConstant;
 import game.fieldComponent.Row;
 
 public class Ladder implements Field {
@@ -37,7 +38,7 @@ public class Ladder implements Field {
     }
 
     private int getBallNextRow(){
-        return 1;
+        return LadderConstant.ROW_BLOCK_SIZE;
     }
     private boolean canMove(Ball ball){
         return ball.canMoveDown(rows.length-1);
