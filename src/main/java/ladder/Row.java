@@ -15,6 +15,21 @@ public class Row {
         }
     }
 
+
+    public enum ExceptionMessage {
+
+        INVALID_LADDER_POSITION("유효하지 않은 위치 입니다."),
+        INVALID_NUMBER_OF_PERSON("게임의 참여자 수는 1명 이상이어야 합니다."),
+        INVALID_DRAW_LINE_POSITION("라인 생성이 불가능한 위치 입니다.");
+
+        private String message;
+
+
+        ExceptionMessage(String message) {
+            this.message = message;
+        }
+    }
+
     public Row(int numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
         row = new int[numberOfPerson];
@@ -31,10 +46,10 @@ public class Row {
         validatePosition(position);
 
         if (isLeft(position)) {
-            return position +Direction.LEFT.directionValue;
+            return position + Direction.LEFT.directionValue;
         }
         if (isRight(position)) {
-            return position +Direction.RIGHT.directionValue;
+            return position + Direction.RIGHT.directionValue;
         }
 
         return position;
@@ -49,24 +64,22 @@ public class Row {
     }
 
     private void validateNumberOfPerson(int numberOfPerson) {
-        if(numberOfPerson < 1) {
-            throw new IllegalArgumentException("게임의 참여자 수는 1명 이상이어야 합니다.");
+        if (numberOfPerson < 1) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_OF_PERSON.message);
         }
     }
 
     private void validateDrawLinePosition(int lineStartPosition) {
-        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == Direction.LEFT.directionValue || row[lineStartPosition + 1] == Direction.RIGHT.directionValue) {
-            throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
+        if (lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == Direction.LEFT.directionValue || row[lineStartPosition + 1] == Direction.RIGHT.directionValue) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_LINE_POSITION.message);
         }
     }
 
     private void validatePosition(int position) {
-        if(position >= row.length || position < 0 ) {
-            throw new IllegalArgumentException("유효하지 않은 위치 입니다.");
+        if (position >= row.length || position < 0) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LADDER_POSITION.message);
         }
     }
-
-
 
 
 }
