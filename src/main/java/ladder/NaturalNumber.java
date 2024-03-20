@@ -1,19 +1,23 @@
 package ladder;
 
 public class NaturalNumber {
-    private int value;
+    private final int num;
 
-    public NaturalNumber(int value) {
-        validateValue(value);
-        this.value = value;
+    private NaturalNumber(int num) {
+        validateNumber(num);
+        this.num = num;
     }
 
-    public void validateValue(int size) {
-        if (size < 1)
-            throw new IllegalArgumentException("자연수는 1 이상의 정수여야 합니다.");
+    public static NaturalNumber of(int num) {
+        return new NaturalNumber(num);
     }
 
-    public int size() {
-        return value;
+    private void validateNumber(int num) {
+        if (num < 1)
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NATURAL_NUMBER.get());
+    }
+
+    public int get() {
+        return num;
     }
 }

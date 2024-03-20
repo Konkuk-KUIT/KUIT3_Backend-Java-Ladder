@@ -8,7 +8,7 @@ public class RowTest {
     @Test
     void 참여자_한_명_사다리_이동() {
         //given
-        NaturalNumber numberOfPerson = new NaturalNumber(1);
+        NaturalNumber numberOfPerson = NaturalNumber.of(1);
         Row row = new Row(numberOfPerson);
 
         //when
@@ -21,7 +21,7 @@ public class RowTest {
     @Test
     void 참여자_두_명_사다리_열간_이동() {
         //given
-        NaturalNumber numberOfPerson = new NaturalNumber(2);
+        NaturalNumber numberOfPerson = NaturalNumber.of(2);
         Row row = new Row(numberOfPerson);
         row.drawLine(0);
 
@@ -41,7 +41,7 @@ public class RowTest {
     @Test
     void 사다리_위치_최대값_초과_예외_처리() {
         //given
-        NaturalNumber numberOfPerson = new NaturalNumber(4);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Row row = new Row(numberOfPerson);
 
         //when
@@ -54,7 +54,7 @@ public class RowTest {
     @Test
     void 사다리_위치_최소값_미만_예외_처리() {
         //given
-        NaturalNumber numberOfPerson = new NaturalNumber(4);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Row row = new Row(numberOfPerson);
 
         //when
@@ -67,7 +67,7 @@ public class RowTest {
     @Test
     void 사다리_라인_그리기_위치_초과_예외() {
         //given
-        NaturalNumber numberOfPerson = new NaturalNumber(4);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Row row = new Row(numberOfPerson);
 
         //when
@@ -80,7 +80,7 @@ public class RowTest {
     @Test
     void 사다리_라인_그리기_위치_미만_예외() {
         //given
-        NaturalNumber numberOfPerson = new NaturalNumber(4);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Row row = new Row(numberOfPerson);
 
         //when
@@ -93,7 +93,7 @@ public class RowTest {
     @Test
     void 사다리_라인_그리기_좌측_라인_중복_예외() {
         //given
-        NaturalNumber numberOfPerson = new NaturalNumber(4);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Row row = new Row(numberOfPerson);
         row.drawLine(1);
 
@@ -107,7 +107,7 @@ public class RowTest {
     @Test
     void 사다리_라인_그리기_우측_라인_중복_예외() {
         //given
-        NaturalNumber numberOfPerson = new NaturalNumber(4);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Row row = new Row(numberOfPerson);
         row.drawLine(1);
 
@@ -121,7 +121,7 @@ public class RowTest {
     @Test
     void 한_줄_출력하기() {
         //given
-        NaturalNumber numberOfPerson = new NaturalNumber(4);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Row row = new Row(numberOfPerson);
         row.drawLine(1);
 

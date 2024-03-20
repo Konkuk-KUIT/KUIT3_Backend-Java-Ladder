@@ -8,7 +8,7 @@ public class RandomLadderCreator implements LadderCreator {
     @Override
     public Ladder createLadder(NaturalNumber numberOfRows, NaturalNumber numberOfPerson) {
         Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
-        int numberOfLines = (int) (numberOfRows.size() * numberOfPerson.size() * 0.3);
+        int numberOfLines = (int) (numberOfRows.get() * numberOfPerson.get() * 0.3);
 
         // 시드 설정
         random.setSeed(System.currentTimeMillis());
@@ -36,10 +36,10 @@ public class RandomLadderCreator implements LadderCreator {
     }
 
     private int selectRandomRow(Ladder ladder, NaturalNumber numberOfRows) {
-        return random.nextInt(numberOfRows.size());
+        return random.nextInt(numberOfRows.get());
     }
 
     private int selectRandomColumn(Ladder ladder, NaturalNumber numberOfPerson) {
-        return random.nextInt(numberOfPerson.size());
+        return random.nextInt(numberOfPerson.get());
     }
 }

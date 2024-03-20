@@ -4,8 +4,8 @@ public class Row {
     private Node[] row;
 
     public Row(NaturalNumber numberOfPerson) {
-        row = new Node[numberOfPerson.size()];
-        for (int i = 0; i < numberOfPerson.size(); i++) {
+        row = new Node[numberOfPerson.get()];
+        for (int i = 0; i < numberOfPerson.get(); i++) {
             row[i] = new Node(0);
         }
     }
@@ -26,11 +26,14 @@ public class Row {
     }
 
     private boolean isLeft(int position) {
-        return row[position].value() == -1;
+//        return row[position].value() == -1;
+        return row[position].value() == Direction.LEFT.get();
     }
 
     private boolean isRight(int position) {
-        return row[position].value() == 1;
+//        return row[position].value() == 1;
+        return row[position].value() == Direction.RIGHT.get();
+
     }
 
     public String printRow() {
@@ -45,13 +48,13 @@ public class Row {
 
     public void validatePosition(int position) {
         if (position < 0 || position >= row.length)
-            throw new IllegalArgumentException("유효하지 않은 위치입니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LADDER_POSITION.get());
     }
 
     private void validateLineStartPosition(int lineStartPosition) {
         if (lineStartPosition < 0 || lineStartPosition >= row.length - 1 ||
                 row[lineStartPosition].value() == -1 || row[lineStartPosition].value() == 1 ||
                 row[lineStartPosition + 1].value() == 1)
-            throw new IllegalArgumentException("라인 생성이 불가능한 위치입니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LINE_START_POSITION.get());
     }
 }
