@@ -9,7 +9,6 @@ public class Row {
 
     public Row(NaturalNumber numberOfPerson) {
         nodes = new Node[numberOfPerson.get()];     // TODO: node들의 배열에서 각 노드들 초기화 해줘야 하는가?
-//        Arrays.fill(row, Direction.CENTER);
         for(int i = 0; i < numberOfPerson.get(); i++) {
             nodes[i] = Node.from(Direction.CENTER);
         }

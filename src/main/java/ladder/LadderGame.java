@@ -15,6 +15,6 @@ public class LadderGame {
     }
 
     private void createLadder() {
-        ladderCreator.create(null);
+        ladderCreator.create();
     }
 }

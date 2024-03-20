@@ -2,6 +2,7 @@ package ladder.ladderCreator;
 
 import ladder.Ladder;
 import ladder.LadderSpec;
+import ladder.Row;
 
 public class CustomLadderCreator implements LadderCreator {
     public CustomLadderCreator() {
@@ -9,7 +10,7 @@ public class CustomLadderCreator implements LadderCreator {
     }
 
     @Override
-    public Ladder create(LadderSpec ladderSpec) {
+    public Row[] create() {
         return null;
     }
 }

@@ -1,6 +1,6 @@
 package ladder;
 
-public class Ladder {       // 현재 역할 : 래더 생성, 래더 실행
+public class Ladder {       // 현재 역할 : 래더 생성
 
     private Row[] rows;
 
@@ -12,20 +12,7 @@ public class Ladder {       // 현재 역할 : 래더 생성, 래더 실행
         }
     }
 
-//    public void drawLine(int row, int col) {
-//        rows[row].drawLine(col);
-//    }
-
     public void drawLine(int row, Position col) { // row가 사람 idx란거지~ 확실 x
         rows[row].drawLine(col);
-    }
-
-    public Position run(Position position) {  // position이 사람의 index
-
-        for(int i = 0; i < rows.length; i++) {  // 사다리의 높이만큼 반복하는 거잖아
-            position = rows[position.get()].slide(position);
-        }
-
-        return position;
     }
 }
