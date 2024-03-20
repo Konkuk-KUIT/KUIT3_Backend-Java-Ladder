@@ -3,6 +3,18 @@ package ladder;
 public class Row {
     private int[] row;
 
+    public enum Direction {
+        RIGHT(1),
+        LEFT(-1),
+        NONE(0);
+
+        private final int directionValue;
+
+        Direction(int directionValue) {
+            this.directionValue = directionValue;
+        }
+    }
+
     public Row(int numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
         row = new int[numberOfPerson];
@@ -10,8 +22,8 @@ public class Row {
 
     public void drawLine(int lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = 1;
-        row[lineStartPosition + 1] = -1;
+        row[lineStartPosition] = Direction.RIGHT.directionValue;
+        row[lineStartPosition + 1] = Direction.LEFT.directionValue;
     }
 
     public int nextPosition(int position) {
@@ -19,21 +31,21 @@ public class Row {
         validatePosition(position);
 
         if (isLeft(position)) {
-            return position - 1;
+            return position +Direction.LEFT.directionValue;
         }
         if (isRight(position)) {
-            return position + 1;
+            return position +Direction.RIGHT.directionValue;
         }
 
         return position;
     }
 
     private boolean isLeft(int position) {
-        return row[position] == -1;
+        return row[position] == Direction.LEFT.directionValue;
     }
 
     private boolean isRight(int position) {
-        return row[position] == 1;
+        return row[position] == Direction.RIGHT.directionValue;
     }
 
     private void validateNumberOfPerson(int numberOfPerson) {
@@ -43,7 +55,7 @@ public class Row {
     }
 
     private void validateDrawLinePosition(int lineStartPosition) {
-        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == -1 || row[lineStartPosition + 1] == 1) {
+        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == Direction.LEFT.directionValue || row[lineStartPosition + 1] == Direction.RIGHT.directionValue) {
             throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
         }
     }
