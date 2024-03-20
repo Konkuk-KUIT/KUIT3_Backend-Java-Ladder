@@ -11,6 +11,7 @@ public class LadderSpec {
         this.numberOfRows = numberOfRows;
         this.numberOfPerson = numberOfPerson;
         this.sideLadders = sideLadders;
+        validate();
     }
 
     private void validate() {
