@@ -1,39 +1,34 @@
 package ladder;
 
+import java.util.Arrays;
+
 public class Row {
-    private int[] row;
+    private Direction[] row;
 
     public Row(int numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
-        row = new int[numberOfPerson];
+        row = new Direction[numberOfPerson];
+        Arrays.fill(row, Direction.NONE);
     }
 
     public void drawLine(int lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = 1;
-        row[lineStartPosition + 1] = -1;
+        row[lineStartPosition] = Direction.RIGHT;
+        row[lineStartPosition + 1] = Direction.LEFT;
     }
 
     public int nextPosition(int position) {
 
         validatePosition(position);
 
-        if (isLeft(position)) {
+        if (row[position].isLeft()) {
             return position - 1;
         }
-        if (isRight(position)) {
+        if (row[position].isRight()) {
             return position + 1;
         }
 
         return position;
-    }
-
-    private boolean isLeft(int position) {
-        return row[position] == -1;
-    }
-
-    private boolean isRight(int position) {
-        return row[position] == 1;
     }
 
     private void validateNumberOfPerson(int numberOfPerson) {
@@ -43,7 +38,7 @@ public class Row {
     }
 
     private void validateDrawLinePosition(int lineStartPosition) {
-        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == -1 || row[lineStartPosition + 1] == 1) {
+        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition].isLeft() || row[lineStartPosition + 1].isRight()) {
             throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
         }
     }
