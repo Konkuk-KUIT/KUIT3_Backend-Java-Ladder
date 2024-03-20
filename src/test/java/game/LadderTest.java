@@ -3,6 +3,7 @@ package game;
 import game.exception.CustomException;
 import game.exception.ErrorCode;
 import game.field.Field;
+import game.field.FieldFactory;
 import game.field.Ladder;
 import org.junit.jupiter.api.Test;
 
@@ -118,4 +119,6 @@ class LadderTest {
         int resultPosition = ladder.runWithPrint(row,col);
         assertEquals(resultPosition,2);
     }
+
+
 }

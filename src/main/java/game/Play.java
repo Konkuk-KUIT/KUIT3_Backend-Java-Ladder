@@ -1,5 +1,7 @@
 package game;
 
 public interface Play {
-    void play();
+    void play(int...position);
+
+    void playWithPrint(int...position);
 }

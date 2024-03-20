@@ -33,7 +33,23 @@ class LadderGameTest {
         Game game = new LadderGame(field);
 
         //then
-        game.run();
+        game.play(numberOfRows,numberOfPerson);
         //TODO
+    }
+
+    @Test
+    void 사다리_자동_생성(){
+        //given
+        int numberOfPerson = 4;
+        int numberOfRows = 4;
+        LadderGame ladderGame=GameFactory.createLadderGameByRandom(numberOfRows,numberOfPerson);
+        //when
+        int row = 0;
+        int col = 0;
+
+
+        //then
+        ladderGame.playWithPrint(row,col);
+
     }
 }

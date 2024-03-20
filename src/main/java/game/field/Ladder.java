@@ -1,12 +1,12 @@
 package game.field;
 
 import game.component.Ball;
-import game.component.util.PipeConstant;
-import game.component.util.PipeStatus;
 import game.exception.CustomException;
 import game.exception.ErrorCode;
 import game.field.util.LadderConstant;
 import game.fieldComponent.Row;
+
+import java.util.Random;
 
 public class Ladder implements Field {
 
@@ -20,7 +20,23 @@ public class Ladder implements Field {
             rows[i] = new Row(numberOfPerson);
         }
     }
-
+    public Ladder(int numberOfRows, int numberOfPerson,int randomCount) {
+        this(numberOfRows,numberOfPerson);
+        for(int i=0;i<randomCount;i++){
+            drawRandomLine(numberOfRows,numberOfPerson);
+        }
+    }
+    
+    private void drawRandomLine(int rowRange,int colRange){
+        Random random = null;
+        int row= (int) ((Math.random()*100)%rowRange);
+        int col=(int) ((Math.random()*100)%colRange);
+        while(!rows[row].canExtend(col)){
+            row= (int) ((Math.random()*100)%rowRange);
+            col=(int) ((Math.random()*100)%colRange);
+        }
+        rows[row].drawLine(col);
+    }
     public void drawLine(int row, int col) {
         rows[row].drawLine(col);
     }
@@ -37,6 +53,8 @@ public class Ladder implements Field {
         }
         return ball.getCol();
     }
+
+    @Override
     public int runWithPrint(int... position) {
         validateBallPosition(position[0],position[1]);
         ball.initializePosition(position[0],position[1]);

@@ -9,8 +9,13 @@ public class LadderGame extends Game{
     }
 
     @Override
-    public void play() {
+    public void play(int...position) {
         //TODO
-        super.play();
+        super.play(position);
+    }
+
+    @Override
+    public void playWithPrint(int...position) {
+        field.runWithPrint(position);
     }
 }

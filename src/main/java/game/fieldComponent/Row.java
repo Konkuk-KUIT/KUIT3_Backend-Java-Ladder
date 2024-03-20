@@ -30,8 +30,20 @@ public class Row {
         validatePosition(position);
         return position+ pipes[position].getMoveWeight();
     }
-
-
+    public boolean canExtend(int position){
+        if(isAlreadyExtend(position))
+            return false;
+        try {
+            validateDrawLinePosition(position);
+        }
+        catch(Exception e){
+            return false;
+        }
+        return true;
+    }
+    public boolean isAlreadyExtend(int position){
+        return pipes[position].getMoveWeight()!=0;
+    }
     private void validateNumberOfPerson(int numberOfPerson) {
         if(numberOfPerson < 1) {
             throw new CustomException(ErrorCode.LACK_PARTICIPANTS);
