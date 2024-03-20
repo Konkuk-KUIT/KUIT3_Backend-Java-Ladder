@@ -5,15 +5,15 @@ import ladder.ladderCreator.LadderCreator;
 public class LadderGame {
 
     private final LadderCreator ladderCreator;
-    private final LadderRunner ladderRunner;
 
-    public LadderGame(LadderCreator ladderCreator, LadderRunner ladderRunner) {
+    public LadderGame(LadderCreator ladderCreator) {
         this.ladderCreator = ladderCreator;
-        this.ladderRunner = ladderRunner;
     }
 
     public Position play(Position position) {
-        ladderCreator.create();
+        Row[] rows = ladderCreator.create();
+
+        LadderRunner ladderRunner = new LadderRunner(rows);
 
         return ladderRunner.run(position);
     }

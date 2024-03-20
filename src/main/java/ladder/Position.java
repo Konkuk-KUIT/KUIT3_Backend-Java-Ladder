@@ -12,7 +12,7 @@ public class Position {
         this.position = position;
     }
 
-    public static Position initFrom(int position, NaturalNumber numberOfPerson) {   // int or NaturalNumber?
+    public static Position initOf(int position, NaturalNumber numberOfPerson) {   // int or NaturalNumber?
         return new Position(position, numberOfPerson);
     }
 

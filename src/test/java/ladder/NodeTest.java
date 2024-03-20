@@ -4,9 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class NodeTest {
 
@@ -29,7 +27,7 @@ public class NodeTest {
     void rightNodeMoveRight() {
         // given
         Node node = Node.from(Direction.RIGHT);
-        Position position = Position.initFrom(3, NaturalNumber.from(5));
+        Position position = Position.initOf(3, NaturalNumber.from(5));
 
         // when
         Position movedPosition = node.move(position);
@@ -43,7 +41,7 @@ public class NodeTest {
     void leftNodeMoveLeft() {
         // given
         Node node = Node.from(Direction.LEFT);
-        Position position = Position.initFrom(3, NaturalNumber.from(5));
+        Position position = Position.initOf(3, NaturalNumber.from(5));
 
         // when
         Position movedPosition = node.move(position);
