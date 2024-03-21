@@ -1,111 +1,73 @@
 package ladder;
 
+import ladder.wrapper.NaturalNumber;
+import ladder.wrapper.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RowTest {
-
+public class RowTest {
     @Test
     void 참여자_한_명_사다리_이동() {
         //given
-        int numberOfPerson = 1;
+        NaturalNumber numberOfPerson = NaturalNumber.of(1);
         Row row = new Row(numberOfPerson);
 
         //when
-        int position = 0;
+        Position position = Position.of(0, numberOfPerson);
 
         //then
-        assertEquals(0,row.nextPosition(position));
+        assertEquals(0, row.move(position).get());
     }
 
     @Test
     void 참여자_두_명_사다리_열간_이동() {
         //given
-        int numberOfPerson = 2;
+        NaturalNumber numberOfPerson = NaturalNumber.of(2);
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.of(0, numberOfPerson));
 
         //when
-        int position = 0;
-        int resultPosition = row.nextPosition(position);
+        Position position = Position.of(0, numberOfPerson);
+        Position resultPosition = row.move(position);
         //then
-        assertEquals(1,resultPosition);
-
+        assertEquals(1, resultPosition.get());
 
         //when
-        position = 1;
-        resultPosition = row.nextPosition(position);
+        position = position.next();
+        resultPosition = row.move(position);
         //then
-        assertEquals(0, resultPosition);
+        assertEquals(0, resultPosition.get());
     }
 
-    @Test
-    void 참여자_세_명_사다리_열간_이동() {
-        //given
-        int numberOfPerson = 3;
-        Row row = new Row(numberOfPerson);
-        row.drawLine(0);
-
-        //when
-        int position = 0;
-        int resultPosition = row.nextPosition(position);
-        //then
-        assertEquals(1,resultPosition);
-
-
-        //when
-        position = 1;
-        resultPosition = row.nextPosition(position);
-        //then
-        assertEquals(0, resultPosition);
-
-        //when
-        position = 2;
-        resultPosition = row.nextPosition(position);
-        //then
-        assertEquals(2, resultPosition);
-    }
-
-    @Test
-    void 사다리_사람수_예외_처리() {
-        assertThrows(IllegalArgumentException.class, () -> new Row(0));
-    }
-
+    // 테스트를 위해 준비할 과정이 없으면 given 생략해도 되는지?
     @Test
     void 사다리_위치_최대값_초과_예외_처리() {
-        //given
-        int numberOfPerson = 3;
-        Row row = new Row(numberOfPerson);
-
         //when
-        int position = 3;
+        // 가능한 사다리 시작 위치는 0 ~ 3
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
+        assertThrows(IllegalArgumentException.class, () -> Position.of(4, numberOfPerson));
     }
 
     @Test
     void 사다리_위치_최소값_미만_예외_처리() {
-        //given
-        int numberOfPerson = 3;
-        Row row = new Row(numberOfPerson);
-
         //when
-        int position = -1;
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
+        assertThrows(IllegalArgumentException.class, () -> Position.of(-1, numberOfPerson));
     }
 
     @Test
     void 사다리_라인_그리기_위치_초과_예외() {
         //given
-        int numberOfPerson = 3;
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Row row = new Row(numberOfPerson);
 
         //when
-        int lineStartPosition = 2;
+        Position lineStartPosition = Position.of(3, numberOfPerson);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
@@ -113,45 +75,38 @@ class RowTest {
 
     @Test
     void 사다리_라인_그리기_위치_미만_예외() {
+        //when
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+
+        //then
+        assertThrows(IllegalArgumentException.class, () -> Position.of(-1, numberOfPerson));
+    }
+
+    @Test
+    void 사다리_라인_그리기_좌측_라인_중복_예외() {
         //given
-        int numberOfPerson = 3;
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Row row = new Row(numberOfPerson);
+        row.drawLine(Position.of(1, numberOfPerson));
 
         //when
-        int lineStartPosition = -1;
+        Position lineStartPosition = Position.of(2, numberOfPerson);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
     }
 
     @Test
-    void 라인_그리기_좌측_라인_중복_예외() {
+    void 사다리_라인_그리기_우측_라인_중복_예외() {
         //given
-        int numberOfPerson = 3;
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.of(1, numberOfPerson));
 
         //when
-        int lineStartPosition = 1;
+        Position lineStartPosition = Position.of(0, numberOfPerson);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
-
     }
-
-    @Test
-    void 라인_그리기_우측_라인_중복_예외() {
-        //given
-        int numberOfPerson = 3;
-        Row row = new Row(numberOfPerson);
-        row.drawLine(1);
-
-        //when
-        int lineStartPosition = 0;
-
-        //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
-
-    }
-
 }

@@ -1,74 +1,52 @@
 package ladder;
 
+import ladder.creator.RandomLadderCreator;
+import ladder.wrapper.NaturalNumber;
+import ladder.wrapper.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LadderTest {
+public class LadderTest {
 
     @Test
     void 사다리_생성_확인() {
         //given
-        int numberOfRows = 3;
-        int numberOfPerson = 5;
+        NaturalNumber numberOfRows = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
 
         //when
-        Ladder ladder  = new Ladder(numberOfRows, numberOfPerson);
+        Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
 
         //then
         assertNotNull(ladder);
     }
 
+    // 테스트를 위해 준비할 과정이 없으면 given 생략해도 되는지?
     @Test
     void 사다리_시작위치_예외_처리() {
-        //given
-        int numberOfPerson = 3;
-        int numberOfRows = 1;
-        Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
-
         //when
-        int position = 3;
+        // 가능한 사다리 시작위치는 0 ~ 3
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> ladder.run(3));
+        assertThrows(IllegalArgumentException.class, () -> Position.of(5, numberOfPerson));
     }
 
     @Test
-    void 사다리_결과_확인() {
+    void 임의_사다리_정상_생성_팩토리_없이() {
         //given
-        int numberOfPerson = 4;
-        int numberOfRows = 4;
-        Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
-        ladder.drawLine(1,0);
-        ladder.drawLine(1,2);
-        ladder.drawLine(2,1);
-
+        NaturalNumber numberOfRows = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+        RandomLadderCreator randomLadderCreator = new RandomLadderCreator();
+        Ladder ladder = randomLadderCreator.createLadder(numberOfRows, numberOfPerson);
 
         //when
-        int position = 0;
-        int resultPosition = ladder.run(position);
+        String ladderResult = ladder.printLadder();
+
         //then
-        assertEquals(2, resultPosition);
-
-        //when
-        position = 1;
-        resultPosition = ladder.run(position);
-        //then
-        assertEquals(0, resultPosition);
-
-        //when
-        position = 2;
-        resultPosition = ladder.run(position);
-        //then
-        assertEquals(3, resultPosition);
-
-        //when
-        position = 3;
-        resultPosition = ladder.run(position);
-        //then
-        assertEquals(1, resultPosition);
-
-
-
+        assertEquals(6, ladderResult.chars()
+                .filter(c -> c == '0')
+                .count());
     }
 }
