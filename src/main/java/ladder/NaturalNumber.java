@@ -4,10 +4,11 @@ public class NaturalNumber {
 
     private final int value;
 
-    public NaturalNumber(int value) {
+    private NaturalNumber(int value) {
         validate(value);
         this.value = value;
     }
+
 
     public static NaturalNumber of(int value){
         return new NaturalNumber(value);

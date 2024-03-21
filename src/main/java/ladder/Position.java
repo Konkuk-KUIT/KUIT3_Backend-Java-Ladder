@@ -1,13 +1,19 @@
 package ladder;
 
 public class Position {
-    private final int position;
+    private int position;
+
+    private Position(int position) {
+        this.position = position;
+    }
+
     public static Position of(int position) {
         validatePosition(position);
         return new Position(position);
     }
-    private Position(int position) {
-        this.position = position;
+
+    public int getValue() {
+        return position;
     }
 
     public Position prev() {
@@ -25,7 +31,7 @@ public class Position {
         }
     }
 
-    private static boolean isPosition(int position){
-        return  position >= 0;
+    private static boolean isPosition(int position) {
+        return position >= 0;
     }
 }
