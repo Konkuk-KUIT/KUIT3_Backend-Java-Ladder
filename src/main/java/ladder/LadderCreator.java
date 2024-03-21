@@ -1,5 +1,9 @@
 package ladder;
 
+import Numbers.NaturalNum;
+import Numbers.Number;
+import Numbers.Position;
+
 public class LadderCreator {
     private Row[] rows;
 
@@ -13,8 +17,8 @@ public class LadderCreator {
         return new LadderCreator(numberOfRows, numberOfPerson);
     }
 
-    public void DrawLine(int row,int col){
-        this.rows[row].drawLine(col);
+    public void DrawLine(Number row, Number col){
+        this.rows[row.get()].drawLine(col);
     }
 
     public Row[] getrows(){

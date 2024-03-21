@@ -1,5 +1,7 @@
 package ladder;
 
+import Numbers.Position;
+
 public class Node {
     final Direction Dir;
 

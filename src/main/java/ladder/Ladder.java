@@ -1,5 +1,8 @@
 package ladder;
 
+import Numbers.NaturalNum;
+import Numbers.Position;
+
 public class Ladder {
 
     private Row[] rows;
@@ -25,7 +28,7 @@ public class Ladder {
     }
 
     public void drawLine(int row, int col) {
-        laddercreator.DrawLine(row,col);//NaturalNum.of(row),NaturalNum.of(col));
+        laddercreator.DrawLine(Position.of(row),Position.of(col));//NaturalNum.of(row),NaturalNum.of(col));
     }
 
     public int run(int position) {

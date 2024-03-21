@@ -1,5 +1,9 @@
 package ladder;
 
+import Numbers.NaturalNum;
+import Numbers.Number;
+import Numbers.Position;
+
 public class Row {
     /*private int[] row;*/
     private Node[] nodes;
@@ -15,29 +19,29 @@ public class Row {
 
     }
 
-    public void drawLine(int lineStartPosition) {
+    public void drawLine(Number lineStartPosition) {
         validateDrawLine(lineStartPosition);
         /* row[lineStartPosition] = 1;
         row[lineStartPosition + 1] = -1;*/
 
         //validate
-        nodes[lineStartPosition] = Node.SetNode(Direction.RIGHT);
-        nodes[lineStartPosition+1] = Node.SetNode(Direction.LEFT);
+        nodes[lineStartPosition.get()] = Node.SetNode(Direction.RIGHT);
+        nodes[lineStartPosition.get()+1] = Node.SetNode(Direction.LEFT);
     }
 
     public int nextPosition(int position) {
         //validatePosition(position);
         //Direction Dir = nodes[position.getPosition()].NextPosition();
         Position POSITION = Position.of(position, nodes.length);
-        Position nextPosition = nodes[POSITION.getPosition()].Move(POSITION);
-        return nextPosition.getPosition();
+        Position nextPosition = nodes[POSITION.get()].Move(POSITION);
+        return nextPosition.get();
     }
 
-    private void validateDrawLine(int linestartposition)throws IllegalArgumentException{
-        if((nodes.length-2<linestartposition||linestartposition<0)){
+    private void validateDrawLine(Number linestartposition)throws IllegalArgumentException{
+        if((nodes.length-2<linestartposition.get()||linestartposition.get()<0)){
             throw new IllegalArgumentException("선을 그리는 위치가 잘못 되었습니다.");
         }
-        if(Direction.NONE!=nodes[linestartposition].NextPosition()||Direction.NONE!=nodes[linestartposition+1].NextPosition()){
+        if(Direction.NONE!=nodes[linestartposition.get()].NextPosition()||Direction.NONE!=nodes[linestartposition.get()+1].NextPosition()){
             throw new IllegalArgumentException("선을 그리는 위치가 잘못 되었습니다.");
         }
     }

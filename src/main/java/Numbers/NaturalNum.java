@@ -1,6 +1,6 @@
-package ladder;
+package Numbers;
 
-public class NaturalNum {
+public class NaturalNum implements Number {
     private final int number;
 
     private NaturalNum(int num){
@@ -13,7 +13,6 @@ public class NaturalNum {
         }else{
             throw new IllegalArgumentException("자연수가 아닙니다");
         }
-
     }
     public int get(){
         return number;

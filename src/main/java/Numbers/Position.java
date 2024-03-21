@@ -1,6 +1,6 @@
-package ladder;
+package Numbers;
 
-public class Position {
+public class Position implements Number {
     final private int position;
     final private int PersonLimit;
     //final private int personNum;
@@ -12,11 +12,11 @@ public class Position {
 
     public static Position of(int pos, int person) throws IllegalArgumentException{
         Position newPosition = new Position(pos,person);
-        try{newPosition.validate();}
-        catch (IllegalArgumentException e){
+        /*catch (IllegalArgumentException e){
             throw new IllegalArgumentException("유효하지 않은 사다리 위치입니다");
             //return null;
-        }
+        }*/
+        newPosition.validate();
         return newPosition;
     }
     public Position next(){
@@ -27,10 +27,10 @@ public class Position {
         return Position.of(position-1,PersonLimit);
     }
 
-    public int getPosition(){
+    public int get(){
         return position;
     }
-    private void validate()throws IllegalArgumentException{
+    private void validate() throws IllegalArgumentException{
         if(position>=PersonLimit||position<0){
             throw new IllegalArgumentException();
         }

@@ -25,8 +25,5 @@ public class NodeTest {
         Node node = Node.SetNode(direction);
         //then
         assertTrue(Direction.LEFT.equals(node.NextPosition()));
-
-
     }
-
 }
