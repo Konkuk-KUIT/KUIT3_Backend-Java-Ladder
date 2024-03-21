@@ -39,5 +39,7 @@ public class LadderSpecTest {
         Throwable exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new LadderSpec(numberOfRows, numberOfPerson, sideLadders);
         });
+
+        Assertions.assertEquals(exception.getMessage(), ExceptionMessage.INVALID_SIDE_LADDER.getErrorMessage());
     }
 }
