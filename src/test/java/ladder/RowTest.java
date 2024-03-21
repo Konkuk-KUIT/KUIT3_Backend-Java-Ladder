@@ -15,7 +15,7 @@ public class RowTest {
         Position position = Position.of(0, numberOfPerson);
 
         //then
-        assertEquals(0, row.nextPosition(position).get());
+        assertEquals(0, row.move(position).get());
     }
 
     @Test
@@ -27,13 +27,13 @@ public class RowTest {
 
         //when
         Position position = Position.of(0, numberOfPerson);
-        Position resultPosition = row.nextPosition(position);
+        Position resultPosition = row.move(position);
         //then
         assertEquals(1, resultPosition.get());
 
         //when
         position = position.next();
-        resultPosition = row.nextPosition(position);
+        resultPosition = row.move(position);
         //then
         assertEquals(0, resultPosition.get());
     }

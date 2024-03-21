@@ -17,7 +17,7 @@ public class Ladder {
 
     public Position run(Position position) {
         for (Row row : rows) {
-            position = row.nextPosition(position);
+            position = row.move(position);
         }
 
         return position;

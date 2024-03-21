@@ -11,7 +11,7 @@ public class Node {
         return new Node(dir);
     }
 
-    public Direction value() {
+    public Direction get() {
         return dir;
     }
 
@@ -21,5 +21,13 @@ public class Node {
 
     public void setGoRight() {
         dir = Direction.RIGHT;
+    }
+
+    public boolean isLeft() {
+        return dir == Direction.LEFT;
+    }
+
+    public boolean isRight() {
+        return dir == Direction.RIGHT;
     }
 }
