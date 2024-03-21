@@ -1,21 +1,25 @@
 package ladder;
 
 public class Node {
-    private int node;
+    private Direction dir;
 
-    public Node(int node) {
-        this.node = node;
+    private Node(Direction dir) {
+        this.dir = dir;
     }
 
-    public int value() {
-        return node;
+    public static Node of(Direction dir) {
+        return new Node(dir);
+    }
+
+    public Direction value() {
+        return dir;
     }
 
     public void setGoLeft() {
-        node = -1;
+        dir = Direction.LEFT;
     }
 
     public void setGoRight() {
-        node = 1;
+        dir = Direction.RIGHT;
     }
 }
