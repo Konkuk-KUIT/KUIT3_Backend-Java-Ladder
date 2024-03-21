@@ -18,18 +18,18 @@ public class Row {
     }
 
     public void drawLine(Position lineStartPosition) {   // 오른쪽 찍 한줄 긋기
-        validateDrawLinePosition(lineStartPosition);
+//        validateDrawLinePosition(lineStartPosition);
         nodes[lineStartPosition.get()] = Node.from(Direction.RIGHT);
         nodes[lineStartPosition.next().get()] = Node.from(Direction.LEFT);
     }
 
-    private void validateDrawLinePosition(Position lineStartPosition) {
-        if(lineStartPosition.get() < 0 || lineStartPosition.get() >= nodes.length - 1 || Objects.equals(
-                nodes[lineStartPosition.get()], Node.from(Direction.LEFT))
-                || Objects.equals(nodes[lineStartPosition.get() + 1], Node.from(Direction.RIGHT))) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_LINE_POSITION.getErrorMessage());
-        }
-    }
+//    private void validateDrawLinePosition(Position lineStartPosition) {   // 넌 그리기만 해, Blueprint에서 검증해서 줄께
+//        if(lineStartPosition.get() < 0 || lineStartPosition.get() >= nodes.length - 1 || Objects.equals(
+//                nodes[lineStartPosition.get()], Node.from(Direction.LEFT))
+//                || Objects.equals(nodes[lineStartPosition.get() + 1], Node.from(Direction.RIGHT))) {
+//            throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_LINE_POSITION.getErrorMessage());
+//        }
+//    }
 
     public Position slide(Position position) {
         return nodes[position.get()].move(position);

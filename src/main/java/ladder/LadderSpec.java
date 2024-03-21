@@ -18,6 +18,7 @@ public class LadderSpec {
         for(SideLadder sideLadder : this.sideLadders) {
             validateOutOfBound(sideLadder);
         }
+        validateDuplicates();
     }
 
     private void validateOutOfBound(SideLadder sideLadder) {
@@ -26,6 +27,17 @@ public class LadderSpec {
         }
     }
 
+    private void validateDuplicates() {
+        int[][] visited = new int[numberOfRows.get()][numberOfPerson.get()];
+        for(SideLadder sideLadder : sideLadders) {
+            if(visited[sideLadder.getRow()][sideLadder.getPosition().get()] == 1
+            || visited[sideLadder.getRow()][sideLadder.getPosition().get() + 1] == 1) {
+                throw new IllegalArgumentException(ExceptionMessage.INVALID_SIDE_LADDER.getErrorMessage());
+            }
+            visited[sideLadder.getRow()][sideLadder.getPosition().get()] = 1;
+            visited[sideLadder.getRow()][sideLadder.getPosition().get() + 1] = 1;
+        }
+    }
     public int getNumberOfRows() {
         return this.numberOfRows.get();
     }
