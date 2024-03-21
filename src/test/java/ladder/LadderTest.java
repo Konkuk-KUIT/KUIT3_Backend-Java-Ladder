@@ -1,5 +1,7 @@
 package ladder;
 
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,28 +42,29 @@ public class LadderTest {
         ladder.drawLine(Position.of(1, numberOfRows), Position.of(1, numberOfPerson));
         ladder.drawLine(Position.of(2, numberOfRows), Position.of(0, numberOfPerson));
         ladder.drawLine(Position.of(2, numberOfRows), Position.of(2, numberOfPerson));
+        LadderRunner ladderRunner = new LadderRunner(ladder);
 
         //when
         Position position = Position.of(0, numberOfPerson);
-        Position resultPosition = ladder.run(position);
+        Position resultPosition = ladderRunner.run(position);
         //then
         assertEquals(3, resultPosition.get());
 
         //when
         position = position.next();
-        resultPosition = ladder.run(position);
+        resultPosition = ladderRunner.run(position);
         //then
         assertEquals(1, resultPosition.get());
 
         //when
         position = position.next();
-        resultPosition = ladder.run(position);
+        resultPosition = ladderRunner.run(position);
         //then
         assertEquals(0, resultPosition.get());
 
         //when
         position = position.next();
-        resultPosition = ladder.run(position);
+        resultPosition = ladderRunner.run(position);
         //then
         assertEquals(2, resultPosition.get());
     }
@@ -114,18 +117,35 @@ public class LadderTest {
                 .count());
     }
 
+    //    @RepeatedTest(10)
     @Test
-    void 사다리_게임_결과_정상_출력() {
+    void 사다리_게임_결과_한_명_정상_출력() {
+        //given
+        NaturalNumber numberOfRows = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(numberOfRows, numberOfPerson);
+        Position position = Position.of(2, numberOfPerson);
+
+        //when
+        Position onePlayerResult = ladderGame.run(position);
+
+        //then
+        double center = (double) (numberOfPerson.get() - 1) / 2;
+        assertEquals(center, onePlayerResult.get(), center);
+    }
+
+    @Test
+    void 사다리_게임_결과_모두_정상_출력() {
         //given
         NaturalNumber numberOfRows = NaturalNumber.of(3);
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
         LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(numberOfRows, numberOfPerson);
 
         //when
-        String gameResult = ladderGame.printGameResult();
-
+        ladderGame.runAllPlayer();
 
         //then
+        String gameResult = ladderGame.printGameResult();
         assertEquals(2, gameResult.chars()
                 .filter(c -> c == '0')
                 .count());
