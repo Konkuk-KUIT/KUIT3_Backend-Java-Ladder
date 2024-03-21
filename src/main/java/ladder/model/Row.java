@@ -1,4 +1,4 @@
-package ladder;
+package ladder.model;
 
 public class Row {
     private Node[] row;
@@ -27,7 +27,7 @@ public class Row {
         return nextPosition.getPosition();
     }
 
-    public String toString(LadderPosition starPosition,int y) {
+    public String toString(LadderPosition starPosition, int y) {
         StringBuilder sb = new StringBuilder();
         for (int x = 0; x < row.length; x++) {
             if (starPosition.isEqualPosition(x, y)) {

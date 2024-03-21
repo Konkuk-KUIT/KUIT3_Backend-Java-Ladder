@@ -1,4 +1,8 @@
-package ladder;
+package ladder.application;
+
+import ladder.application.LadderCreatorInterface;
+import ladder.application.LadderRunner;
+import ladder.model.Position;
 
 public class LadderGame {
     private final LadderCreatorInterface ladderCreator;

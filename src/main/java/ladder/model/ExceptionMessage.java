@@ -1,4 +1,4 @@
-package ladder;
+package ladder.model;
 
 public enum ExceptionMessage {
     INVALID_NUMBER_OF_PERSON("참여 인원은 1명 이상이어야 합니다."),

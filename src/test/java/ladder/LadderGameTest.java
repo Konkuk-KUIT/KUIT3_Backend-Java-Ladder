@@ -1,7 +1,13 @@
 package ladder;
 
+import ladder.application.LadderCreator;
+import ladder.application.LadderGame;
+import ladder.application.LadderGameFactory;
+import ladder.model.NaturalNumber;
+import ladder.model.Position;
 import org.junit.jupiter.api.Test;
 
+import static ladder.application.LadderGameFactory.CreatorType.AUTO;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderGameTest {
@@ -92,7 +98,7 @@ class LadderGameTest {
         int numberOfPerson = 5;
 
         //when
-        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(numberOfRow,numberOfPerson);
+        LadderGame ladderGame = LadderGameFactory.createLadderGame(numberOfRow,numberOfPerson,AUTO);
 
         //then
         assertNotNull(ladderGame);

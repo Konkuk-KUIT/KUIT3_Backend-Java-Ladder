@@ -1,4 +1,4 @@
-package ladder;
+package ladder.model;
 
 public class LadderPosition {
     private final int x;

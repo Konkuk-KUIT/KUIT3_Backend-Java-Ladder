@@ -1,4 +1,6 @@
-package ladder;
+package ladder.model;
+
+import ladder.model.NaturalNumber;
 
 public class LadderSize {
     private final int rows;

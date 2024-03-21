@@ -1,5 +1,8 @@
-package ladder;
+package ladder.application;
 
+
+import ladder.model.NaturalNumber;
+import ladder.model.Row;
 
 public class LadderCreator implements LadderCreatorInterface {
     private Row[] rows;

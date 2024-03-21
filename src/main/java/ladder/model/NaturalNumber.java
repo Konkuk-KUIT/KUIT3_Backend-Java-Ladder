@@ -1,4 +1,4 @@
-package ladder;
+package ladder.model;
 
 public class NaturalNumber {
     private final int num;
