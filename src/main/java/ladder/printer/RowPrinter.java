@@ -3,7 +3,7 @@ package ladder.printer;
 import ladder.wrapper.Node;
 
 public class RowPrinter implements Printer {
-    private Node[] row;
+    private final Node[] row;
 
     public RowPrinter(Node[] row) {
         this.row = row;
