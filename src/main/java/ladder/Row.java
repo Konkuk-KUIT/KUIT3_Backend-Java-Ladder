@@ -1,5 +1,11 @@
 package ladder;
 
+import ladder.direction.Direction;
+import ladder.exceptionMessage.ExceptionMessage;
+
+import static ladder.direction.Direction.*;
+import static ladder.exceptionMessage.ExceptionMessage.*;
+
 public class Row {
     private int[] row;
 
@@ -10,8 +16,8 @@ public class Row {
 
     public void drawLine(int lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = 1;
-        row[lineStartPosition + 1] = -1;
+        row[lineStartPosition] = RIGHT.getDirection();        // 오른쪽
+        row[lineStartPosition + 1] = LEFT.getDirection();     // 왼쪽
     }
 
     public int nextPosition(int position) {
@@ -19,10 +25,10 @@ public class Row {
         validatePosition(position);
 
         if (isLeft(position)) {
-            return position - 1;
+            return LEFT.getDirection();       // 왼쪽
         }
         if (isRight(position)) {
-            return position + 1;
+            return RIGHT.getDirection();      // 오른쪽
         }
 
         return position;
@@ -38,19 +44,19 @@ public class Row {
 
     private void validateNumberOfPerson(int numberOfPerson) {
         if(numberOfPerson < 1) {
-            throw new IllegalArgumentException("게임의 참여자 수는 1명 이상이어야 합니다.");
+            throw new IllegalArgumentException(NUMBER_OF_PERSON.getMessage());
         }
     }
 
     private void validateDrawLinePosition(int lineStartPosition) {
         if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == -1 || row[lineStartPosition + 1] == 1) {
-            throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
+            throw new IllegalArgumentException(DRAWSLINE_POSITION.getMessage());
         }
     }
 
     private void validatePosition(int position) {
         if(position >= row.length || position < 0 ) {
-            throw new IllegalArgumentException("유효하지 않은 위치 입니다.");
+            throw new IllegalArgumentException(POSITION.getMessage());
         }
     }
 
