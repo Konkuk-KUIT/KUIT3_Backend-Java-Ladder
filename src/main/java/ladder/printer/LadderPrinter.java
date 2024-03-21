@@ -1,4 +1,6 @@
-package ladder;
+package ladder.printer;
+
+import ladder.Row;
 
 public class LadderPrinter implements Printer {
     private Row[] rows;

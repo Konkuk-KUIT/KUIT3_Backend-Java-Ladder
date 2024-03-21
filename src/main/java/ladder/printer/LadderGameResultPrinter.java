@@ -1,4 +1,4 @@
-package ladder;
+package ladder.printer;
 
 public class LadderGameResultPrinter implements Printer {
     private String gameResult;

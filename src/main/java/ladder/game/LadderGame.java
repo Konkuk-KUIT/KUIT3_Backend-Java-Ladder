@@ -1,4 +1,10 @@
-package ladder;
+package ladder.game;
+
+import ladder.Ladder;
+import ladder.wrapper.NaturalNumber;
+import ladder.wrapper.Position;
+import ladder.creator.LadderCreator;
+import ladder.printer.LadderGameResultPrinter;
 
 public class LadderGame {
     private Ladder ladder;

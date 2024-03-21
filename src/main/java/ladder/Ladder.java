@@ -1,5 +1,10 @@
 package ladder;
 
+import ladder.printer.LadderPrinter;
+import ladder.printer.Printer;
+import ladder.wrapper.NaturalNumber;
+import ladder.wrapper.Position;
+
 public class Ladder {
     private Row[] rows;
     private Printer ladderPrinter;
