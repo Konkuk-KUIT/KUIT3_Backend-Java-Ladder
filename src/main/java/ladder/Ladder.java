@@ -1,14 +1,13 @@
 package ladder;
 
 public class Ladder {
-
     private Row[] rows;
 
-    public Ladder(int numberOfRows, int numberOfPerson) {
-        rows = new Row[numberOfPerson];
+    public Ladder(NaturalNumber numberOfRows, NaturalNumber numberOfPerson) {  // 자연수
+        rows = new Row[numberOfRows.get()];
 
-        for(int i = 0; i < numberOfRows; i++) {
-            rows[i] = new Row(numberOfPerson);
+        for(int i = 0; i < numberOfRows.get(); i++) {
+            rows[i] = new Row(numberOfPerson.get());
         }
     }
 
@@ -16,12 +15,10 @@ public class Ladder {
         rows[row].drawLine(col);
     }
 
-    public int run(int position) {
-
+    public Position run(Position position) {
         for(int i = 0; i < rows.length; i++) {
             position = rows[i].nextPosition(position);
         }
-
         return position;
     }
 }
