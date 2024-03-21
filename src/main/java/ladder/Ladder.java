@@ -11,11 +11,11 @@ public class Ladder {
         }
     }
 
-    public void drawLine(int row, int col) {
-        rows[row].drawLine(col);
+    public void drawLine(Position row, Position col) {
+        rows[row.get()].drawLine(col);
     }
 
-    public int run(int position) {
+    public Position run(Position position) {
         for (Row row : rows) {
             position = row.nextPosition(position);
         }
@@ -33,15 +33,16 @@ public class Ladder {
 
     public String printGameResult() {
         StringBuilder gameResult = new StringBuilder();
-        int nthPerson = 0;
+        Position nthPerson = Position.of(0, NaturalNumber.of(rows[0].size()));
 
         while (true) {
             try {
-                String nthPersonResult = String.valueOf(nthPerson) +
-                        " : " +
-                        String.valueOf(run(nthPerson++)) +
-                        " | ";
+                // 한 사람 게임 진행
+                String nthPersonResult = nthPerson.get() + " : " + run(nthPerson).get() + " | ";
                 gameResult.append(nthPersonResult);
+
+                // 다음 사람으로 변경
+                nthPerson = nthPerson.next();
             } catch (IllegalArgumentException e) {
                 break;
             }

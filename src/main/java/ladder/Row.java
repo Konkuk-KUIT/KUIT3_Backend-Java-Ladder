@@ -10,29 +10,33 @@ public class Row {
         }
     }
 
-    public void drawLine(int lineStartPosition) {
+    public void drawLine(Position lineStartPosition) {
         validateLineStartPosition(lineStartPosition);
-        row[lineStartPosition].setGoRight();
-        row[lineStartPosition + 1].setGoLeft();
+        row[lineStartPosition.get()].setGoRight();
+        row[lineStartPosition.get() + 1].setGoLeft();
     }
 
-    public int nextPosition(int position) {
-        validatePosition(position);
+    private void validateLineStartPosition(Position lineStartPosition) {
+        if (lineStartPosition.get() < 0 || lineStartPosition.get() >= row.length - 1 ||
+                row[lineStartPosition.get()].value() == -1 || row[lineStartPosition.get()].value() == 1 ||
+                row[lineStartPosition.get() + 1].value() == 1)
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LINE_START_POSITION.get());
+    }
+
+    public Position nextPosition(Position position) {
         if (isLeft(position))
-            return position - 1;
+            return position.prev();
         if (isRight(position))
-            return position + 1;
+            return position.next();
         return position;
     }
 
-    private boolean isLeft(int position) {
-//        return row[position].value() == -1;
-        return row[position].value() == Direction.LEFT.get();
+    private boolean isLeft(Position position) {
+        return row[position.get()].value() == Direction.LEFT.get();
     }
 
-    private boolean isRight(int position) {
-//        return row[position].value() == 1;
-        return row[position].value() == Direction.RIGHT.get();
+    private boolean isRight(Position position) {
+        return row[position.get()].value() == Direction.RIGHT.get();
 
     }
 
@@ -46,15 +50,7 @@ public class Row {
         return rowResult.toString();
     }
 
-    public void validatePosition(int position) {
-        if (position < 0 || position >= row.length)
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LADDER_POSITION.get());
-    }
-
-    private void validateLineStartPosition(int lineStartPosition) {
-        if (lineStartPosition < 0 || lineStartPosition >= row.length - 1 ||
-                row[lineStartPosition].value() == -1 || row[lineStartPosition].value() == 1 ||
-                row[lineStartPosition + 1].value() == 1)
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LINE_START_POSITION.get());
+    public int size() {
+        return row.length;
     }
 }

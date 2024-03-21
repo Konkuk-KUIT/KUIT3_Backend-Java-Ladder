@@ -12,10 +12,10 @@ public class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int position = 0;
+        Position position = Position.of(0, numberOfPerson);
 
         //then
-        assertEquals(0, row.nextPosition(position));
+        assertEquals(0, row.nextPosition(position).get());
     }
 
     @Test
@@ -23,45 +23,39 @@ public class RowTest {
         //given
         NaturalNumber numberOfPerson = NaturalNumber.of(2);
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.of(0, numberOfPerson));
 
         //when
-        int position = 0;
-        int resultPosition = row.nextPosition(position);
+        Position position = Position.of(0, numberOfPerson);
+        Position resultPosition = row.nextPosition(position);
         //then
-        assertEquals(1, resultPosition);
+        assertEquals(1, resultPosition.get());
 
         //when
-        position = 1;
+        position = position.next();
         resultPosition = row.nextPosition(position);
         //then
-        assertEquals(0, resultPosition);
+        assertEquals(0, resultPosition.get());
     }
 
+    // 테스트를 위해 준비할 과정이 없으면 given 생략해도 되는지?
     @Test
     void 사다리_위치_최대값_초과_예외_처리() {
-        //given
-        NaturalNumber numberOfPerson = NaturalNumber.of(4);
-        Row row = new Row(numberOfPerson);
-
         //when
-        int position = 4;
+        // 가능한 사다리 시작 위치는 0 ~ 3
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
+        assertThrows(IllegalArgumentException.class, () -> Position.of(4, numberOfPerson));
     }
 
     @Test
     void 사다리_위치_최소값_미만_예외_처리() {
-        //given
-        NaturalNumber numberOfPerson = NaturalNumber.of(4);
-        Row row = new Row(numberOfPerson);
-
         //when
-        int position = -1;
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
+        assertThrows(IllegalArgumentException.class, () -> Position.of(-1, numberOfPerson));
     }
 
     @Test
@@ -71,7 +65,7 @@ public class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int lineStartPosition = 3;
+        Position lineStartPosition = Position.of(3, numberOfPerson);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
@@ -79,15 +73,11 @@ public class RowTest {
 
     @Test
     void 사다리_라인_그리기_위치_미만_예외() {
-        //given
-        NaturalNumber numberOfPerson = NaturalNumber.of(4);
-        Row row = new Row(numberOfPerson);
-
         //when
-        int lineStartPosition = -1;
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
+        assertThrows(IllegalArgumentException.class, () -> Position.of(-1, numberOfPerson));
     }
 
     @Test
@@ -95,10 +85,10 @@ public class RowTest {
         //given
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Row row = new Row(numberOfPerson);
-        row.drawLine(1);
+        row.drawLine(Position.of(1, numberOfPerson));
 
         //when
-        int lineStartPosition = 2;
+        Position lineStartPosition = Position.of(2, numberOfPerson);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
@@ -109,10 +99,10 @@ public class RowTest {
         //given
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Row row = new Row(numberOfPerson);
-        row.drawLine(1);
+        row.drawLine(Position.of(1, numberOfPerson));
 
         //when
-        int lineStartPosition = 0;
+        Position lineStartPosition = Position.of(0, numberOfPerson);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
@@ -123,7 +113,7 @@ public class RowTest {
         //given
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Row row = new Row(numberOfPerson);
-        row.drawLine(1);
+        row.drawLine(Position.of(1, numberOfPerson));
 
         //when
         String rowResult = row.printRow();

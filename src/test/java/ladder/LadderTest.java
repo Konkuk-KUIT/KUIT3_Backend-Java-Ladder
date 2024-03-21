@@ -19,18 +19,15 @@ public class LadderTest {
         assertNotNull(ladder);
     }
 
+    // 테스트를 위해 준비할 과정이 없으면 given 생략해도 되는지?
     @Test
     void 사다리_시작위치_예외_처리() {
-        //given
-        NaturalNumber numberOfRows = NaturalNumber.of(3);
-        NaturalNumber numberOfPerson = NaturalNumber.of(4);
-        Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
-
         //when
-        int position = 5;
+        // 가능한 사다리 시작위치는 0 ~ 3
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> ladder.run(position));
+        assertThrows(IllegalArgumentException.class, () -> Position.of(5, numberOfPerson));
     }
 
     @Test
@@ -39,34 +36,34 @@ public class LadderTest {
         NaturalNumber numberOfRows = NaturalNumber.of(3);
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
-        ladder.drawLine(0, 0);
-        ladder.drawLine(1, 1);
-        ladder.drawLine(2, 0);
-        ladder.drawLine(2, 2);
+        ladder.drawLine(Position.of(0, numberOfRows), Position.of(0, numberOfPerson));
+        ladder.drawLine(Position.of(1, numberOfRows), Position.of(1, numberOfPerson));
+        ladder.drawLine(Position.of(2, numberOfRows), Position.of(0, numberOfPerson));
+        ladder.drawLine(Position.of(2, numberOfRows), Position.of(2, numberOfPerson));
 
         //when
-        int position = 0;
-        int resultPosition = ladder.run(position);
+        Position position = Position.of(0, numberOfPerson);
+        Position resultPosition = ladder.run(position);
         //then
-        assertEquals(3, resultPosition);
+        assertEquals(3, resultPosition.get());
 
         //when
-        position = 1;
+        position = position.next();
         resultPosition = ladder.run(position);
         //then
-        assertEquals(1, resultPosition);
+        assertEquals(1, resultPosition.get());
 
         //when
-        position = 2;
+        position = position.next();
         resultPosition = ladder.run(position);
         //then
-        assertEquals(0, resultPosition);
+        assertEquals(0, resultPosition.get());
 
         //when
-        position = 3;
+        position = position.next();
         resultPosition = ladder.run(position);
         //then
-        assertEquals(2, resultPosition);
+        assertEquals(2, resultPosition.get());
     }
 
     @Test
@@ -75,10 +72,10 @@ public class LadderTest {
         NaturalNumber numberOfRows = NaturalNumber.of(3);
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
         Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
-        ladder.drawLine(0, 0);
-        ladder.drawLine(1, 1);
-        ladder.drawLine(2, 0);
-        ladder.drawLine(2, 2);
+        ladder.drawLine(Position.of(0, numberOfRows), Position.of(0, numberOfPerson));
+        ladder.drawLine(Position.of(1, numberOfRows), Position.of(1, numberOfPerson));
+        ladder.drawLine(Position.of(2, numberOfRows), Position.of(0, numberOfPerson));
+        ladder.drawLine(Position.of(2, numberOfRows), Position.of(2, numberOfPerson));
 
         //when
         String ladderResult = ladder.printLadder();
@@ -126,6 +123,7 @@ public class LadderTest {
 
         //when
         String gameResult = ladderGame.printGameResult();
+
 
         //then
         assertEquals(2, gameResult.chars()

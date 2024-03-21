@@ -21,8 +21,8 @@ public class RandomLadderCreator implements LadderCreator {
     }
 
     private void makeRandomLine(Ladder ladder, NaturalNumber numberOfRows, NaturalNumber numberOfPerson) {
-        int row = selectRandomRow(ladder, numberOfRows);
-        int col = selectRandomColumn(ladder, numberOfPerson);
+        Position row = selectRandomRow(ladder, numberOfRows);
+        Position col = selectRandomColumn(ladder, numberOfPerson);
 
         while (true) {
             try {
@@ -35,11 +35,11 @@ public class RandomLadderCreator implements LadderCreator {
         }
     }
 
-    private int selectRandomRow(Ladder ladder, NaturalNumber numberOfRows) {
-        return random.nextInt(numberOfRows.get());
+    private Position selectRandomRow(Ladder ladder, NaturalNumber numberOfRows) {
+        return Position.of(random.nextInt(numberOfRows.get()), numberOfRows);
     }
 
-    private int selectRandomColumn(Ladder ladder, NaturalNumber numberOfPerson) {
-        return random.nextInt(numberOfPerson.get());
+    private Position selectRandomColumn(Ladder ladder, NaturalNumber numberOfPerson) {
+        return Position.of(random.nextInt(numberOfPerson.get()), numberOfPerson);
     }
 }
