@@ -3,12 +3,12 @@ package ladder;
 public class LadderGame {
     private Ladder ladder;
     private LadderRunner ladderRunner;
-    private String gameResult;
+    private LadderGameResultPrinter ladderGameResultPrinter;
 
     public LadderGame(LadderCreator ladderCreator, NaturalNumber numberOfRows, NaturalNumber numberOfPerson) {
         ladder = ladderCreator.createLadder(numberOfRows, numberOfPerson);
         ladderRunner = new LadderRunner(ladder);
-        gameResult = "";
+        ladderGameResultPrinter = new LadderGameResultPrinter();
     }
 
     public Ladder getLadder() {
@@ -20,7 +20,7 @@ public class LadderGame {
     }
 
     public void runAllPlayer() {
-        gameResult = ladderRunner.runAllPlayer();
+        ladderRunner.runAllPlayer(ladderGameResultPrinter);
     }
 
     public String printLadder() {
@@ -28,6 +28,6 @@ public class LadderGame {
     }
 
     public String printGameResult() {
-        return gameResult;
+        return ladderGameResultPrinter.print();
     }
 }

@@ -2,13 +2,14 @@ package ladder;
 
 public class Ladder {
     private Row[] rows;
+    private Printer ladderPrinter;
 
     public Ladder(NaturalNumber numberOfRows, NaturalNumber numberOfPerson) {
         rows = new Row[numberOfRows.get()];
-
         for (int i = 0; i < numberOfRows.get(); i++) {
             rows[i] = new Row(numberOfPerson);
         }
+        ladderPrinter = new LadderPrinter(rows);
     }
 
     public void drawLine(Position row, Position col) {
@@ -20,10 +21,6 @@ public class Ladder {
     }
 
     public String printLadder() {
-        StringBuilder ladderResult = new StringBuilder();
-        for (Row row : rows) {
-            ladderResult.append(row.printRow());
-        }
-        return ladderResult.toString();
+        return ladderPrinter.print();
     }
 }

@@ -91,8 +91,10 @@ public class LadderTest {
     @Test
     void 임의_사다리_정상_생성_팩토리_없이() {
         //given
+        NaturalNumber numberOfRows = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
         RandomLadderCreator randomLadderCreator = new RandomLadderCreator();
-        Ladder ladder = randomLadderCreator.createLadder(NaturalNumber.of(3), NaturalNumber.of(4));
+        Ladder ladder = randomLadderCreator.createLadder(numberOfRows, numberOfPerson);
 
         //when
         String ladderResult = ladder.printLadder();
@@ -106,7 +108,9 @@ public class LadderTest {
     @Test
     void 임의_사다리_정상_생성_팩토리로() {
         //given
-        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(NaturalNumber.of(3), NaturalNumber.of(4));
+        NaturalNumber numberOfRows = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(numberOfRows, numberOfPerson);
 
         //when
         String ladderResult = ladderGame.printLadder();

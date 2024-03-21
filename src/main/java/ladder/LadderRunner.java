@@ -15,13 +15,13 @@ public class LadderRunner {
         return position;
     }
 
-    public String runAllPlayer() {
+    public void runAllPlayer(LadderGameResultPrinter ladderGameResultPrinter) {
         StringBuilder gameResult = new StringBuilder();
         Position nthPerson = Position.of(0, NaturalNumber.of(rows[0].size()));
 
         while (true) {
             try {
-                // 한 사람 게임 진행
+                // 한 사람 게임 진행 및 해당 결과 임시 기록
                 String nthPersonResult = nthPerson.get() + " : " + run(nthPerson).get() + " | ";
                 gameResult.append(nthPersonResult);
 
@@ -31,6 +31,7 @@ public class LadderRunner {
                 break;
             }
         }
-        return gameResult.toString();
+        // 임시 기록을 실제 기록으로 전환
+        ladderGameResultPrinter.write(gameResult.toString());
     }
 }

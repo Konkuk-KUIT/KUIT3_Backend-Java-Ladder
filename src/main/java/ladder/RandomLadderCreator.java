@@ -21,25 +21,25 @@ public class RandomLadderCreator implements LadderCreator {
     }
 
     private void makeRandomLine(Ladder ladder, NaturalNumber numberOfRows, NaturalNumber numberOfPerson) {
-        Position row = selectRandomRow(ladder, numberOfRows);
-        Position col = selectRandomColumn(ladder, numberOfPerson);
+        Position row = selectRandomRow(numberOfRows);
+        Position col = selectRandomColumn(numberOfPerson);
 
         while (true) {
             try {
                 ladder.drawLine(row, col);
                 break;
             } catch (IllegalArgumentException e) {
-                row = selectRandomRow(ladder, numberOfRows);
-                col = selectRandomColumn(ladder, numberOfPerson);
+                row = selectRandomRow(numberOfRows);
+                col = selectRandomColumn(numberOfPerson);
             }
         }
     }
 
-    private Position selectRandomRow(Ladder ladder, NaturalNumber numberOfRows) {
+    private Position selectRandomRow(NaturalNumber numberOfRows) {
         return Position.of(random.nextInt(numberOfRows.get()), numberOfRows);
     }
 
-    private Position selectRandomColumn(Ladder ladder, NaturalNumber numberOfPerson) {
+    private Position selectRandomColumn(NaturalNumber numberOfPerson) {
         return Position.of(random.nextInt(numberOfPerson.get()), numberOfPerson);
     }
 }

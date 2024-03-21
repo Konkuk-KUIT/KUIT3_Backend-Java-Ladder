@@ -2,12 +2,14 @@ package ladder;
 
 public class Row {
     private Node[] row;
+    private Printer rowPrinter;
 
     public Row(NaturalNumber numberOfPerson) {
         row = new Node[numberOfPerson.get()];
         for (int i = 0; i < numberOfPerson.get(); i++) {
             row[i] = Node.of(Direction.NONE);
         }
+        rowPrinter = new RowPrinter(row);
     }
 
     public void drawLine(Position lineStartPosition) {
@@ -33,13 +35,7 @@ public class Row {
     }
 
     public String printRow() {
-        StringBuilder rowResult = new StringBuilder();
-        for (Node node : row) {
-            rowResult.append(node.get().get());
-            rowResult.append(' ');
-        }
-        rowResult.append('\n');
-        return rowResult.toString();
+        return rowPrinter.print();
     }
 
     public int size() {
