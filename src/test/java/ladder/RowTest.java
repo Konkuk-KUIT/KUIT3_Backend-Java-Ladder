@@ -184,7 +184,7 @@ class RowTest {
         StringBuilder sb = new StringBuilder();
 
         //given
-        row.generateRow(sb, Position.of(0), Position.of(1), Position.of(1));
+        row.generateRow(sb, Position.of(0), LadderPosition.of(Position.of(1), Position.of(1)));
 
         //then
         assertEquals("0 0 0 \n", sb.toString());
@@ -199,7 +199,7 @@ class RowTest {
         StringBuilder sb = new StringBuilder();
 
         //given
-        row.generateRow(sb, Position.of(0), Position.of(1), Position.of(1));
+        row.generateRow(sb, Position.of(0), LadderPosition.of(Position.of(1), Position.of(1)));
 
         //then
         assertEquals("1 -1 0 \n", sb.toString());
@@ -214,7 +214,7 @@ class RowTest {
         StringBuilder sb = new StringBuilder();
 
         //given
-        row.generateRow(sb, Position.of(0), Position.of(0), Position.of(0));
+        row.generateRow(sb, Position.of(0), LadderPosition.of(Position.of(0), Position.of(0)));
 
         //then
         assertEquals("1* -1 0 \n", sb.toString());

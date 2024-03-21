@@ -46,9 +46,9 @@ class LadderGameTest {
         LadderSize ladderSize = LadderSize.of(numberOfRow, numberOfPerson);
         LadderCreator ladderCreator  = new LadderCreator(ladderSize);
 
-        ladderCreator.drawLine(Position.of(1), Position.of(0));
-        ladderCreator.drawLine(Position.of(1), Position.of(2));
-        ladderCreator.drawLine(Position.of(2), Position.of(1));
+        ladderCreator.drawLine(LadderPosition.of(Position.of(1), Position.of(0)));
+        ladderCreator.drawLine(LadderPosition.of(Position.of(1), Position.of(2)));
+        ladderCreator.drawLine(LadderPosition.of(Position.of(2), Position.of(1)));
 
         LadderGame ladderGame = new LadderGame(ladderCreator);
 

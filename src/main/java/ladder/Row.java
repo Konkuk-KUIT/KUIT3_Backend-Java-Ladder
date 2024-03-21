@@ -48,10 +48,10 @@ public class Row {
     }
 
 
-    public void generateRow(StringBuilder sb, Position drawingRow, Position currentRow, Position currentCol) {
+    public void generateRow(StringBuilder sb, Position drawingRow, LadderPosition currentPosition) {
         for(int i = 0; i < nodes.length; i++) {
             nodes[i].appendSymbol(sb);
-            if(currentRow.equals(drawingRow) && currentCol.equals(Position.of(i))) {
+            if(currentPosition.equals(LadderPosition.of(drawingRow, Position.of(i)))) {
                 sb.append("*");
             }
             sb.append(" ");
