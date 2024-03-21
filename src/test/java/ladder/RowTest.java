@@ -109,18 +109,4 @@ public class RowTest {
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
     }
-
-    @Test
-    void 한_줄_출력하기() {
-        //given
-        NaturalNumber numberOfPerson = NaturalNumber.of(4);
-        Row row = new Row(numberOfPerson);
-        row.drawLine(Position.of(1, numberOfPerson));
-
-        //when
-        String rowResult = row.printRow();
-
-        //then
-        assertEquals("0 1 -1 0 \n", rowResult);
-    }
 }

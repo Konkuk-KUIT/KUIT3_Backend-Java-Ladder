@@ -17,10 +17,6 @@ public class LadderGame {
         ladderGameResultPrinter = new LadderGameResultPrinter();
     }
 
-    public Ladder getLadder() {
-        return ladder;
-    }
-
     public Position run(Position position) {
         return ladderRunner.run(position);
     }
@@ -29,6 +25,7 @@ public class LadderGame {
         ladderRunner.runAllPlayer(ladderGameResultPrinter);
     }
 
+    // printRow 와는 달리, 사다리 게임을 진행하면서 Ladder 를 확인하고 싶을 수도 있기 때문에 생성
     public String printLadder() {
         return ladder.printLadder();
     }
