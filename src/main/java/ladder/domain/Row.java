@@ -48,8 +48,9 @@ public class Row {
 
     // 중복 라인 체크
     private boolean isSameLine(Position position){
-        return row[position.getValue()].isLeft() ||
-                row[position.nextPosition().getValue()].isRight();
+        return (row[position.getValue()].isLeft()
+                || row[position.nextPosition().getValue()].isRight()
+                || row[position.getValue()].isRight());
     }
 
     private void validatePosition(Position position){

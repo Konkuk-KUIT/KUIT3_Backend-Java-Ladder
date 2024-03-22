@@ -1,5 +1,6 @@
 package ladder.application;
 
+import ladder.application.creator.LadderCreator;
 import ladder.domain.Position;
 
 public class LadderGame {
