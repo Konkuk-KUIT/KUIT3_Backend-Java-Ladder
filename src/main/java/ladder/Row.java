@@ -1,5 +1,9 @@
 package ladder;
 
+import ladder.exception.ExceptionMessage;
+
+import java.awt.*;
+
 public class Row {
     private Node[] row;
 
@@ -8,12 +12,30 @@ public class Row {
     public Row(NaturalNumber numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
         row = new Node[numberOfPerson.get()];
+        for (int i = 0; i < numberOfPerson.get(); i++) {
+            row[i] = Node.of(Direction.NONE);
+        }
     }
 
     public void drawLine(Position lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
         row[lineStartPosition.getPosition()] = Node.of(Direction.LEFT);
         row[lineStartPosition.getPosition() + 1] = Node.of(Direction.RIGHT);
+    }
+
+
+
+    public Position nextPosition(Position currentPosition) {
+
+        validatePosition(currentPosition);
+        Position nextPosition = row[currentPosition.getValue()].move(currentPosition);
+        validatePosition(nextPosition);
+        return nextPosition;
+
+    }
+
+    public boolean isLineDrawn(int j) {
+        return row[j].isRight();
     }
 
 
@@ -30,10 +52,14 @@ public class Row {
         }
     }
 
-    private void validatePosition(int position) {
-        if (position >= row.length || position < 0) {
+    private void validatePosition(Position position) {
+        if (isInvalidPosition(position)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LADDER_POSITION.getMessage());
         }
+    }
+
+    private boolean isInvalidPosition(Position position) {
+        return position.isBiggerThan(row.length - 1) || position.isSmallerThan(0);
     }
 
 

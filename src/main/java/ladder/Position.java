@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.exception.ExceptionMessage;
+
 public class Position {
     private int position;
 
@@ -10,6 +12,9 @@ public class Position {
 
     public static Position of(int position) {
         return new Position(position);
+    }
+    public int getValue() {
+        return this.position;
     }
 
     public int getPosition() {
@@ -27,7 +32,15 @@ public class Position {
     private void validatePosition(int position) {
         //사다리 사람의 수 설정
         if (position < 0) {
-            throw new IllegalArgumentException("위치는 양의 정수입니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NATURAL_NUMBER.getMessage());
         }
+    }
+
+    public boolean isSmallerThan(int position) {
+        return this.position < position;
+    }
+
+    public boolean isBiggerThan(int position) {
+        return this.position > position;
     }
 }

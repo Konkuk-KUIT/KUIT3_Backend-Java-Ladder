@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.exception.ExceptionMessage;
+
 public class NaturalNumber {
     private final int num;
 

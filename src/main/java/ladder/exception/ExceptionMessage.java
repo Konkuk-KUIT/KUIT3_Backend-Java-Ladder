@@ -1,4 +1,4 @@
-package ladder;
+package ladder.exception;
 public enum ExceptionMessage {
 
     INVALID_LADDER_POSITION("유효하지 않은 위치 입니다."),

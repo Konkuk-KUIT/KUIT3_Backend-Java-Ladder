@@ -11,23 +11,22 @@ public class Node {
         return new Node(direction);
     }
 
-
-    public Position move(Position position) {
-
-        if (isRight()) {
-            return position.next();
-        }
-        if (isLeft()) {
-            return position.prev();
-        }
-        return position;
-    }
     private boolean isLeft() {
         return direction == Direction.LEFT;
     }
 
-    private boolean isRight( ) {
+    public boolean isRight( ) {
         return direction == Direction.RIGHT;
+    }
+    public Position move(Position position) {
+
+        if (isLeft()) {
+            return position.next();
+        }
+        if (isRight()) {
+            return position.prev();
+        }
+        return position;
     }
 
 }
