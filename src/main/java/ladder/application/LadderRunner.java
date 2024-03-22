@@ -20,7 +20,7 @@ public class LadderRunner {
         return position.getPosition();
     }
 
-    public String generate(LadderPosition currentPosition) {
+    public String generate_total_ladder(LadderPosition currentPosition) {
 
         String totalLadder = new String();
         for (int i = 0; i < rows.length; i++) {
@@ -31,7 +31,7 @@ public class LadderRunner {
 
     public void printLadder(LadderPosition currentPosition, String state) {
         System.out.println(state);
-        String ladder = generate(currentPosition);
+        String ladder = generate_total_ladder(currentPosition);
         System.out.println(ladder);
     }
 }

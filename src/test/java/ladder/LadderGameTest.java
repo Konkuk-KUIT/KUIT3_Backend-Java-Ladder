@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.application.LadderCreator;
+import ladder.creater.LadderCreator;
 import ladder.application.LadderGame;
 import ladder.core.NaturalNumber;
 import ladder.position.Position;

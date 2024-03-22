@@ -1,10 +1,12 @@
-package ladder.application;
+package ladder.creater;
 
 import ladder.core.NaturalNumber;
 import ladder.core.Row;
+import ladder.position.LadderPosition;
 import ladder.position.Position;
 
 public class LadderCreator {
+
     private Row[] rows;
     int peoplenum;
 
