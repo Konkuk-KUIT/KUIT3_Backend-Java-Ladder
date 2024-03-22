@@ -4,6 +4,8 @@ import Numbers.NaturalNum;
 import Numbers.Number;
 import Numbers.Position;
 
+import java.util.Vector;
+
 public class Row {
     /*private int[] row;*/
     private Node[] nodes;
@@ -19,6 +21,10 @@ public class Row {
 
     }
 
+    public int getRowSize(){
+        return nodes.length;
+    }
+
     public void drawLine(Number lineStartPosition) {
         validateDrawLine(lineStartPosition);
         /* row[lineStartPosition] = 1;
@@ -29,21 +35,73 @@ public class Row {
         nodes[lineStartPosition.get()+1] = Node.SetNode(Direction.LEFT);
     }
 
-    public int nextPosition(int position) {
-        //validatePosition(position);
+    public boolean drawRandomLine(){
+
+        //라인을 그릴 자리가 있는지 확인
+        int checker = 0;
+        Vector<Integer> leftNode = new Vector<Integer>();
+        for(int i=0;i<nodes.length;i++){
+            if(nodes[i].isnone()){
+                checker++;
+            }else{
+                checker = 0;
+                continue;
+            }
+
+            if(checker >= 2){
+                leftNode.add(i-1);
+
+            }
+        }
+        if(leftNode.size()==0){
+            return false;
+        }
+
+        //남은 자리중 라인 그리기
+        int targetNode  = (int)(Math.random()*(leftNode.size()+1-1));
+        //System.out.printf("NodeNUM : %d",leftNode.size());
+        //System.out.printf("target : %d",targetNode);
+
+        this.drawLine(Position.of(leftNode.get(targetNode)));
+        return true;
+    }
+
+    public Position nextPosition(Position position) {
+        validatePosition(position);
         //Direction Dir = nodes[position.getPosition()].NextPosition();
-        Position POSITION = Position.of(position, nodes.length);
-        Position nextPosition = nodes[POSITION.get()].Move(POSITION);
-        return nextPosition.get();
+
+        //Position POSITION = Position.of(position/*, nodes.length*/);
+        Position nextPosition = nodes[position.get()].Move(position);
+        return nextPosition;
+    }
+
+    public void printRow(Number position, String marker){
+
+        for(int i=0;i< nodes.length;i++){
+            System.out.printf("%2d", nodes[i].getDirNum() );
+            if( (position!=null) && i ==position.get()){
+                System.out.printf("%s",marker);
+            }else{
+                System.out.printf(" ");
+            }
+        }
+        System.out.printf("\n");
     }
 
     private void validateDrawLine(Number linestartposition)throws IllegalArgumentException{
         if((nodes.length-2<linestartposition.get()||linestartposition.get()<0)){
-            throw new IllegalArgumentException("선을 그리는 위치가 잘못 되었습니다.");
+            throw new IllegalArgumentException("선을 그릴 수 없는 위치입니다.");
         }
         if(Direction.NONE!=nodes[linestartposition.get()].NextPosition()||Direction.NONE!=nodes[linestartposition.get()+1].NextPosition()){
-            throw new IllegalArgumentException("선을 그리는 위치가 잘못 되었습니다.");
+            throw new IllegalArgumentException("이미 선이 있는 위치 입니다.");
         }
+    }
+
+    private void validatePosition(Number position) throws IllegalArgumentException{
+        if(position.get() > nodes.length-1||position.get()<0){
+            throw new IllegalArgumentException("유효하지 않은 위치입니다");
+        }
+
     }
     /*private boolean isLeft(int position) {
         return row[position] == -1;

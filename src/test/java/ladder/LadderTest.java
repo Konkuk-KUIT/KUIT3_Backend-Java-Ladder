@@ -71,4 +71,41 @@ class LadderTest {
 
 
     }
+
+    @Test
+    void 사다리_출력_결과_확인(){
+        //given
+        int numberOfPerson = 4;
+        int numberOfRows = 4;
+        Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
+        ladder.drawLine(1,0);
+        ladder.drawLine(1,2);
+        ladder.drawLine(2,1);
+
+
+        //when
+        int position = 0;
+        int resultPosition = ladder.run(position);
+        //then
+        assertEquals(2, resultPosition);
+
+        //when
+        position = 1;
+        resultPosition = ladder.run(position);
+        //then
+        assertEquals(0, resultPosition);
+
+        //when
+        position = 2;
+        resultPosition = ladder.run(position);
+        //then
+        assertEquals(3, resultPosition);
+
+        //when
+        position = 3;
+        resultPosition = ladder.runAndPrint(position);
+        //then
+        assertEquals(1, resultPosition);
+
+    }
 }

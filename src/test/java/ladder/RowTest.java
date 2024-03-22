@@ -1,6 +1,7 @@
 package ladder;
 
 import Numbers.NaturalNum;
+import Numbers.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,10 +16,10 @@ class RowTest {
         Row row = new Row(one);
 
         //when
-        int position = 0;
+        Position position = Position.of(0);
 
         //then
-        assertEquals(0,row.nextPosition(position));
+        assertEquals(0,row.nextPosition(position).get());
     }
 
     @Test
@@ -27,18 +28,18 @@ class RowTest {
         //int numberOfPerson = 2;
         NaturalNum numberOfPerson = NaturalNum.of(2);
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.of(0));
 
         //when
-        int position = 0;
-        int resultPosition = row.nextPosition(position);
+        Position position = Position.of(0);
+        int resultPosition = row.nextPosition(position).get();
         //then
         assertEquals(1,resultPosition);
 
 
         //when
-        position = 1;
-        resultPosition = row.nextPosition(position);
+        position = Position.of(1);
+        resultPosition = row.nextPosition(position).get();
         //then
         assertEquals(0, resultPosition);
     }
@@ -49,24 +50,24 @@ class RowTest {
         //int numberOfPerson = 3;
         NaturalNum numberOfPerson = NaturalNum.of(3);
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.of(0));
 
         //when
-        int position = 0;
-        int resultPosition = row.nextPosition(position);
+        Position position = Position.of(0);
+        int resultPosition = row.nextPosition(position).get();
         //then
         assertEquals(1,resultPosition);
 
 
         //when
-        position = 1;
-        resultPosition = row.nextPosition(position);
+        position = Position.of(1);
+        resultPosition = row.nextPosition(position).get();
         //then
         assertEquals(0, resultPosition);
 
         //when
-        position = 2;
-        resultPosition = row.nextPosition(position);
+        position = Position.of(2);
+        resultPosition = row.nextPosition(position).get();
         //then
         assertEquals(2, resultPosition);
     }
@@ -84,8 +85,8 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int position = 3;
-
+        //int position = 3;
+        Position position=Position.of(3);
         //then
         assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
     }
@@ -97,10 +98,10 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int position = -1;
+        //Position position = ;;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
+        assertThrows(IllegalArgumentException.class, () -> row.nextPosition(Position.of(-1)));
     }
 
     @Test
@@ -113,7 +114,7 @@ class RowTest {
         int lineStartPosition = 2;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(lineStartPosition)));
     }
 
     @Test
@@ -126,7 +127,7 @@ class RowTest {
         int lineStartPosition = -1;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(lineStartPosition)));
     }
 
     @Test
@@ -134,13 +135,13 @@ class RowTest {
         //given
         NaturalNum numberOfPerson = NaturalNum.of(3);
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.of(0));
 
         //when
         int lineStartPosition = 1;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(lineStartPosition)));
 
     }
 
@@ -149,14 +150,48 @@ class RowTest {
         //given
         NaturalNum numberOfPerson = NaturalNum.of(3);
         Row row = new Row(numberOfPerson);
-        row.drawLine(1);
+        row.drawLine(Position.of(1));
 
         //when
         int lineStartPosition = 0;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(lineStartPosition)));
 
     }
+    @Test
+    void 랜덤_라인_그리기_성공() {
+        //given
+        NaturalNum numberOfPerson = NaturalNum.of(3);
+        Row row = new Row(numberOfPerson);
+
+
+        //when
+        boolean result =row.drawRandomLine();
+
+        //then
+        row.printRow(null,null);
+        assertEquals(true,result);
+
+    }
+
+    @Test
+    void 랜덤_라인_그리기_실패() {
+        //given
+        NaturalNum numberOfPerson = NaturalNum.of(3);
+        Row row = new Row(numberOfPerson);
+
+
+        //when
+        for(int i =0;i<10;i++){
+            row.drawRandomLine();
+        }
+        boolean result =row.drawRandomLine();
+        row.printRow(null,null);
+        //then
+        assertEquals(false,result);
+
+    }
+
 
 }

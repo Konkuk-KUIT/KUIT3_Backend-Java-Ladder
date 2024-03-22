@@ -1,5 +1,6 @@
 package ladder;
 import Numbers.NaturalNum;
+import Numbers.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,6 +34,25 @@ public class LadderCreatorTest {
         rows = ladderCreator.getrows();
 
         //then
+        assertNotNull(rows);
+    }
+
+    @Test
+    void 랜덤_생성_확인(){
+
+        //given
+        int rownum = 4;
+        int colnum = 5;
+        Row[] rows;
+        NaturalNum five = NaturalNum.of(5);
+        NaturalNum four = NaturalNum.of(4);
+        //when
+        LadderCreator ladderCreator = LadderCreator.of(five,four);
+        rows = ladderCreator.getrows();
+        ladderCreator.DrawRandomLine();
+        LadderRunner runner = LadderRunner.of(ladderCreator.getrows());
+        //then
+        runner.runAndPrint(Position.of(1));
         assertNotNull(rows);
     }
 

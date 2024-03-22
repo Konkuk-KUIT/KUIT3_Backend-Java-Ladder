@@ -33,6 +33,14 @@ public class Ladder {
 
     public int run(int position) {
         ladderrunner = LadderRunner.of(laddercreator.getrows());
-        return ladderrunner.run(position);
+        return ladderrunner.run(Position.of(position)).get();
+    }
+    public void drawRandomLine(){
+        laddercreator.DrawRandomLine();
+
+    }
+    public int runAndPrint(int position){
+        ladderrunner = LadderRunner.of(laddercreator.getrows());
+        return ladderrunner.runAndPrint(Position.of(position)).get();
     }
 }

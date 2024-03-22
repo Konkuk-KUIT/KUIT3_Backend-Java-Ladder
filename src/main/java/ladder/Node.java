@@ -16,7 +16,7 @@ public class Node {
     public Direction NextPosition(){
         return Dir;
     }
-
+    public int getDirNum(){return Dir.GetDirectionNum();}
     private boolean isright(){
         return Direction.RIGHT.equals(Dir);
     }
@@ -25,7 +25,7 @@ public class Node {
         return Direction.LEFT.equals(Dir);
     }
 
-    private boolean isnone(){
+    public boolean isnone(){
         return Direction.NONE.equals(Dir);
     }
     public Position Move(Position position){
