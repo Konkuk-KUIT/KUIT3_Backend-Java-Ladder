@@ -5,26 +5,29 @@ import static ladder.exception.ExceptionMessage.*;
 public class Row {
     private Node[] row;
 
-    public Row(int numberOfPerson) {
-        validateNumberOfPerson(numberOfPerson);
-        row = new Node[numberOfPerson];
+    public Row(NaturalNumber numberOfPerson) {
+        validateNumberOfPerson(numberOfPerson.getNum());
+        row = new Node[numberOfPerson.getNum()];
     }
 
     public void drawLine(Position lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = 1;
-        row[lineStartPosition + 1] = -1;
+
+        Position next = lineStartPosition.nextPosition();
+        row[lineStartPosition.getValue()] = Node.of(Direction.RIGHT);
+        row[next.getValue()] = Node.of(Direction.LEFT);
     }
 
-    public int nextPosition(int position) {
+    public Position nextPosition(int position) {
 
         validatePosition(position);
 
         if (isLeft(position)) {
-            return position - 1;
+//            return row[position.getValue()].move(position);
+            return position + Direction.LEFT;
         }
         if (isRight(position)) {
-            return position + 1;
+            return position + Direction.RIGHT;
         }
 
         return position;
@@ -49,13 +52,6 @@ public class Row {
             throw new IllegalArgumentException(INVALID_ROW_POSITION.getMessage());
         }
     }
-
-    private void validatePosition(int position) {
-        if(position >= row.length || position < 0 ) {
-            throw new IllegalArgumentException(INVALID_LADDER_POSITION.getMessage());
-        }
-    }
-
 
 
 

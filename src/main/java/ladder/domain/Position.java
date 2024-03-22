@@ -1,10 +1,12 @@
 package ladder.domain;
 
+import static ladder.exception.ExceptionMessage.INVALID_LADDER_POSITION;
+
 public class Position {
     private int position;
 
     private Position(int position) {
-        //validatePosition();
+        validatePosition(position);
         this.position = position;
     }
 
@@ -27,5 +29,16 @@ public class Position {
 
     public int getValue(){
         return position;
+    }
+
+    // 유효성 검증
+    private void validatePosition(int position) {
+        if(!isPositionValid(position)) {
+            throw new IllegalArgumentException(INVALID_LADDER_POSITION.getMessage());
+        }
+    }
+
+    private static boolean isPositionValid(int position){
+        return position >= 0;
     }
 }

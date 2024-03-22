@@ -23,6 +23,7 @@ public class Node {
         if(isLeft()){
             return position.prevPosition();
         }
+        return position;
     }
 
     public boolean isRight() {
