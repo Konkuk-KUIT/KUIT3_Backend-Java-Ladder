@@ -25,13 +25,13 @@ public class Row {
     }
 
     private void validateDrawLinePosition(Position lineStartPosition) {
-        if(lineStartPosition.get() >= nodes.length - 1 || nodes[lineStartPosition.get()].isLeft() || nodes[lineStartPosition.next().get()].isRight()) {
+        if(lineStartPosition.isBiggerThan(nodes.length - 2) || nodes[lineStartPosition.get()].isLeft() || nodes[lineStartPosition.next().get()].isRight()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_LINE_POSITION.getMessage());
         }
     }
 
     void validatePosition(Position position){
-        if(position.get() >= nodes.length){
+        if(position.isBiggerThan(nodes.length -1)){
             throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getMessage());
         }
     }

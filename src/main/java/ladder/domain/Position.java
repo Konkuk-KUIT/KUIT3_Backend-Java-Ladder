@@ -12,7 +12,6 @@ public class Position {
     private Position(int position){
         validatePosition(position);
         this.position = position;
-        //this.numOfPerson = numOfPerson;
     }
 
     public Position prev(){
@@ -32,4 +31,8 @@ public class Position {
         return this.position;
     }
 
+    // position의 값이 상한을 넘는지 확인하기 위해서 이 메소드를 도입
+    public boolean isBiggerThan(int position){
+        return this.position > position;
+    }
 }
