@@ -18,4 +18,8 @@ public class LadderCreator {
     public void drawLine(Position row, Position col) {
         rows[row.getValue()].drawLine(col);
     }
+
+    public Row[] getRows() {
+        return rows;
+    }
 }

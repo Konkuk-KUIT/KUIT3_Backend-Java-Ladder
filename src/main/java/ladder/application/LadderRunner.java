@@ -1,13 +1,22 @@
 package ladder.application;
 
+import ladder.domain.Position;
+import ladder.domain.Row;
+
 public class LadderRunner {
 
-    public int run(int position) {
+    private final Row[] rows;
+
+    LadderRunner(Row[] rows) {
+        this.rows = rows;
+    }
+
+    public int run(Position position) {
 
         for(int i = 0; i < rows.length; i++) {
             position = rows[i].nextPosition(position);
         }
 
-        return position;
+        return position.getValue();
     }
 }
