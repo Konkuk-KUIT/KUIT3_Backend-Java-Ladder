@@ -1,9 +1,19 @@
-package ladder;
+package ladder.application;
+
+import ladder.core.NaturalNumber;
+import ladder.core.Row;
+import ladder.position.Position;
 
 public class LadderCreator {
     private Row[] rows;
+    int peoplenum;
+
+    public int getPeoplenum() {
+        return peoplenum;
+    }
 
     public LadderCreator(NaturalNumber numberOfRows, NaturalNumber numberOfPerson) {
+        peoplenum = numberOfPerson.get();
         rows = new Row[numberOfPerson.get()];
 
         for(int i = 0; i < numberOfRows.get(); i++) {

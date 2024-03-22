@@ -1,4 +1,6 @@
-package ladder;
+package ladder.application;
+
+import ladder.position.Position;
 
 public class LadderGame {
     private final LadderCreator ladderCreator;
@@ -8,6 +10,10 @@ public class LadderGame {
     }
 
     public int run(Position position) {
+        int numberOfPersons = ladderCreator.getPeoplenum();
+        if (position.isBiggerThan(numberOfPersons)) {
+            throw new IllegalArgumentException();
+        }
         LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
         return ladderRunner.run(position);
     }

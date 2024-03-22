@@ -1,4 +1,4 @@
-package ladder;
+package ladder.exception;
 
 public enum ExceptionMessage {
     INVALID_LADDER_POSITION("사다리 위치는 0이상의 정수입니다."),

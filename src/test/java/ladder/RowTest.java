@@ -1,5 +1,8 @@
 package ladder;
 
+import ladder.core.NaturalNumber;
+import ladder.core.Row;
+import ladder.position.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
