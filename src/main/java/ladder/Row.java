@@ -35,18 +35,28 @@ public class Row {
     }
 
     //print를 위한 함수
-    public String[] getNodesToString(){
+    public String[] getNodesToString(Position position){
         String[] str = new String[nodes.length];
         for(int i = 0; i < nodes.length; i++){
-            if(nodes[i].isRight())
-                str[i] = "1";
-            else if (nodes[i].isLeft())
-                str[i] = "-1";
-            else
-                str[i] = "|";
+            if(nodes[i].isRight()) {
+                str[i] = " 1 ";
+            }else if (nodes[i].isLeft()) {
+                str[i] = "-1 ";
+            }else {
+                str[i] = " 0 ";
+            }
+//            if(IsCurrentPosition(i, position))
+//                str[i] += "*";
+//            else
+//                str[i] += " ";
         }
         return str;
     }
+    private boolean IsCurrentPosition(int i, Position position){
+        return i==position.getPosition();
+    }
 
-
+    public Node[] getNodes() {
+        return nodes;
+    }
 }

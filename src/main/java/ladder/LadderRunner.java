@@ -8,10 +8,10 @@ public class LadderRunner {
     }
     public int run(Position position){
 
-        //아직 검증되지 않아서 주석처리
-        //printLadder(position);
+        printLadder(position);
 
         for(int i =0; i < rows.length; i++){
+            //printPersonLadder(position);
             position = rows[i].nextPosition(position);
         }
         //마지막으로 도착한 position return
@@ -21,7 +21,7 @@ public class LadderRunner {
     private void printLadder(Position position) {
         String[][] strings = new String[rows.length][];
         for(int i = 0; i< rows.length; i++){
-            strings[i] = rows[i].getNodesToString();
+            strings[i] = rows[i].getNodesToString(position);
         }
         for(int i =0; i< strings.length; i++){
             for(int j =0; j< strings[i].length; j++){
@@ -30,4 +30,14 @@ public class LadderRunner {
             System.out.println();
         }
     }
+
+    private void printPersonLadder(Position position) {
+        int currentPosition = position.getPosition();
+        for (int i = 0; i<rows.length; i++) {
+            Node[] nodes = rows[i].getNodes();
+//            if(nodes[currentPosition].isRight())
+//                //...
+        }
+    }
+
 }
