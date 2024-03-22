@@ -11,17 +11,17 @@ public class Row {
         Arrays.fill(row, Node.parallelTo(Direction.NONE));
     }
 
-    public void drawLine(int lineStartPosition) {
-        validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = Node.parallelTo(Direction.RIGHT);
-        row[lineStartPosition + 1] = Node.parallelTo(Direction.LEFT);
+    public void drawLine(Position lineStartPosition) {
+        Node nodeFromStart = Node.parallelTo(Direction.RIGHT);
+        validateOnRow(lineStartPosition);
+        validateDrawable(lineStartPosition);
+        row[lineStartPosition.getColNum()] = Node.parallelTo(Direction.RIGHT);
+        row[lineStartPosition.getColNum() + 1] = Node.parallelTo(Direction.LEFT);
     }
 
     public Position nextPosition(Position position) {
-        validatePosition(position);
-        Position newPosition = row[position.getColNum()].getNextPosition(position);
-        validatePosition(newPosition);
-        return newPosition;
+        validateOnRow(position);
+        return row[position.getColNum()].getNextPosition(position);
     }
 
     private void validateNumberOfPerson(int numberOfPerson) {
@@ -30,14 +30,16 @@ public class Row {
         }
     }
 
-    private void validateDrawLinePosition(int lineStartPosition) {
-        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1
-                || row[lineStartPosition].hasDirection() || row[lineStartPosition + 1].hasDirection()) {
+    private void validateDrawable(Position lineStartPosition) {
+        Position expectedDestination = Position.at(lineStartPosition.getColNum()+1);
+        validateOnRow(expectedDestination);
+        if(row[lineStartPosition.getColNum()].hasDirection() ||
+                row[expectedDestination.getColNum()].hasDirection()) {
             throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
         }
     }
 
-    private void validatePosition(Position position) {
+    private void validateOnRow(Position position) {
         if(position.getColNum() >= row.length || position.getColNum() < 0 ) {
             throw new IllegalArgumentException("유효하지 않은 위치 입니다.");
         }

@@ -24,7 +24,7 @@ class RowTest {
         //given
         int numberOfPerson = 2;
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.at(0));
 
         //when
         Position position = Position.at(0);
@@ -45,7 +45,7 @@ class RowTest {
         //given
         int numberOfPerson = 3;
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.at(0));
 
         //when
         Position position = Position.at(0);
@@ -105,7 +105,7 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int lineStartPosition = 2;
+        Position lineStartPosition = Position.at(2);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
@@ -118,7 +118,7 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int lineStartPosition = -1;
+        Position lineStartPosition = Position.at(-1);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
@@ -129,10 +129,10 @@ class RowTest {
         //given
         int numberOfPerson = 3;
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.at(0));
 
         //when
-        int lineStartPosition = 1;
+        Position lineStartPosition = Position.at(1);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
@@ -144,10 +144,10 @@ class RowTest {
         //given
         int numberOfPerson = 3;
         Row row = new Row(numberOfPerson);
-        row.drawLine(1);
+        row.drawLine(Position.at(1));
 
         //when
-        int lineStartPosition = 0;
+        Position lineStartPosition = Position.at(0);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
