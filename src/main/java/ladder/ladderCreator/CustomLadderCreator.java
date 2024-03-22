@@ -1,9 +1,9 @@
 package ladder.ladderCreator;
 
+import ladder.Cordinate;
 import ladder.LadderSpec;
 import ladder.NaturalNumber;
 import ladder.Row;
-import ladder.SideLadder;
 
 public class CustomLadderCreator implements LadderCreator {
 
@@ -20,8 +20,8 @@ public class CustomLadderCreator implements LadderCreator {
             rows[i] = new Row(NaturalNumber.from(ladderSpec.getNumberOfPerson()));
         }
 
-        for(SideLadder sideLadder : ladderSpec.getSideLadders()) {
-            rows[sideLadder.getRow()].drawLine(sideLadder.getPosition());
+        for(Cordinate sideLadder : ladderSpec.getSideLadders()) {
+            rows[sideLadder.getRowIndex()].drawLine(sideLadder.getColIndex());  // 얘때매 Position반환하는거 만들어야 되냐
         }
 
         return rows;

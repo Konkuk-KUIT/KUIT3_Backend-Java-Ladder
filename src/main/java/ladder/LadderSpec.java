@@ -5,9 +5,9 @@ import java.util.List;
 public class LadderSpec {
     private final NaturalNumber numberOfRows;
     private final NaturalNumber numberOfPerson;
-    private final List<SideLadder> sideLadders;
+    private final List<Cordinate> sideLadders;
 
-    public LadderSpec(NaturalNumber numberOfRows, NaturalNumber numberOfPerson, List<SideLadder> sideLadders) {
+    public LadderSpec(NaturalNumber numberOfRows, NaturalNumber numberOfPerson, List<Cordinate> sideLadders) {
         this.numberOfRows = numberOfRows;
         this.numberOfPerson = numberOfPerson;
         this.sideLadders = sideLadders;
@@ -15,27 +15,27 @@ public class LadderSpec {
     }
 
     private void validate() {
-        for(SideLadder sideLadder : this.sideLadders) {
+        for(Cordinate sideLadder : this.sideLadders) {
             validateOutOfBound(sideLadder);
         }
         validateDuplicates();
     }
 
-    private void validateOutOfBound(SideLadder sideLadder) {
-        if(sideLadder.getRow() >= numberOfRows.get() || sideLadder.getPosition().get() >= numberOfPerson.get()) {
+    private void validateOutOfBound(Cordinate sideLadder) {
+        if(sideLadder.getRowIndex() >= numberOfRows.get() || sideLadder.getColIndex() >= numberOfPerson.get()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_SIDE_LADDER.getErrorMessage());
         }
     }
 
     private void validateDuplicates() {
         int[][] visited = new int[numberOfRows.get()][numberOfPerson.get()];
-        for(SideLadder sideLadder : sideLadders) {
-            if(visited[sideLadder.getRow()][sideLadder.getPosition().get()] == 1
-            || visited[sideLadder.getRow()][sideLadder.getPosition().get() + 1] == 1) {
+        for(Cordinate sideLadder : sideLadders) {
+            if(visited[sideLadder.getRowIndex()][sideLadder.getColIndex()] == 1
+            || visited[sideLadder.getRowIndex()][sideLadder.getColIndex() + 1] == 1) { // 얘는 봐줘잉
                 throw new IllegalArgumentException(ExceptionMessage.INVALID_SIDE_LADDER.getErrorMessage());
             }
-            visited[sideLadder.getRow()][sideLadder.getPosition().get()] = 1;
-            visited[sideLadder.getRow()][sideLadder.getPosition().get() + 1] = 1;
+            visited[sideLadder.getRowIndex()][sideLadder.getColIndex()] = 1;
+            visited[sideLadder.getRowIndex()][sideLadder.getColIndex() + 1] = 1;
         }
     }
     public int getNumberOfRows() {
@@ -46,7 +46,7 @@ public class LadderSpec {
         return this.numberOfPerson.get();
     }
 
-    public List<SideLadder> getSideLadders() {
+    public List<Cordinate> getSideLadders() {
         return sideLadders;
     }
 }

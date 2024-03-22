@@ -3,11 +3,11 @@ package ladder.ladderCreator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import ladder.Cordinate;
 import ladder.LadderSpec;
 import ladder.NaturalNumber;
 import ladder.Position;
 import ladder.Row;
-import ladder.SideLadder;
 
 public class RandomLadderCreator implements LadderCreator {
 
@@ -30,13 +30,13 @@ public class RandomLadderCreator implements LadderCreator {
         }
     }
 
-    private List<SideLadder> createSideLadders() throws IllegalArgumentException {
+    private List<Cordinate> createSideLadders() throws IllegalArgumentException {
         int numberToIter = (int) (numberOfRow.get() * numberOfPerson.get() * 0.3);
-        List<SideLadder> sideLadders = new ArrayList<>();
+        List<Cordinate> sideLadders = new ArrayList<>();
         for(int i = 0; i < numberToIter; i++) {
             int randRow = rand.nextInt(numberOfRow.get());
             int randPerson = rand.nextInt(numberOfPerson.get() - 1);    // 맨 오른쪽 줄에는 생성될수 없음
-            sideLadders.add(new SideLadder(randRow, Position.initOf(randPerson, numberOfPerson)));
+            sideLadders.add(Cordinate.of(randRow, randPerson));
         }
 
         return sideLadders;
@@ -50,8 +50,8 @@ public class RandomLadderCreator implements LadderCreator {
             rows[i] = new Row(NaturalNumber.from(ladderSpec.getNumberOfPerson()));
         }
 
-        for(SideLadder sideLadder : ladderSpec.getSideLadders()) {
-            rows[sideLadder.getRow()].drawLine(sideLadder.getPosition());
+        for(Cordinate sideLadder : ladderSpec.getSideLadders()) {
+            rows[sideLadder.getRowIndex()].drawLine(sideLadder.getColIndex());
         }
 
         return rows;

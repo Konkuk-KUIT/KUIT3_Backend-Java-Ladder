@@ -37,8 +37,8 @@ public class LadderRunnerTest {
         LadderCreator ladderCreator = new CustomLadderCreator(
                 new LadderSpec(
                         NaturalNumber.from(4), NaturalNumber.from(5),
-                        List.of(new SideLadder(0, Position.initOf(0, NaturalNumber.from(5)))
-                                , new SideLadder(1, Position.initOf(1, NaturalNumber.from(5))))
+                        List.of(Cordinate.of(0, 0)
+                                , Cordinate.of(1, 1))
                 )
         );
         Row[] rows = ladderCreator.create();

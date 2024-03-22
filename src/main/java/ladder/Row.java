@@ -14,9 +14,14 @@ public class Row {
         }
     }
 
-    public void drawLine(Position lineStartPosition) {   // 오른쪽 찍 한줄 긋기
+    public void drawLine(Position lineStartPosition) {   // 오른쪽 찍 한줄 긋기 어차피 ladderSpec에서 다 검증되서 굳이 Position으로 받아야함?
         nodes[lineStartPosition.get()] = Node.from(Direction.RIGHT);
         nodes[lineStartPosition.next().get()] = Node.from(Direction.LEFT);
+    }
+
+    public void drawLine(int position) {
+        nodes[position] = Node.from(Direction.RIGHT);
+        nodes[position + 1] = Node.from(Direction.LEFT);
     }
 
     public Position slide(Position position) {
