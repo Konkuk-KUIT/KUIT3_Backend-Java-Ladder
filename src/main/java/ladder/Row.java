@@ -3,32 +3,25 @@ package ladder;
 import java.util.Arrays;
 
 public class Row {
-    private Direction[] row;
+    private Node[] row;
 
     public Row(int numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
-        row = new Direction[numberOfPerson];
-        Arrays.fill(row, Direction.NONE);
+        row = new Node[numberOfPerson];
+        Arrays.fill(row, Node.parallelTo(Direction.NONE));
     }
 
     public void drawLine(int lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = Direction.RIGHT;
-        row[lineStartPosition + 1] = Direction.LEFT;
+        row[lineStartPosition] = Node.parallelTo(Direction.RIGHT);
+        row[lineStartPosition + 1] = Node.parallelTo(Direction.LEFT);
     }
 
     public int nextPosition(int position) {
-
         validatePosition(position);
-
-        if (row[position].isLeft()) {
-            return position - 1;
-        }
-        if (row[position].isRight()) {
-            return position + 1;
-        }
-
-        return position;
+        int newPosition = row[position].getNextPosition(position);
+        validatePosition(newPosition);
+        return newPosition;
     }
 
     private void validateNumberOfPerson(int numberOfPerson) {
@@ -38,7 +31,8 @@ public class Row {
     }
 
     private void validateDrawLinePosition(int lineStartPosition) {
-        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition].isLeft() || row[lineStartPosition + 1].isRight()) {
+        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1
+                || row[lineStartPosition].hasDirection() || row[lineStartPosition + 1].hasDirection()) {
             throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
         }
     }
@@ -48,8 +42,4 @@ public class Row {
             throw new IllegalArgumentException("유효하지 않은 위치 입니다.");
         }
     }
-
-
-
-
 }

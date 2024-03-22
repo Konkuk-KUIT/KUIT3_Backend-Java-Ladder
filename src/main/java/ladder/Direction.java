@@ -1,24 +1,22 @@
 package ladder;
 
 public enum Direction {
+    // direction 값 제한(두 칸 이상 넘어가는 선은 그을 수 x)
+    // 방향 직관적으로 표현 가능
+    NONE(0),
     RIGHT(1),
-    LEFT(-1),
-    NONE(0);
-    private final int direction;
+    LEFT(-1);
+    private final int colDiff;
     Direction(int direction) {
-        this.direction = direction;
+        this.colDiff = direction;
     }
 
     @Override
     public String toString() {
-        return String.valueOf(direction);
+        return String.valueOf(colDiff);
     }
 
-    public boolean isLeft() {
-        return this.equals(Direction.LEFT);
-    }
-
-    public boolean isRight() {
-        return this.equals(Direction.RIGHT);
+    public int getColDiff() {
+        return colDiff;
     }
 }
