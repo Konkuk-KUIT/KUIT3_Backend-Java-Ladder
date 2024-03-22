@@ -18,8 +18,8 @@ public class LadderRunnerTest {
                 rows[i] = new Row(NaturalNumber.from(totalPlayer));
             }
 
-            rows[0].drawLine(Position.initOf(0, NaturalNumber.from(5)));
-            rows[1].drawLine(Position.initOf(1, NaturalNumber.from(5)));
+            rows[0].drawLine(Position.from(0));
+            rows[1].drawLine(Position.from(1));
 
             return rows;
         }
@@ -28,7 +28,7 @@ public class LadderRunnerTest {
     @Test
     void Mock_사다리_타기_시험() {
         LadderRunner ladderRunner = new LadderRunner(new MockLadderCreator().create());
-        Position pos = ladderRunner.run(Position.initOf(0, NaturalNumber.from(5)));
+        Position pos = ladderRunner.run(Position.from(0));
         Assertions.assertEquals(pos.get(), 2);
     }
 
@@ -44,11 +44,11 @@ public class LadderRunnerTest {
         Row[] rows = ladderCreator.create();
 
         LadderRunner ladderRunner = new LadderRunner(rows);
-        Position pos = ladderRunner.run(Position.initOf(0, NaturalNumber.from(5)));
+        Position pos = ladderRunner.run(Position.from(0));
         Assertions.assertEquals(2, pos.get());
-        Position pos2 = ladderRunner.run(Position.initOf(1, NaturalNumber.from(5)));
+        Position pos2 = ladderRunner.run(Position.from(1));
         Assertions.assertEquals(0, pos2.get());
-        Position pos3 = ladderRunner.run(Position.initOf(2, NaturalNumber.from(5)));
+        Position pos3 = ladderRunner.run(Position.from(2));
         Assertions.assertEquals(1, pos3.get());
     }
 
@@ -56,6 +56,6 @@ public class LadderRunnerTest {
     void ttest() {
         LadderCreator ladderCreator = new RandomLadderCreator(NaturalNumber.from(4), NaturalNumber.from(4));
         LadderRunner ladderRunner = new LadderRunner(ladderCreator.create());
-        ladderRunner.run(Position.initOf(0, NaturalNumber.from(4)));
+        ladderRunner.run(Position.from(0));
     }
 }

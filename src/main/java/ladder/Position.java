@@ -5,17 +5,13 @@ import java.util.Objects;
 public class Position {
     private final int position;
 
-    private Position(int position, NaturalNumber numberOfPerson) {
-        validate(position, numberOfPerson);
-        this.position = position;
-    }
-
     private Position(int position) {
+        validate(position);
         this.position = position;
     }
 
-    public static Position initOf(int position, NaturalNumber numberOfPerson) {   // int or NaturalNumber?
-        return new Position(position, numberOfPerson);
+    public static Position from(int position) {
+        return new Position(position);
     }
 
     public int get() {
@@ -30,8 +26,8 @@ public class Position {
         return new Position(this.position + 1);
     }
 
-    private void validate(int position, NaturalNumber numberOfPerson) {
-        if(position < 0 || position >= numberOfPerson.get()) {
+    private void validate(int position) {
+        if(position < 0) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getErrorMessage());
         }
     }

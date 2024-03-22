@@ -27,7 +27,7 @@ public class NodeTest {
     void rightNodeMoveRight() {
         // given
         Node node = Node.from(Direction.RIGHT);
-        Position position = Position.initOf(3, NaturalNumber.from(5));
+        Position position = Position.from(3);
 
         // when
         Position movedPosition = node.move(position);
@@ -41,7 +41,7 @@ public class NodeTest {
     void leftNodeMoveLeft() {
         // given
         Node node = Node.from(Direction.LEFT);
-        Position position = Position.initOf(3, NaturalNumber.from(5));
+        Position position = Position.from(3);
 
         // when
         Position movedPosition = node.move(position);

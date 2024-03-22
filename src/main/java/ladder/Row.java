@@ -4,7 +4,7 @@ public class Row {
     private final Node[] nodes;
 
     public Row(NaturalNumber numberOfPerson) {
-        nodes = new Node[numberOfPerson.get()];     // TODO: node들의 배열에서 각 노드들 초기화 해줘야 하는가?
+        nodes = new Node[numberOfPerson.get()];
         init();
     }
 
@@ -14,7 +14,7 @@ public class Row {
         }
     }
 
-    public void drawLine(Position lineStartPosition) {   // 오른쪽 찍 한줄 긋기 어차피 ladderSpec에서 다 검증되서 굳이 Position으로 받아야함?
+    public void drawLine(Position lineStartPosition) {
         nodes[lineStartPosition.get()] = Node.from(Direction.RIGHT);
         nodes[lineStartPosition.next().get()] = Node.from(Direction.LEFT);
     }
