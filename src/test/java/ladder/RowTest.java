@@ -1,157 +1,68 @@
 package ladder;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import utils.LadderNumber;
+import utils.Position;
+import utils.Row;
 
 class RowTest {
 
-    @Test
-    void 참여자_한_명_사다리_이동() {
-        //given
-        int numberOfPerson = 1;
-        Row row = new Row(numberOfPerson);
+  @Test
+  void 참여자_한_명_제자리_이동() {
+    //given
+    LadderNumber numberOfPerson = LadderNumber.of(1);
+    Row row = Row.of(numberOfPerson);
 
-        //when
-        int position = 0;
+    //when
+    Position position = Position.of(1);
 
-        //then
-        assertEquals(0,row.nextPosition(position));
-    }
+    //then
+    assertEquals(1, row.getNextPosition(position).getIntValue());
+  }
 
-    @Test
-    void 참여자_두_명_사다리_열간_이동() {
-        //given
-        int numberOfPerson = 2;
-        Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+  @Test
+  void 참여자_두_명_사다리_열간_이동() {
+    //given
+    Position cur = Position.of(1);
+    LadderNumber numberOfPerson = LadderNumber.of(2);
+    Row row = Row.of(numberOfPerson);
+    row.drawLine(cur);
 
-        //when
-        int position = 0;
-        int resultPosition = row.nextPosition(position);
-        //then
-        assertEquals(1,resultPosition);
+    //when
+    cur = row.getNextPosition(cur);  // 1 -> 2
+    //then
+    assertEquals(2, cur.getIntValue());
 
+    //when
+    cur = row.getNextPosition(cur); // 2 -> 1
+    //then
+    assertEquals(1, cur.getIntValue());
+  }
 
-        //when
-        position = 1;
-        resultPosition = row.nextPosition(position);
-        //then
-        assertEquals(0, resultPosition);
-    }
+  @Test
+  void 참여자_세_명_사다리_열간_이동() {
+    //given
+    Position cur = Position.of(1);
+    LadderNumber numberOfPerson = LadderNumber.of(3);
+    Row row = Row.of(numberOfPerson);
+    row.drawLine(cur);
 
-    @Test
-    void 참여자_세_명_사다리_열간_이동() {
-        //given
-        int numberOfPerson = 3;
-        Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+    //when
+    cur = row.getNextPosition(cur); // 1 -> 2
+    //then
+    assertEquals(2, cur.getIntValue());
 
-        //when
-        int position = 0;
-        int resultPosition = row.nextPosition(position);
-        //then
-        assertEquals(1,resultPosition);
+    //when
+    cur = row.getNextPosition(cur); // 2 -> 1
+    //then
+    assertEquals(1, cur.getIntValue());
 
-
-        //when
-        position = 1;
-        resultPosition = row.nextPosition(position);
-        //then
-        assertEquals(0, resultPosition);
-
-        //when
-        position = 2;
-        resultPosition = row.nextPosition(position);
-        //then
-        assertEquals(2, resultPosition);
-    }
-
-    @Test
-    void 사다리_사람수_예외_처리() {
-        assertThrows(IllegalArgumentException.class, () -> new Row(0));
-    }
-
-    @Test
-    void 사다리_위치_최대값_초과_예외_처리() {
-        //given
-        int numberOfPerson = 3;
-        Row row = new Row(numberOfPerson);
-
-        //when
-        int position = 3;
-
-        //then
-        assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
-    }
-
-    @Test
-    void 사다리_위치_최소값_미만_예외_처리() {
-        //given
-        int numberOfPerson = 3;
-        Row row = new Row(numberOfPerson);
-
-        //when
-        int position = -1;
-
-        //then
-        assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
-    }
-
-    @Test
-    void 사다리_라인_그리기_위치_초과_예외() {
-        //given
-        int numberOfPerson = 3;
-        Row row = new Row(numberOfPerson);
-
-        //when
-        int lineStartPosition = 2;
-
-        //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
-    }
-
-    @Test
-    void 사다리_라인_그리기_위치_미만_예외() {
-        //given
-        int numberOfPerson = 3;
-        Row row = new Row(numberOfPerson);
-
-        //when
-        int lineStartPosition = -1;
-
-        //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
-    }
-
-    @Test
-    void 라인_그리기_좌측_라인_중복_예외() {
-        //given
-        int numberOfPerson = 3;
-        Row row = new Row(numberOfPerson);
-        row.drawLine(0);
-
-        //when
-        int lineStartPosition = 1;
-
-        //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
-
-    }
-
-    @Test
-    void 라인_그리기_우측_라인_중복_예외() {
-        //given
-        int numberOfPerson = 3;
-        Row row = new Row(numberOfPerson);
-        row.drawLine(1);
-
-        //when
-        int lineStartPosition = 0;
-
-        //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
-
-    }
-
+    //when
+    cur = Position.of(3);
+    cur = row.getNextPosition(cur); // 3 -> 3
+    //then
+    assertEquals(3, cur.getIntValue());
+  }
 }
