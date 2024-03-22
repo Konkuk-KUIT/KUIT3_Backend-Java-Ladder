@@ -1,5 +1,7 @@
 package ladder;
 
+import java.util.Objects;
+
 public class LadderPrinter {
 
     private final Row[] rows;
@@ -8,26 +10,26 @@ public class LadderPrinter {
         this.rows = rows;
     }
 
-    public void print(int row, Position position) {
+    public void print(Cordinate currentCordinate) {
         for(int i = 0; i < rows.length; i++) {
             for(int j = 0; j < rows[i].getNodesLength(); j++) {
-                printLadder(i, j);
-                printCurrentLocation(i, j, row, position);
+                printLadder(Cordinate.of(i, j));
+                printCurrentLocation(Cordinate.of(i, j), currentCordinate);
             }
             System.out.println();
         }
         System.out.println();
     }
 
-    public void printLadder(int row, int position) {
-        if(rows[row].getNodesDirectionValue(position) != -1) {
+    public void printLadder(Cordinate cordinate) {
+        if(rows[cordinate.getRowIndex()].getNodesDirectionValue(cordinate.getColIndex()) != -1) {
             System.out.print(" ");
         }
-        System.out.print(rows[row].getNodesDirectionValue(position));
+        System.out.print(rows[cordinate.getRowIndex()].getNodesDirectionValue(cordinate.getColIndex()));
     }
 
-    public void printCurrentLocation(int row, int position, int curRow, Position curPos) {
-        if(row == curRow && position == curPos.get()) {
+    public void printCurrentLocation(Cordinate cordinate, Cordinate currnetCordinate) {
+        if(Objects.equals(cordinate, currnetCordinate)) {
             System.out.print("*");
             return;
         }
