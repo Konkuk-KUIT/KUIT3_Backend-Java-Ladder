@@ -13,7 +13,7 @@ class RowTest {
     @Test
     void 참여자_한_명_사다리_이동() {
         //given
-        Naturalnumber numberOfPerson = NaturalNumber.of(1);
+        NaturalNumber numberOfPerson = NaturalNumber.of(1);
         Row row = new Row(numberOfPerson);
 
         //when
