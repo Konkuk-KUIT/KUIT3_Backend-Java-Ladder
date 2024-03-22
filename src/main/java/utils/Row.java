@@ -11,16 +11,16 @@ public class Row {
 
   private final Node[] nodes;
 
-  private Row(int numberOfPerson) {
-    this.nodes = new Node[numberOfPerson + 1];
+  private Row(int colSize) {
+    this.nodes = new Node[colSize + 1];
 
     for (int i = 1; i < nodes.length; i++) {
       nodes[i] = Node.of(NONE_DIRECTION);
     }
   }
 
-  public static Row of(LadderNumber numberOfPerson) {
-    return new Row(numberOfPerson.getIntValue());
+  public static Row of(LadderNumber colSize) {
+    return new Row(colSize.getIntValue());
   }
 
   public Position getNextPosition(Position colP) {
@@ -34,7 +34,7 @@ public class Row {
   }
 
   private void validateColPosition(Position colP) {
-    if (colP.getIntValue() >= nodes.length - 1) {
+    if (isRightLineDrawablePosition(colP)) {
       throw new LadderException(OUT_OF_BOUNDS_COL_POSITION);
     }
     if (existLeftLine(colP) || existRightLine(colP.next())) {
@@ -43,6 +43,10 @@ public class Row {
     if (existRightLine(colP)) {
       throw new LadderException(LINE_ALREADY_EXISTS);
     }
+  }
+
+  private boolean isRightLineDrawablePosition(Position colP) {
+    return colP.getIntValue() >= nodes.length - 1;
   }
 
   private boolean existLeftLine(Position position) {

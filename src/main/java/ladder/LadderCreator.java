@@ -3,23 +3,25 @@ package ladder;
 import static exception.ErrorCode.OUT_OF_BOUNDS_RAW_POSITION;
 
 import exception.LadderException;
-import utils.LadderNumber;
+import utils.LadderSize;
 import utils.Position;
 import utils.Row;
 
 public class LadderCreator {
 
   private final Row[] rows;
+  private final LadderSize ladderSize;
 
-  private LadderCreator(LadderNumber numberOfRows, LadderNumber numberOfPerson) {
-    rows = new Row[numberOfRows.getIntValue() + 1];
+  private LadderCreator(LadderSize ladderSize) {
+    this.ladderSize = ladderSize;
+    rows = new Row[ladderSize.getRowSize().getIntValue() + 1];
     for (int i = 1; i < rows.length; i++) {
-      rows[i] = Row.of(numberOfPerson);
+      rows[i] = Row.of(ladderSize.getColSize());
     }
   }
 
-  public static LadderCreator of(LadderNumber numberOfRows, LadderNumber numberOfPerson) {
-    return new LadderCreator(numberOfRows, numberOfPerson);
+  public static LadderCreator of(LadderSize ladderSize) {
+    return new LadderCreator(ladderSize);
   }
 
   public void drawLine(Position rowP, Position colP) {
@@ -28,9 +30,13 @@ public class LadderCreator {
   }
 
   private void validateRowPosition(Position rowP) {
-    if (rowP.getIntValue() >= rows.length) {
+    if (isWithinLadderBounds(rowP)) {
       throw new LadderException(OUT_OF_BOUNDS_RAW_POSITION);
     }
+  }
+
+  private boolean isWithinLadderBounds(Position rowP) {
+    return rowP.getIntValue() >= rows.length;
   }
 
   public Row[] getRows() {

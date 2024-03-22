@@ -9,6 +9,7 @@ import exception.LadderException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.LadderNumber;
+import utils.LadderSize;
 import utils.Position;
 
 class LadderGameTest {
@@ -21,7 +22,9 @@ class LadderGameTest {
     LadderNumber numberOfRows = LadderNumber.of(4);
     LadderNumber numberOfPerson = LadderNumber.of(4);
 
-    creator = LadderCreator.of(numberOfRows, numberOfPerson);
+    LadderSize size = LadderSize.of(numberOfRows, numberOfPerson);
+
+    creator = LadderCreator.of(size);
     game = LadderGame.of(creator);
 
     creator.drawLine(Position.of(2), Position.of(1));

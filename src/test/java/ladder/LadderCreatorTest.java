@@ -16,6 +16,7 @@ import exception.LadderException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.LadderNumber;
+import utils.LadderSize;
 import utils.Position;
 
 class LadderCreatorTest {
@@ -27,7 +28,9 @@ class LadderCreatorTest {
     LadderNumber numberOfRows = LadderNumber.of(3);
     LadderNumber numberOfPerson = LadderNumber.of(3);
 
-    creator = LadderCreator.of(numberOfRows, numberOfPerson);
+    LadderSize size = LadderSize.of(numberOfRows, numberOfPerson);
+
+    creator = LadderCreator.of(size);
   }
 
   @Test
