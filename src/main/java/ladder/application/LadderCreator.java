@@ -11,11 +11,11 @@ public class LadderCreator {
         rows = new Row[numberOfPerson.getNum()];
 
         for(int i = 0; i < numberOfRows.getNum(); i++) {
-            rows[i] = new Row(numberOfPerson.getNum());
+            rows[i] = new Row(numberOfPerson);
         }
     }
 
     public void drawLine(Position row, Position col) {
-        rows[row.getPosition()].drawLine(col.getPosition());
+        rows[row.getValue()].drawLine(col);
     }
 }

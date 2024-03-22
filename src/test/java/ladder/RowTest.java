@@ -27,7 +27,7 @@ class RowTest {
     @Test
     void 참여자_두_명_사다리_열간_이동() {
         //given
-        Naturalnumber numberOfPerson = NaturalNumber.of(2);
+        NaturalNumber numberOfPerson = NaturalNumber.of(2);
         Row row = new Row(numberOfPerson);
         row.drawLine(Position.of(0));
 

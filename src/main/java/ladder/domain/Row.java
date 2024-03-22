@@ -3,13 +3,16 @@ package ladder.domain;
 import static ladder.exception.ExceptionMessage.*;
 
 public class Row {
+
+    // Node들로 이루어진 한 행
     private Node[] row;
 
+    // 사람 수만큼의 node를 가진 행 생성
     public Row(NaturalNumber numberOfPerson) {
-        validateNumberOfPerson(numberOfPerson.getNum());
         row = new Node[numberOfPerson.getNum()];
     }
 
+    // 사다리 그리기
     public void drawLine(Position lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
 
@@ -18,41 +21,22 @@ public class Row {
         row[next.getValue()] = Node.of(Direction.LEFT);
     }
 
-    public Position nextPosition(int position) {
-
-        validatePosition(position);
-
-        if (isLeft(position)) {
-//            return row[position.getValue()].move(position);
-            return position + Direction.LEFT;
-        }
-        if (isRight(position)) {
-            return position + Direction.RIGHT;
-        }
-
-        return position;
+    // 다음 position으로 이동
+    public Position nextPosition(Position position) {
+        validateNextPosition(position);
+        return row[position.getValue()].move(position);
     }
 
-    private boolean isLeft(int position) {
-        return row[position] == -1;
-    }
 
-    private boolean isRight(int position) {
-        return row[position] == 1;
-    }
-
-    private void validateNumberOfPerson(int numberOfPerson) {
-        if(numberOfPerson < 1) {
-            throw new IllegalArgumentException(INVALID_NUMBER_OF_PERSON.getMessage());
-        }
-    }
-
+    // 유효성 검증
     private void validateDrawLinePosition(Position lineStartPosition) {
-        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == -1 || row[lineStartPosition + 1] == 1) {
+        if(lineStartPosition.getValue() >= row.length - 1 || row[lineStartPosition.getValue()] == Direction.LEFT || row[lineStartPosition.nextPosition().getValue()] == 1) {
             throw new IllegalArgumentException(INVALID_ROW_POSITION.getMessage());
         }
     }
 
-
+    public boolean validateNextPosition(Position position){
+        if()
+    }
 
 }
