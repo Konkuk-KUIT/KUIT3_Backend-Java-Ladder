@@ -1,6 +1,10 @@
-package ladder;
+package ladder.core;
 
-import static ladder.ExceptionMessage.*;
+import ladder.position.LadderPosition;
+import ladder.utils.NaturalNumber;
+import ladder.position.Position;
+
+import static ladder.exception.ExceptionMessage.*;
 
 public class Row {
     private Node[] nodes;

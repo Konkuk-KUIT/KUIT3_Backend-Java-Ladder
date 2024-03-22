@@ -1,4 +1,6 @@
-package ladder;
+package ladder.core;
+
+import ladder.utils.NaturalNumber;
 
 public class LadderSize {
     private final NaturalNumber height;
