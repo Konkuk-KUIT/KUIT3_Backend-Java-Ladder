@@ -19,4 +19,8 @@ public class LadderSize {
     public static LadderSize of(NaturalNumber height, NaturalNumber width) {
         return new LadderSize(height, width);
     }
+
+    public int getNumberOfNodes() {
+        return height.getNumber() * width.getNumber();
+    }
 }
