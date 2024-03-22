@@ -2,22 +2,22 @@ package ladder;
 
 import java.util.Objects;
 
-public class Cordinate {
+public class Coordinate {
 
     private final int row;
     private final int col;
 
-    private Cordinate(int row, int col) {
+    private Coordinate(int row, int col) {
         this.row = row;
         this.col = col;
     }
 
-    public static Cordinate of(int row, int col) {
-        return new Cordinate(row, col);
+    public static Coordinate of(int row, int col) {
+        return new Coordinate(row, col);
     }
 
-    public static Cordinate ofIntPosition(int row, Position position) {
-        return new Cordinate(row, position.get());
+    public static Coordinate ofIntPosition(int row, Position position) {
+        return new Coordinate(row, position.get());
     }
 
     public int getRowIndex() {
@@ -36,8 +36,8 @@ public class Cordinate {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Cordinate cordinate = (Cordinate) o;
-        return row == cordinate.row && col == cordinate.col;
+        Coordinate coordinate = (Coordinate) o;
+        return row == coordinate.row && col == coordinate.col;
     }
 
     @Override

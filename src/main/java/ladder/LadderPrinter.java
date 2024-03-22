@@ -10,26 +10,26 @@ public class LadderPrinter {
         this.rows = rows;
     }
 
-    public void print(Cordinate currentCordinate) {
+    public void print(Coordinate currentCoordinate) {
         for(int i = 0; i < rows.length; i++) {
             for(int j = 0; j < rows[i].getNodesLength(); j++) {
-                printLadder(Cordinate.of(i, j));
-                printCurrentLocation(Cordinate.of(i, j), currentCordinate);
+                printLadder(Coordinate.of(i, j));
+                printCurrentLocation(Coordinate.of(i, j), currentCoordinate);
             }
             System.out.println();
         }
         System.out.println();
     }
 
-    public void printLadder(Cordinate cordinate) {
-        if(rows[cordinate.getRowIndex()].getNodesDirectionValue(cordinate.getColIndex()) != -1) {
+    public void printLadder(Coordinate coordinate) {
+        if(rows[coordinate.getRowIndex()].getNodesDirectionValue(coordinate.getColIndex()) != -1) {
             System.out.print(" ");
         }
-        System.out.print(rows[cordinate.getRowIndex()].getNodesDirectionValue(cordinate.getColIndex()));
+        System.out.print(rows[coordinate.getRowIndex()].getNodesDirectionValue(coordinate.getColIndex()));
     }
 
-    public void printCurrentLocation(Cordinate cordinate, Cordinate currnetCordinate) {
-        if(Objects.equals(cordinate, currnetCordinate)) {
+    public void printCurrentLocation(Coordinate coordinate, Coordinate currnetCoordinate) {
+        if(Objects.equals(coordinate, currnetCoordinate)) {
             System.out.print("*");
             return;
         }

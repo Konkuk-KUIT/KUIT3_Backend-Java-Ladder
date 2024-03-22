@@ -14,7 +14,7 @@ public class LadderSpecTest {
         // given
         NaturalNumber numberOfRows = NaturalNumber.from(4);
         NaturalNumber numberOfPerson = NaturalNumber.from(4);
-        List<Cordinate> sideLadders = List.of(Cordinate.of(row1, pos));
+        List<Coordinate> sideLadders = List.of(Coordinate.of(row1, pos));
 
         // when, then
         Throwable exception = Assertions.assertThrows(IllegalArgumentException.class,
@@ -31,9 +31,9 @@ public class LadderSpecTest {
         // given
         NaturalNumber numberOfRows = NaturalNumber.from(4);
         NaturalNumber numberOfPerson = NaturalNumber.from(4);
-        Cordinate sideLadder1 = Cordinate.of(2, 2);
-        Cordinate sideLadder2 = Cordinate.of(row, position);
-        List<Cordinate> sideLadders = List.of(sideLadder1, sideLadder2);
+        Coordinate sideLadder1 = Coordinate.of(2, 2);
+        Coordinate sideLadder2 = Coordinate.of(row, position);
+        List<Coordinate> sideLadders = List.of(sideLadder1, sideLadder2);
 
         // when, then
         Throwable exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {

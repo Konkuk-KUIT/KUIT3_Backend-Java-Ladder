@@ -1,6 +1,6 @@
 package ladder.ladderCreator;
 
-import ladder.Cordinate;
+import ladder.Coordinate;
 import ladder.LadderSpec;
 import ladder.NaturalNumber;
 import ladder.Row;
@@ -20,8 +20,8 @@ public class CustomLadderCreator implements LadderCreator {
             rows[i] = new Row(NaturalNumber.from(ladderSpec.getNumberOfPerson()));
         }
 
-        for(Cordinate sideLadder : ladderSpec.getSideLadders()) {
-            rows[sideLadder.getRowIndex()].drawLine(sideLadder.getColIndex());  // 얘때매 Position반환하는거 만들어야 되냐
+        for(Coordinate sideLadder : ladderSpec.getSideLadders()) {
+            rows[sideLadder.getRowIndex()].drawLine(sideLadder.getColIndex());  // 얘때매 Position반환하는거 만들어야 되냐? row에서 drawLine overring?
         }
 
         return rows;

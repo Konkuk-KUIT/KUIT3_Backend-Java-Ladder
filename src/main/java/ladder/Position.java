@@ -6,7 +6,7 @@ public class Position {
     private final int position;
 
     private Position(int position, NaturalNumber numberOfPerson) {
-        validate(position, numberOfPerson);     // 우리가 입력준거만 확인 하면 되지... 나머지는 사다리, row 탓~
+        validate(position, numberOfPerson);
         this.position = position;
     }
 
