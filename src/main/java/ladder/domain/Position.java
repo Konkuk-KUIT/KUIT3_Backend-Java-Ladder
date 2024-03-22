@@ -31,4 +31,5 @@ public class Position {
     public int get(){
         return this.position;
     }
+
 }
