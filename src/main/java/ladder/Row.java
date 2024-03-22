@@ -1,60 +1,62 @@
 package ladder;
 
 public class Row {
-    private int[] row;
+    private Node[] nodes;
 
-    public Row(int numberOfPerson) {
-        validateNumberOfPerson(numberOfPerson);
-        row = new int[numberOfPerson];
+    public Row(NaturalNumber naturalCol) {
+        nodes = new Node[naturalCol.getNum()];
+        for (int i =0 ; i<naturalCol.getNum(); i++){
+            nodes[i] = Node.of(Direction.STAY);
+        }
     }
 
-    public void drawLine(int lineStartPosition) {
-        validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = 1;
-        row[lineStartPosition + 1] = -1;
+    public void drawLine(Position position) {
+        validateDrawLinePosition(position);
+        nodes[position.getPosition()] = Node.of(Direction.RIGHT);
+        nodes[position.next().getPosition()] = Node.of(Direction.LEFT);
     }
 
-    public int nextPosition(int position) {
-
+    public Position nextPosition(Position position) {
         validatePosition(position);
-
-        if (isLeft(position)) {
-            return position - 1;
-        }
-        if (isRight(position)) {
-            return position + 1;
-        }
-
-        return position;
+        return nodes[position.getPosition()].move(position);
     }
 
-    private boolean isLeft(int position) {
-        return row[position] == -1;
-    }
 
-    private boolean isRight(int position) {
-        return row[position] == 1;
-    }
-
-    private void validateNumberOfPerson(int numberOfPerson) {
-        if(numberOfPerson < 1) {
-            throw new IllegalArgumentException("게임의 참여자 수는 1명 이상이어야 합니다.");
+    private void validateDrawLinePosition(Position position) {
+        if(position.getPosition() < 0 || position.getPosition() > (nodes.length - 2) || nodes[position.getPosition()].isRight() || nodes[position.next().getPosition()].isRight() || nodes[position.getPosition()].isLeft()) {
+            throw new IllegalArgumentException(ExceptionMessage.INVAILD_LADDER_DRAW_POSITION.getValue());
         }
     }
 
-    private void validateDrawLinePosition(int lineStartPosition) {
-        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == -1 || row[lineStartPosition + 1] == 1) {
-            throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
+    private void validatePosition(Position position) {
+        if(position.getPosition() >= nodes.length || position.getPosition() < 0 ) {
+            throw new IllegalArgumentException(ExceptionMessage.INVAILD_LADDER_POSITION.getValue());
         }
     }
 
-    private void validatePosition(int position) {
-        if(position >= row.length || position < 0 ) {
-            throw new IllegalArgumentException("유효하지 않은 위치 입니다.");
+    //print를 위한 함수
+    public String[] getNodesToString(Position position){
+        String[] str = new String[nodes.length];
+        for(int i = 0; i < nodes.length; i++){
+            if(nodes[i].isRight()) {
+                str[i] = " 1 ";
+            }else if (nodes[i].isLeft()) {
+                str[i] = "-1 ";
+            }else {
+                str[i] = " 0 ";
+            }
+//            if(IsCurrentPosition(i, position))
+//                str[i] += "*";
+//            else
+//                str[i] += " ";
         }
+        return str;
+    }
+    private boolean IsCurrentPosition(int i, Position position){
+        return i==position.getPosition();
     }
 
-
-
-
+    public Node[] getNodes() {
+        return nodes;
+    }
 }
