@@ -1,5 +1,9 @@
 package ladder;
 
+import ladder.wrapper.Coordinate;
+import ladder.wrapper.Position;
+import ladder.wrapper.Row;
+
 public class LadderRunner {
     private final Row[] rows;
     private final LadderPrinter ladderPrinter;

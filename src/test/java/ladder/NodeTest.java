@@ -1,5 +1,8 @@
 package ladder;
 
+import ladder.wrapper.Direction;
+import ladder.wrapper.Node;
+import ladder.wrapper.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

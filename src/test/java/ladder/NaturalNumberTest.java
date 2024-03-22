@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.exception.ExceptionMessage;
+import ladder.wrapper.NaturalNumber;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

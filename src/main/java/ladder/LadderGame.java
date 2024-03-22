@@ -1,6 +1,8 @@
 package ladder;
 
 import ladder.ladderCreator.LadderCreator;
+import ladder.wrapper.Position;
+import ladder.wrapper.Row;
 
 public class LadderGame {
 

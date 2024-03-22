@@ -1,6 +1,8 @@
 package ladder;
 
 import java.util.Objects;
+import ladder.wrapper.Coordinate;
+import ladder.wrapper.Row;
 
 public class LadderPrinter {
 

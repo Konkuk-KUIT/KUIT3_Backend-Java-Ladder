@@ -1,6 +1,7 @@
-package ladder;
+package ladder.wrapper;
 
 import java.util.Objects;
+import ladder.exception.ExceptionMessage;
 
 public class Position {
     private final int position;

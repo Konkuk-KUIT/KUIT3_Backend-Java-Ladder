@@ -1,9 +1,9 @@
 package ladder.ladderCreator;
 
-import ladder.Coordinate;
-import ladder.LadderSpec;
-import ladder.NaturalNumber;
-import ladder.Row;
+import ladder.wrapper.Coordinate;
+import ladder.wrapper.LadderSpec;
+import ladder.wrapper.NaturalNumber;
+import ladder.wrapper.Row;
 
 public class CustomLadderCreator implements LadderCreator {
 

@@ -4,6 +4,11 @@ import java.util.List;
 import ladder.ladderCreator.CustomLadderCreator;
 import ladder.ladderCreator.LadderCreator;
 import ladder.ladderCreator.RandomLadderCreator;
+import ladder.wrapper.Coordinate;
+import ladder.wrapper.LadderSpec;
+import ladder.wrapper.NaturalNumber;
+import ladder.wrapper.Position;
+import ladder.wrapper.Row;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,7 @@
-package ladder;
+package ladder.wrapper;
 
 import java.util.List;
+import ladder.exception.ExceptionMessage;
 
 public class LadderSpec {
     private final NaturalNumber numberOfRows;

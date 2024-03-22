@@ -3,10 +3,10 @@ package ladder.ladderCreator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import ladder.Coordinate;
-import ladder.LadderSpec;
-import ladder.NaturalNumber;
-import ladder.Row;
+import ladder.wrapper.Coordinate;
+import ladder.wrapper.LadderSpec;
+import ladder.wrapper.NaturalNumber;
+import ladder.wrapper.Row;
 
 public class RandomLadderCreator implements LadderCreator {
 
