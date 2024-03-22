@@ -1,39 +1,27 @@
 package ladder;
 
+import java.util.Arrays;
+
 public class Row {
-    private int[] row;
+    private Node[] row;
 
     public Row(int numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
-        row = new int[numberOfPerson];
+        row = new Node[numberOfPerson];
+        Arrays.fill(row, Node.parallelTo(Direction.NONE));
     }
 
-    public void drawLine(int lineStartPosition) {
-        validateDrawLinePosition(lineStartPosition);
-        row[lineStartPosition] = 1;
-        row[lineStartPosition + 1] = -1;
+    public void drawLine(Position lineStartPosition) {
+        Node nodeFromStart = Node.parallelTo(Direction.RIGHT);
+        validateOnRow(lineStartPosition);
+        validateDrawable(lineStartPosition);
+        row[lineStartPosition.getColNum()] = Node.parallelTo(Direction.RIGHT);
+        row[lineStartPosition.getColNum() + 1] = Node.parallelTo(Direction.LEFT);
     }
 
-    public int nextPosition(int position) {
-
-        validatePosition(position);
-
-        if (isLeft(position)) {
-            return position - 1;
-        }
-        if (isRight(position)) {
-            return position + 1;
-        }
-
-        return position;
-    }
-
-    private boolean isLeft(int position) {
-        return row[position] == -1;
-    }
-
-    private boolean isRight(int position) {
-        return row[position] == 1;
+    public Position nextPosition(Position position) {
+        validateOnRow(position);
+        return row[position.getColNum()].getNextPosition(position);
     }
 
     private void validateNumberOfPerson(int numberOfPerson) {
@@ -42,19 +30,18 @@ public class Row {
         }
     }
 
-    private void validateDrawLinePosition(int lineStartPosition) {
-        if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == -1 || row[lineStartPosition + 1] == 1) {
+    private void validateDrawable(Position lineStartPosition) {
+        Position expectedDestination = Position.at(lineStartPosition.getColNum()+1);
+        validateOnRow(expectedDestination);
+        if(row[lineStartPosition.getColNum()].hasDirection() ||
+                row[expectedDestination.getColNum()].hasDirection()) {
             throw new IllegalArgumentException("라인 생성이 불가능한 위치 입니다.");
         }
     }
 
-    private void validatePosition(int position) {
-        if(position >= row.length || position < 0 ) {
+    private void validateOnRow(Position position) {
+        if(position.getColNum() >= row.length || position.getColNum() < 0 ) {
             throw new IllegalArgumentException("유효하지 않은 위치 입니다.");
         }
     }
-
-
-
-
 }

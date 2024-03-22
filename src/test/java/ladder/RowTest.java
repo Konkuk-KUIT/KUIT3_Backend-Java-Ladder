@@ -13,10 +13,10 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int position = 0;
+        Position position = Position.at(0);
 
         //then
-        assertEquals(0,row.nextPosition(position));
+        assertEquals(0,row.nextPosition(position).getColNum());
     }
 
     @Test
@@ -24,20 +24,20 @@ class RowTest {
         //given
         int numberOfPerson = 2;
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.at(0));
 
         //when
-        int position = 0;
-        int resultPosition = row.nextPosition(position);
+        Position position = Position.at(0);
+        Position resultPosition = row.nextPosition(position);
         //then
-        assertEquals(1,resultPosition);
+        assertEquals(1,resultPosition.getColNum());
 
 
         //when
-        position = 1;
+        position = Position.at(1);
         resultPosition = row.nextPosition(position);
         //then
-        assertEquals(0, resultPosition);
+        assertEquals(0, resultPosition.getColNum());
     }
 
     @Test
@@ -45,26 +45,26 @@ class RowTest {
         //given
         int numberOfPerson = 3;
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.at(0));
 
         //when
-        int position = 0;
-        int resultPosition = row.nextPosition(position);
+        Position position = Position.at(0);
+        Position resultPosition = row.nextPosition(position);
         //then
-        assertEquals(1,resultPosition);
+        assertEquals(1,resultPosition.getColNum());
 
 
         //when
-        position = 1;
+        position = Position.at(1);
         resultPosition = row.nextPosition(position);
         //then
-        assertEquals(0, resultPosition);
+        assertEquals(0, resultPosition.getColNum());
 
         //when
-        position = 2;
+        position = Position.at(2);
         resultPosition = row.nextPosition(position);
         //then
-        assertEquals(2, resultPosition);
+        assertEquals(2, resultPosition.getColNum());
     }
 
     @Test
@@ -79,7 +79,7 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int position = 3;
+        Position position = Position.at(3);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
@@ -92,7 +92,7 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int position = -1;
+        Position position = Position.at(-1);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
@@ -105,7 +105,7 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int lineStartPosition = 2;
+        Position lineStartPosition = Position.at(2);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
@@ -118,7 +118,7 @@ class RowTest {
         Row row = new Row(numberOfPerson);
 
         //when
-        int lineStartPosition = -1;
+        Position lineStartPosition = Position.at(-1);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
@@ -129,10 +129,10 @@ class RowTest {
         //given
         int numberOfPerson = 3;
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.at(0));
 
         //when
-        int lineStartPosition = 1;
+        Position lineStartPosition = Position.at(1);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
@@ -144,14 +144,13 @@ class RowTest {
         //given
         int numberOfPerson = 3;
         Row row = new Row(numberOfPerson);
-        row.drawLine(1);
+        row.drawLine(Position.at(1));
 
         //when
-        int lineStartPosition = 0;
+        Position lineStartPosition = Position.at(0);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(lineStartPosition));
-
     }
 
 }

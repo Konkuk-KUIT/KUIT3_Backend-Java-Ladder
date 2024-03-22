@@ -13,10 +13,10 @@ class LadderTest {
         int numberOfPerson = 5;
 
         //when
-        Ladder ladder  = new Ladder(numberOfRows, numberOfPerson);
+        LadderFrame ladderFrame = new LadderFrame(numberOfRows, numberOfPerson);
 
         //then
-        assertNotNull(ladder);
+        assertNotNull(ladderFrame);
     }
 
     @Test
@@ -24,13 +24,14 @@ class LadderTest {
         //given
         int numberOfPerson = 3;
         int numberOfRows = 1;
-        Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
+        LadderFrame ladderFrame = new LadderFrame(numberOfRows, numberOfPerson);
+        LadderGame ladderGame = new LadderGame(ladderFrame);
 
         //when
-        int position = 3;
+        Position position = Position.at(3);
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> ladder.run(3));
+        assertThrows(IllegalArgumentException.class, () -> ladderGame.playFrom(position));
     }
 
     @Test
@@ -38,37 +39,35 @@ class LadderTest {
         //given
         int numberOfPerson = 4;
         int numberOfRows = 4;
-        Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
-        ladder.drawLine(1,0);
-        ladder.drawLine(1,2);
-        ladder.drawLine(2,1);
+        LadderFrame ladderFrame = new LadderFrame(numberOfRows, numberOfPerson);
+        LadderGame ladderGame = new LadderGame(ladderFrame);
+        ladderGame.drawLine(1,0);
+        ladderGame.drawLine(1,2);
+        ladderGame.drawLine(2,1);
 
 
         //when
-        int position = 0;
-        int resultPosition = ladder.run(position);
+        Position position = Position.at(0);
+        Position resultPosition = ladderGame.playFrom(position);
         //then
-        assertEquals(2, resultPosition);
+        assertEquals(2, resultPosition.getColNum());
 
         //when
-        position = 1;
-        resultPosition = ladder.run(position);
+        position = Position.at(1);
+        resultPosition = ladderGame.playFrom(position);
         //then
-        assertEquals(0, resultPosition);
+        assertEquals(0, resultPosition.getColNum());
 
         //when
-        position = 2;
-        resultPosition = ladder.run(position);
+        position = Position.at(2);
+        resultPosition = ladderGame.playFrom(position);
         //then
-        assertEquals(3, resultPosition);
+        assertEquals(3, resultPosition.getColNum());
 
         //when
-        position = 3;
-        resultPosition = ladder.run(position);
+        position = Position.at(3);
+        resultPosition = ladderGame.playFrom(position);
         //then
-        assertEquals(1, resultPosition);
-
-
-
+        assertEquals(1, resultPosition.getColNum());
     }
 }
