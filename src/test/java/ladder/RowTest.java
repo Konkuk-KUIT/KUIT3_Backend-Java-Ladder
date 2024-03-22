@@ -6,10 +6,12 @@ import org.junit.jupiter.api.Test;
 class RowTest {
     @Test
     void Right_Left_셋트로_그리나() {
+        Position position1 = Position.initOf(1, NaturalNumber.from(4));
+        Position position2 = Position.initOf(2, NaturalNumber.from(4));
         Row row = new Row(NaturalNumber.from(4));
-        row.drawLine(Position.initOf(1, NaturalNumber.from(4)));
-        Assertions.assertEquals(row.getNodes()[1], Node.from(Direction.RIGHT));
-        Assertions.assertEquals(row.getNodes()[2], Node.from(Direction.LEFT));
+        row.drawLine(position1);
+        Assertions.assertEquals(row.getNodesDirection(position1), Direction.RIGHT);
+        Assertions.assertEquals(row.getNodesDirection(position2), Direction.LEFT);
 
     }
 //      Refactoring 전 Test입니다.

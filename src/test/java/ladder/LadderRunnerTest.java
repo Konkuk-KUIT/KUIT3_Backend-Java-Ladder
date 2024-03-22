@@ -42,13 +42,6 @@ public class LadderRunnerTest {
         );
         Row[] rows = ladderCreator.create();
 
-        for(Row row : rows) {   // TODO: 얘도 지워라 직접 출려해보자
-            for(Node node : row.getNodes()) {
-                System.out.print(node + " ");
-            }
-            System.out.println();
-        }
-
         LadderRunner ladderRunner = new LadderRunner(rows);
         Position pos = ladderRunner.run(Position.initOf(0, NaturalNumber.from(5)));
         Assertions.assertEquals(2, pos.get());

@@ -7,6 +7,10 @@ public enum Direction {
 
     private final int directionValue;
 
+    public int getDirectionValue() {
+        return directionValue;
+    }
+
     Direction(int directionValue) {
         this.directionValue = directionValue;
     }

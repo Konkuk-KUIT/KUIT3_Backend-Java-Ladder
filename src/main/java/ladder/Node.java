@@ -33,6 +33,14 @@ public class Node {
         return this.direction == Direction.RIGHT;
     }
 
+    public Direction getDirection() {
+        return this.direction;
+    }
+
+    public int getDirectionValue() {
+        return direction.getDirectionValue();
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(direction);
@@ -44,16 +52,5 @@ public class Node {
         if (obj == null || this.getClass() != obj.getClass()) return false;
         Node node = (Node) obj;
         return Objects.equals(this.direction, node.direction);
-    }
-
-    @Override
-    public String toString() {      // TODO: 이거 지워라 Just for debugging
-        if(this.direction == Direction.RIGHT) {
-            return "Right";
-        }
-        if(this.direction == Direction.LEFT) {
-            return "Left  ";
-        }
-        return "Center";
     }
 }
