@@ -1,8 +1,10 @@
-package ladder;
+package ladder.domain;
+
+import ladder.exception.ExceptionMessage;
 
 public class Position {
     private int position;
-    //private int numOfPerson;
+
     public static Position of(int position){
         return new Position(position);
     }
@@ -10,6 +12,7 @@ public class Position {
     private Position(int position){
         validatePosition(position);
         this.position = position;
+        //this.numOfPerson = numOfPerson;
     }
 
     public Position prev(){
@@ -21,8 +24,8 @@ public class Position {
     }
 
     public void validatePosition(int position){
-        //if(position < 0 || position >= numOfPerson)
-        //    throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getMessage());
+        if(position < 0)
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getMessage());
     }
 
     public int get(){

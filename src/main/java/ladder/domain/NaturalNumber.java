@@ -1,7 +1,10 @@
-package ladder;
+package ladder.domain;
+
+import ladder.exception.ExceptionMessage;
 
 public class NaturalNumber {
     private final int num;
+
 
     public static NaturalNumber of(int num){
         return new NaturalNumber(num);
@@ -13,7 +16,7 @@ public class NaturalNumber {
     }
 
     public void validate(int num){
-        if(num < 1) throw new IllegalArgumentException("자연수는 0보다 커야합니다.");
+        if(num < 1) throw new IllegalArgumentException(ExceptionMessage.INVALID_PERSON_NUM.getMessage());
     }
 
     public int get(){

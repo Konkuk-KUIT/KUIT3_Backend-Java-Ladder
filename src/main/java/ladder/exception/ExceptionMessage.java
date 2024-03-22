@@ -1,4 +1,4 @@
-package ladder;
+package ladder.exception;
 
 public enum ExceptionMessage {
     INVALID_PERSON_NUM("게임의 참여자 수는 1명 이상이어야 합니다."),

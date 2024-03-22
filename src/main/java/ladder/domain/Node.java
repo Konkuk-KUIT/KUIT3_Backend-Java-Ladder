@@ -1,9 +1,13 @@
-package ladder;
+package ladder.domain;
 
 public class Node {
     Direction node;
 
     public Node(Direction node){
+        this.node = node;
+    }
+
+    public void set(Direction node){
         this.node = node;
     }
 
@@ -29,4 +33,5 @@ public class Node {
         }
         return position;
     }
+
 }
