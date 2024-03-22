@@ -34,4 +34,7 @@ public class Node {
         return position;
     }
 
+    public int get(){
+        return node.getDirection();
+    }
 }

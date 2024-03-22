@@ -89,4 +89,24 @@ class LadderTest {
         assertEquals(1, resultPosition.get());
 
     }
+
+    @Test
+    void 별_찍기_테스트(){
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+        NaturalNumber numberOfRows = NaturalNumber.of(4);
+
+        LadderCreator ladderCreator = new LadderCreator(numberOfRows, numberOfPerson);
+        LadderRunner ladderRunner = new LadderRunner(ladderCreator);
+
+
+        Position pos1 = Position.of(1);
+        Position pos2 = Position.of(0);
+        Position pos3 = Position.of(2);
+        ladderCreator.drawLine(pos1,pos2);
+        ladderCreator.drawLine(pos1,pos3);
+        ladderCreator.drawLine(pos3,pos1);
+
+        Position position = Position.of(0);
+        ladderRunner.showRunning(position);
+    }
 }

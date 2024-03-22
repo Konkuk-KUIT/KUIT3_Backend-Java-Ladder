@@ -35,4 +35,17 @@ public class Row {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getMessage());
         }
     }
+
+    public StringBuilder convertRowToString(Position currentPosition, boolean isStarOnThisRow){
+        StringBuilder result = new StringBuilder();
+        for(int i = 0; i < nodes.length; i++){
+            result.append(nodes[i].get());
+            if(isStarOnThisRow && currentPosition.get() == i){
+                result.append("*");
+            }
+            result.append(" ");
+        }
+        result.append("\n");
+        return result;
+    }
 }
