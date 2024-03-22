@@ -31,6 +31,14 @@ public class Position {
         return position;
     }
 
+    public boolean isBiggerThan(int position){
+        return this.position > position;
+    }
+
+    public boolean isSmallerThan(int position){
+        return this.position < position;
+    }
+
     // 유효성 검증
     private void validatePosition(int position) {
         if(!isPositionValid(position)) {

@@ -27,20 +27,39 @@ public class Row {
 
     // 다음 position으로 이동
     public Position nextPosition(Position position) {
-        validateNextPosition(position);
-        return row[position.getValue()].move(position);
+        validatePosition(position);
+        Position newPosition = row[position.getValue()].move(position);
+        // 새로운 위치가 유효한지 검증
+        validatePosition(newPosition);
+        return newPosition;
     }
 
 
     // 유효성 검증
-    private void validateDrawLinePosition(Position lineStartPosition) {
-        if(lineStartPosition.getValue() >= row.length - 1 || row[lineStartPosition.getValue()] == Direction.LEFT || row[lineStartPosition.nextPosition().getValue()] == 1) {
+    private void validateDrawLinePosition(Position position) {
+        if(isInvalidDrawPosition(position) && isSameLine(position)){
             throw new IllegalArgumentException(INVALID_ROW_POSITION.getMessage());
         }
     }
 
-    public boolean validateNextPosition(Position position){
-        if()
+    private boolean isInvalidDrawPosition(Position position){
+        return position.isBiggerThan(row.length - 2) || position.isSmallerThan(0);
+    }
+
+    // 중복 라인 체크
+    private boolean isSameLine(Position position){
+        return row[position.getValue()].isLeft() ||
+                row[position.nextPosition().getValue()].isRight();
+    }
+
+    private void validatePosition(Position position){
+        if(isInvalidPosition(position)) {
+            throw new IllegalArgumentException(INVALID_LADDER_POSITION.getMessage());
+        }
+    }
+
+    private boolean isInvalidPosition(Position position) {
+        return position.isBiggerThan(row.length - 1) || position.isSmallerThan(0);
     }
 
 }

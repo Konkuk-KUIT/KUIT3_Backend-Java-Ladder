@@ -8,7 +8,7 @@ public class LadderCreator {
     private Row[] rows;
 
     public LadderCreator(NaturalNumber numberOfRows, NaturalNumber numberOfPerson) {
-        rows = new Row[numberOfPerson.getNum()];
+        rows = new Row[numberOfRows.getNum()];
 
         for(int i = 0; i < numberOfRows.getNum(); i++) {
             rows[i] = new Row(numberOfPerson);

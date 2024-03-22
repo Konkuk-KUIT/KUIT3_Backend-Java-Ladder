@@ -11,6 +11,7 @@ public class LadderRunner {
         this.rows = rows;
     }
 
+    // 현재 포지션 입력하면 최종 포지션 출력
     public int run(Position position) {
 
         for(int i = 0; i < rows.length; i++) {
