@@ -1,10 +1,9 @@
 package ladder;
 
-public class Ladder {
-
+public class LadderCreator {
     private Row[] rows;
 
-    public Ladder(NaturalNumber numberOfRows, NaturalNumber numberOfPerson) {
+    public LadderCreator(NaturalNumber numberOfRows, NaturalNumber numberOfPerson) {
         rows = new Row[numberOfPerson.getValue()];
 
         for (int i = 0; i < numberOfRows.getValue(); i++) {
@@ -12,16 +11,11 @@ public class Ladder {
         }
     }
 
-
     public void drawLine(int row, int col) {
         rows[row].drawLine(Position.of(col));
     }
 
-    public Position run(Position position) {
-
-        for (int i = 0; i < rows.length; i++) {
-            position = rows[i].nextPosition(position);
-        }
-        return position;
+    public Row[] getRows() {
+        return rows;
     }
 }

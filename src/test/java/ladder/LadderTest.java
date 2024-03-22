@@ -13,7 +13,7 @@ class LadderTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(5) ;
 
         //when
-        Ladder ladder  = new Ladder(numberOfRows, numberOfPerson);
+        LadderCreator ladder  = new LadderCreator(numberOfRows, numberOfPerson);
 
         //then
         assertNotNull(ladder);
@@ -24,7 +24,7 @@ class LadderTest {
         //given
         NaturalNumber numberOfPerson = NaturalNumber.of(3);
         NaturalNumber numberOfRows = NaturalNumber.of(1);
-        Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
+        LadderCreator ladder = new LadderCreator(numberOfRows, numberOfPerson);
 
         //when
         Position position = Position.of(3);
@@ -38,7 +38,7 @@ class LadderTest {
         //given
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
         NaturalNumber numberOfRows =NaturalNumber.of(4) ;
-        Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
+        LadderCreator ladder = new LadderCreator(numberOfRows, numberOfPerson);
         ladder.drawLine(1,0);
         ladder.drawLine(1,2);
         ladder.drawLine(2,1);
@@ -46,7 +46,9 @@ class LadderTest {
 
         //when
         Position position = Position.of(0);
-        Position resultPosition = ladder.run(position);
+        LadderRunner ladderRunner = new LadderRunner(ladder.getRows());
+        Position resultPosition = ladderRunner.run(position);
+
         //then
         assertEquals(2, resultPosition);
 
