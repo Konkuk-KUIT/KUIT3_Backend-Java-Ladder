@@ -19,4 +19,9 @@ public class Node {
     public Direction getNode() {
         return nodeDirection;
     }
+
+    // 정적 팩토리 메소드
+    public static Node of(Direction direction) {
+        return new Node(direction);
+    }
 }

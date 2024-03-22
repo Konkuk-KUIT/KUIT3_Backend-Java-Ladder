@@ -21,6 +21,10 @@ public class NaturalNumber {
         this.num = num;
     }
 
+    public static NaturalNumber of(int num){
+        return new NaturalNumber(num);
+    }
+
     public int getNum()  {
         // 검증된 num 반환
         return num;

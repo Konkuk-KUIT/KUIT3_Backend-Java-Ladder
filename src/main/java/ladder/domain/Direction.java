@@ -1,9 +1,9 @@
 package ladder.domain;
 
 public enum Direction {
-    RIGHT_MOVE(1),
-    LEFT_MOVE(-1),
-    NO_MOVE(0);
+    RIGHT(1),
+    LEFT(-1),
+    NONE(0);
 
     private final int value;
 

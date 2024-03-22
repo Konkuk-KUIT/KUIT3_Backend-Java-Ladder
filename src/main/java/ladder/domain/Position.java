@@ -10,4 +10,9 @@ public class Position {
     public int getPosition() {
         return position;
     }
+
+    // 정적 팩토리 메소드
+    public static Position of(int position){
+        return new Position(position);
+    }
 }
