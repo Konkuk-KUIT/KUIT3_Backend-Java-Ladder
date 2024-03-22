@@ -10,6 +10,10 @@ public class Row {
     // 사람 수만큼의 node를 가진 행 생성
     public Row(NaturalNumber numberOfPerson) {
         row = new Node[numberOfPerson.getNum()];
+        // 초기화
+        for (int i = 0; i < numberOfPerson.getNum(); i++) {
+            row[i] = Node.of(Direction.NONE);
+        }
     }
 
     // 사다리 그리기
