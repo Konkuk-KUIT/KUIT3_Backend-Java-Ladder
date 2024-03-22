@@ -1,6 +1,8 @@
-package domain;
+package ladder.core;
 
-import exception.ExceptionMessage;
+import ladder.exception.ExceptionMessage;
+import ladder.position.LadderPosition;
+import ladder.position.Position;
 
 public class Row {
     private Node[] nodes;
@@ -25,7 +27,8 @@ public class Row {
 
 //        validatePosition(position);
         isInvalidNextPosition(currentPosition);
-        return nodes[currentPosition.getPosition()].move(currentPosition);
+        Position nextPosition = nodes[currentPosition.getPosition()].move(currentPosition);
+        return nextPosition;
 
     }
 
@@ -71,4 +74,33 @@ public class Row {
         }
     }
 
+    public boolean isDrawable(Position position) {
+        return !isInvalidDrawPosition(position) && !isDuplicatedDrawPosition(position);
+    }
+
+    public boolean isLineDrawn(int j) {
+        return nodes[j].isRight();
+    }
+
+    private void validatePosition(Position position) {
+        if (isInvalidPosition(position)) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LADDER_POSITION.getMessage());
+        }
+    }
+
+    private boolean isInvalidPosition(Position position) {
+        return position.isBiggerThan(nodes.length - 1) || position.isSmallerThan(0);
+    }
+
+
+    public void generateRow(StringBuilder sb, Position drawingRow, LadderPosition currentPosition) {
+        for(int i = 0; i < nodes.length; i++) {
+            nodes[i].appendSymbol(sb);
+            if(currentPosition.equals(LadderPosition.of(drawingRow, Position.of(i)))){
+                sb.append("*");
+            }
+            sb.append(" ");
+        }
+        sb.append("\n");
+    }
 }

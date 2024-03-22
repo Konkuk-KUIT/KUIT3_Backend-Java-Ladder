@@ -1,4 +1,6 @@
-package domain;
+package ladder.position;
+
+import ladder.core.NaturalNumber;
 
 public class Position {
     private int position;
@@ -40,5 +42,14 @@ public class Position {
     // 포지션을 가져와 필드와 큰지 비교하는 메서드
     public boolean isBiggerThan(int position) {
         return this.position > position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(!(o instanceof Position)) return false;
+
+        Position that = (Position) o;
+        return position == that.position;
     }
 }

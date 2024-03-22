@@ -1,6 +1,7 @@
-package ladder;
+package ladder.core;
 
-import domain.Position;
+import ladder.creator.LadderCreator;
+import ladder.position.Position;
 
 public class LadderGame {
 
@@ -13,5 +14,9 @@ public class LadderGame {
     public int run(Position position){
         LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
         return ladderRunner.run(position);
+    }
+
+    public boolean isLineDrawn(int i, int j) {
+        return ladderCreator.getRows()[i].isLineDrawn(j);
     }
 }

@@ -1,8 +1,8 @@
 package ladder.domain;
 
-import domain.Direction;
-import domain.Node;
-import domain.Position;
+import ladder.core.Direction;
+import ladder.core.Node;
+import ladder.position.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -70,4 +70,24 @@ class NodeTest {
         assertFalse(noneNode.isLeft());
     }
 
+    @Test
+    void 오른쪽_노드_심볼_추가() {
+        StringBuilder sb = new StringBuilder();
+        rightNode.appendSymbol(sb);
+        assertEquals("1", sb.toString());
+    }
+
+    @Test
+    void 왼쪽_노드_심볼_추가() {
+        StringBuilder sb = new StringBuilder();
+        leftNode.appendSymbol(sb);
+        assertEquals("-1", sb.toString());
+    }
+
+    @Test
+    void 노드_심볼_추가() {
+        StringBuilder sb = new StringBuilder();
+        noneNode.appendSymbol(sb);
+        assertEquals("0", sb.toString());
+    }
 }

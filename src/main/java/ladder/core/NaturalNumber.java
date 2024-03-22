@@ -1,6 +1,6 @@
-package domain;
+package ladder.core;
 
-import exception.ExceptionMessage;
+import ladder.exception.ExceptionMessage;
 
 public class NaturalNumber {
     private final int num;
