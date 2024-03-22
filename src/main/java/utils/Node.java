@@ -13,6 +13,10 @@ public class Node {
     this.direction = direction;
   }
 
+  public static Node of(Direction direction) {
+    return new Node(direction);
+  }
+
   public Position move(Position position) {
     if (isLeft())
       return position.prev();
@@ -35,10 +39,6 @@ public class Node {
 
   public boolean isRight() {
     return direction == RIGHT;
-  }
-
-  public static Node of(Direction direction) {
-    return new Node(direction);
   }
 
   public Direction getDirection() {

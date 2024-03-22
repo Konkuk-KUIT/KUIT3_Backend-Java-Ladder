@@ -14,6 +14,11 @@ public class Position {
     this.position = position;
   }
 
+  public static Position of(int position) {
+    validatePosition(position);
+    return new Position(position);
+  }
+
   public Position prev() {
     return Position.of(position - 1);
   }
@@ -26,11 +31,6 @@ public class Position {
     if (position < MIN_POSITION) {
       throw new LadderException(INVALID_NUMBER_OF_POSITION);
     }
-  }
-
-  public static Position of(int position) {
-    validatePosition(position);
-    return new Position(position);
   }
 
   public int getIntValue() {

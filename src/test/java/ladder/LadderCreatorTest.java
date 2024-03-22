@@ -7,7 +7,9 @@ import static exception.ErrorCode.INVALID_NUMBER_OF_POSITION;
 import static exception.ErrorCode.LINE_ALREADY_EXISTS;
 import static exception.ErrorCode.OUT_OF_BOUNDS_COL_POSITION;
 import static exception.ErrorCode.OUT_OF_BOUNDS_RAW_POSITION;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import constant.Direction;
 import exception.LadderException;
@@ -43,7 +45,7 @@ class LadderCreatorTest {
   void LadderNumber_생성_실패__양수가_아님() {
     LadderException e = assertThrows(LadderException.class, () -> {
       LadderNumber.of(0);
-    } );
+    });
     assertEquals(INVALID_NUMBER_OF_LADDER, e.getErrorCode());
   }
 
@@ -51,7 +53,7 @@ class LadderCreatorTest {
   void LadderNumber_생성_실패__범위_초과() {
     LadderException e = assertThrows(LadderException.class, () -> {
       LadderNumber.of(1_000_001);
-    } );
+    });
     assertEquals(INVALID_NUMBER_OF_LADDER, e.getErrorCode());
   }
 

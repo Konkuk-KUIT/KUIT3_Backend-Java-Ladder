@@ -22,7 +22,7 @@ class LadderGameTest {
     LadderNumber numberOfPerson = LadderNumber.of(4);
 
     creator = LadderCreator.of(numberOfRows, numberOfPerson);
-    game = new LadderGame(creator);
+    game = LadderGame.of(creator);
 
     creator.drawLine(Position.of(2), Position.of(1));
     creator.drawLine(Position.of(2), Position.of(3));

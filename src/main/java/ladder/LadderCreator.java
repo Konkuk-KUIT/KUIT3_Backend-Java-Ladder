@@ -13,7 +13,7 @@ public class LadderCreator {
 
   private LadderCreator(LadderNumber numberOfRows, LadderNumber numberOfPerson) {
     rows = new Row[numberOfRows.getIntValue() + 1];
-    for (int i = 1; i <= numberOfRows.getIntValue(); i++) {
+    for (int i = 1; i < rows.length; i++) {
       rows[i] = Row.of(numberOfPerson);
     }
   }
@@ -32,6 +32,7 @@ public class LadderCreator {
       throw new LadderException(OUT_OF_BOUNDS_RAW_POSITION);
     }
   }
+
   public Row[] getRows() {
     return this.rows;
   }
