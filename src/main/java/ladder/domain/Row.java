@@ -1,6 +1,6 @@
-package ladder;
+package ladder.domain;
 
-import static ladder.ExceptionMessage.*;
+import static ladder.exception.ExceptionMessage.*;
 
 public class Row {
     private Node[] row;

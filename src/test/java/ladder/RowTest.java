@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.domain.NaturalNumber;
+import ladder.domain.Row;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.text.Position;

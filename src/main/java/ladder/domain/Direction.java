@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 public enum Direction {
     RIGHT_MOVE(1),

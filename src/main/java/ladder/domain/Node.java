@@ -1,4 +1,6 @@
-package ladder;
+package ladder.domain;
+
+import ladder.domain.Direction;
 
 public class Node {
     private final Direction nodeDirection;

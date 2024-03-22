@@ -1,4 +1,4 @@
-package ladder;
+package ladder.application;
 
 public class LadderGame {
 }

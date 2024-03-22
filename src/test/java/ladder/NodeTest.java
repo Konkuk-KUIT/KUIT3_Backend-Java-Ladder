@@ -1,9 +1,11 @@
 package ladder;
 
+import ladder.domain.Direction;
+import ladder.domain.Node;
+import ladder.domain.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class NodeTest {

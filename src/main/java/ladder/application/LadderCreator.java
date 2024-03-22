@@ -1,4 +1,8 @@
-package ladder;
+package ladder.application;
+
+import ladder.domain.NaturalNumber;
+import ladder.domain.Position;
+import ladder.domain.Row;
 
 public class LadderCreator {
     private Row[] rows;

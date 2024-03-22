@@ -1,6 +1,6 @@
-package ladder;
+package ladder.domain;
 
-import static ladder.ExceptionMessage.INVALID_NATURAL_NUMBER;
+import static ladder.exception.ExceptionMessage.INVALID_NATURAL_NUMBER;
 
 public class NaturalNumber {
     private final int num;
