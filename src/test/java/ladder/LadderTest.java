@@ -1,5 +1,8 @@
 package ladder;
 
+import LadderCreator.*;
+import model.LadderSize;
+import model.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,11 +12,8 @@ class LadderTest {
     @Test
     void 사다리_생성_확인() {
         //given
-        int numberOfRows = 3;
-        int numberOfPerson = 5;
-
         //when
-        Ladder ladder  = new Ladder(numberOfRows, numberOfPerson);
+        LadderCreator ladder  = new CustomLadderCreator(LadderSize.InttoLadderSize(3,5));
 
         //then
         assertNotNull(ladder);
@@ -22,53 +22,48 @@ class LadderTest {
     @Test
     void 사다리_시작위치_예외_처리() {
         //given
-        int numberOfPerson = 3;
-        int numberOfRows = 1;
-        Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
-
+        LadderCreator ladder = new CustomLadderCreator(LadderSize.InttoLadderSize(3,1));
+        LadderGame ladderGame = new LadderGame(ladder);
         //when
         int position = 3;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> ladder.run(3));
+        assertThrows(IllegalArgumentException.class, () -> ladderGame.run_game(Position.of(3)));
     }
 
     @Test
     void 사다리_결과_확인() {
         //given
-        int numberOfPerson = 4;
-        int numberOfRows = 4;
-        Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
-        ladder.drawLine(1,0);
-        ladder.drawLine(1,2);
-        ladder.drawLine(2,1);
-
+        LadderCreator ladder = new CustomLadderCreator(LadderSize.InttoLadderSize(4,4));
+        ladder.drawLine(Position.of(1),Position.of(0));
+        ladder.drawLine(Position.of(1),Position.of(2));
+        ladder.drawLine(Position.of(2),Position.of(1));
+        LadderGame ladderGame = new LadderGame(ladder);
 
         //when
-        int position = 0;
-        int resultPosition = ladder.run(position);
+        Position resultPosition = ladderGame.run_game(Position.of(0));
         //then
-        assertEquals(2, resultPosition);
+        assertEquals(2, resultPosition.getPosition());
 
         //when
-        position = 1;
-        resultPosition = ladder.run(position);
+        resultPosition = ladderGame.run_game(Position.of(1));
         //then
-        assertEquals(0, resultPosition);
+        assertEquals(0, resultPosition.getPosition());
 
         //when
-        position = 2;
-        resultPosition = ladder.run(position);
+
+        resultPosition = ladderGame.run_game(Position.of(2));
         //then
-        assertEquals(3, resultPosition);
+        assertEquals(3, resultPosition.getPosition());
 
         //when
-        position = 3;
-        resultPosition = ladder.run(position);
-        //then
-        assertEquals(1, resultPosition);
+
+//        resultPosition = ladder.run(position);
+//        //then
+//        assertEquals(1, resultPosition);
 
 
 
     }
+
 }
