@@ -30,13 +30,13 @@ public class LadderCreator {
   }
 
   private void validateRowPosition(Position rowP) {
-    if (isWithinLadderBounds(rowP)) {
+    if (!isWithinLadderBounds(rowP)) {
       throw new LadderException(OUT_OF_BOUNDS_RAW_POSITION);
     }
   }
 
   private boolean isWithinLadderBounds(Position rowP) {
-    return rowP.getIntValue() >= rows.length;
+    return rowP.getIntValue() <= ladderSize.getRowSize().getIntValue();
   }
 
   public Row[] getRows() {

@@ -3,8 +3,8 @@ package exception;
 public enum ErrorCode {
 
   // draw
-  OUT_OF_BOUNDS_RAW_POSITION("사다리 열의 범위를 초과한 라인 생성 위치입니다."),
-  OUT_OF_BOUNDS_COL_POSITION("사다리 행의 범위를 초과한 라인 생성 위치입니다."),
+  OUT_OF_BOUNDS_RAW_POSITION("라인을 생성할 수 있는 열의 범위를 초과한 위치입니다."),
+  OUT_OF_BOUNDS_COL_POSITION("라인을 생성할 수 있는 행의 범위를 초과한 위치입니다."),
   DISALLOWED_CONTINUOUS_LINE("동일한 높이에 연속으로 라인을 생성할 수 없습니다."),
   LINE_ALREADY_EXISTS("해당 위치에 이미 라인이 존재합니다."),
 

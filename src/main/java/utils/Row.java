@@ -34,7 +34,7 @@ public class Row {
   }
 
   private void validateColPosition(Position colP) {
-    if (isRightLineDrawablePosition(colP)) {
+    if (!isRightLineDrawablePosition(colP)) {
       throw new LadderException(OUT_OF_BOUNDS_COL_POSITION);
     }
     if (existLeftLine(colP) || existRightLine(colP.next())) {
@@ -46,7 +46,11 @@ public class Row {
   }
 
   private boolean isRightLineDrawablePosition(Position colP) {
-    return colP.getIntValue() >= nodes.length - 1;
+    return colP.getIntValue() <= getColSize() - 1;
+  }
+
+  private int getColSize() {
+    return nodes.length - 1;
   }
 
   private boolean existLeftLine(Position position) {

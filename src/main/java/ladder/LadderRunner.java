@@ -9,11 +9,9 @@ import utils.Row;
 public class LadderRunner {
 
   private final Row[] rows;
-  private final int colCount;
 
   private LadderRunner(Row[] rows) {
     this.rows = rows;
-    this.colCount = rows[1].getNodes().length;
   }
 
   public static LadderRunner of(Row[] rows) {
@@ -29,8 +27,12 @@ public class LadderRunner {
   }
 
   private void validateStartPosition(Position colP) {
-    if (colP.getIntValue() >= colCount) {
+    if (colP.getIntValue() > getColSize()) {
       throw new LadderException(OUT_OF_BOUNDS_START_POSITION);
     }
+  }
+
+  private int getColSize() {
+    return rows[1].getNodes().length - 1;
   }
 }
