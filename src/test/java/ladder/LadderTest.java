@@ -27,10 +27,10 @@ class LadderTest {
         Ladder ladder = new Ladder(numberOfRows, numberOfPerson);
 
         //when
-        int position = 3;
+        Position position = Position.at(3);
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> ladder.run(3));
+        assertThrows(IllegalArgumentException.class, () -> ladder.run(position));
     }
 
     @Test
@@ -45,30 +45,27 @@ class LadderTest {
 
 
         //when
-        int position = 0;
-        int resultPosition = ladder.run(position);
+        Position position = Position.at(0);
+        Position resultPosition = ladder.run(position);
         //then
-        assertEquals(2, resultPosition);
+        assertEquals(2, resultPosition.getColNum());
 
         //when
-        position = 1;
+        position = Position.at(1);
         resultPosition = ladder.run(position);
         //then
-        assertEquals(0, resultPosition);
+        assertEquals(0, resultPosition.getColNum());
 
         //when
-        position = 2;
+        position = Position.at(2);
         resultPosition = ladder.run(position);
         //then
-        assertEquals(3, resultPosition);
+        assertEquals(3, resultPosition.getColNum());
 
         //when
-        position = 3;
+        position = Position.at(3);
         resultPosition = ladder.run(position);
         //then
-        assertEquals(1, resultPosition);
-
-
-
+        assertEquals(1, resultPosition.getColNum());
     }
 }

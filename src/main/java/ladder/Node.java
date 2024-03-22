@@ -26,7 +26,7 @@ public final class Node {
 
     // Node 에 대각선 추가 등 변경이 있어도 밖에서 play 하는 데는 지장 없도록
     // position 을 넣으면 position 이 나옴
-    public int getNextPosition(int currentPosition) {
-        return currentPosition + direction.getColDiff();
+    public Position getNextPosition(Position currentPosition) {
+        return Position.at(currentPosition.getColNum() + direction.getColDiff());
     }
 }

@@ -16,7 +16,7 @@ public class Ladder {
         rows[row].drawLine(col);
     }
 
-    public int run(int position) {
+    public Position run(Position position) {
 
         for(int i = 0; i < rows.length; i++) {
             position = rows[i].nextPosition(position);

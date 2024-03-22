@@ -17,9 +17,9 @@ public class Row {
         row[lineStartPosition + 1] = Node.parallelTo(Direction.LEFT);
     }
 
-    public int nextPosition(int position) {
+    public Position nextPosition(Position position) {
         validatePosition(position);
-        int newPosition = row[position].getNextPosition(position);
+        Position newPosition = row[position.getColNum()].getNextPosition(position);
         validatePosition(newPosition);
         return newPosition;
     }
@@ -37,8 +37,8 @@ public class Row {
         }
     }
 
-    private void validatePosition(int position) {
-        if(position >= row.length || position < 0 ) {
+    private void validatePosition(Position position) {
+        if(position.getColNum() >= row.length || position.getColNum() < 0 ) {
             throw new IllegalArgumentException("유효하지 않은 위치 입니다.");
         }
     }
