@@ -3,14 +3,14 @@ package ladder;
 import static ladder.ExceptionMessage.*;
 
 public class Row {
-    private int[] row;
+    private Node[] row;
 
     public Row(int numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
-        row = new int[numberOfPerson];
+        row = new Node[numberOfPerson];
     }
 
-    public void drawLine(int lineStartPosition) {
+    public void drawLine(Position lineStartPosition) {
         validateDrawLinePosition(lineStartPosition);
         row[lineStartPosition] = 1;
         row[lineStartPosition + 1] = -1;
@@ -44,7 +44,7 @@ public class Row {
         }
     }
 
-    private void validateDrawLinePosition(int lineStartPosition) {
+    private void validateDrawLinePosition(Position lineStartPosition) {
         if(lineStartPosition < 0 || lineStartPosition >= row.length - 1 || row[lineStartPosition] == -1 || row[lineStartPosition + 1] == 1) {
             throw new IllegalArgumentException(INVALID_ROW_POSITION.getMessage());
         }
