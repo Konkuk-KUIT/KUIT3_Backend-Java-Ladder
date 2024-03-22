@@ -19,7 +19,5 @@ public interface LadderCreator {
 //        rows[row.getValue()].drawLine(col);
 //    }
 //
-//    public Row[] getRows() {
-//        return rows;
-//    }
+    public Row[] getRows();
 }
