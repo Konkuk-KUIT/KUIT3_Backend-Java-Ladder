@@ -3,7 +3,6 @@ package ladder;
 import ladder.domain.NaturalNumber;
 import ladder.domain.Position;
 import ladder.game.LadderCreator;
-import ladder.game.LadderGame;
 import ladder.game.LadderRunner;
 import org.junit.jupiter.api.Test;
 
@@ -46,43 +45,48 @@ class LadderTest {
     @Test
     void 사다리_결과_확인() {
         //given
-        int numberOfPerson = 4;
-        int numberOfRows = 4;
+//        int numberOfPerson = 4;
+//        int numberOfRows = 4;
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+        NaturalNumber numberOfRows = NaturalNumber.of(4);
 
-        Ladder ladder = new Ladder(NaturalNumber.of(numberOfRows), NaturalNumber.of(numberOfPerson));
+        LadderCreator ladderCreator = new LadderCreator(numberOfRows, numberOfPerson);
+        LadderRunner ladderRunner = new LadderRunner(ladderCreator);
+//        Ladder ladder = new Ladder(NaturalNumber.of(numberOfRows), NaturalNumber.of(numberOfPerson));
 //        ladder.drawLine(Position.of(1),Position.of(0));
 //        ladder.drawLine(Position.of(1),Position.of(2));
 //        ladder.drawLine(Position.of(2),Position.of(1));
 
-        ladder.drawLine(1,0);
-        ladder.drawLine(1,2);
-        ladder.drawLine(2,1);
+        Position pos1 = Position.of(1);
+        Position pos2 = Position.of(0);
+        Position pos3 = Position.of(2);
+        ladderCreator.drawLine(pos1,pos2);
+        ladderCreator.drawLine(pos1,pos3);
+        ladderCreator.drawLine(pos3,pos1);
 
         //when
-        int position = 0;
-        int resultPosition = ladder.run(Position.of(position, numberOfPerson));
+        Position position = Position.of(0);
+        Position resultPosition = ladderRunner.run(position);
         //then
-        assertEquals(2, resultPosition);
+        assertEquals(2, resultPosition.get());
 
         //when
-        position = 1;
-        resultPosition = ladder.run(Position.of(position, numberOfPerson));
+        position = Position.of(1);
+        resultPosition = ladderRunner.run(position);
         //then
-        assertEquals(0, resultPosition);
+        assertEquals(0, resultPosition.get());
 
         //when
-        position = 2;
-        resultPosition = ladder.run(Position.of(position, numberOfPerson));
+        position = Position.of(2);
+        resultPosition = ladderRunner.run(position);
         //then
-        assertEquals(3, resultPosition);
+        assertEquals(3, resultPosition.get());
 
         //when
-        position = 3;
-        resultPosition = ladder.run(Position.of(position, numberOfPerson));
+        position = Position.of(3);
+        resultPosition = ladderRunner.run(position);
         //then
-        assertEquals(1, resultPosition);
-
-
+        assertEquals(1, resultPosition.get());
 
     }
 }
