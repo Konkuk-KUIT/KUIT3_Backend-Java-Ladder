@@ -3,6 +3,7 @@ package ladder;
 import java.util.List;
 import ladder.ladderCreator.CustomLadderCreator;
 import ladder.ladderCreator.LadderCreator;
+import ladder.ladderCreator.RandomLadderCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -49,5 +50,12 @@ public class LadderRunnerTest {
         Assertions.assertEquals(0, pos2.get());
         Position pos3 = ladderRunner.run(Position.initOf(2, NaturalNumber.from(5)));
         Assertions.assertEquals(1, pos3.get());
+    }
+
+    @Test
+    void ttest() {
+        LadderCreator ladderCreator = new RandomLadderCreator(NaturalNumber.from(4), NaturalNumber.from(4));
+        LadderRunner ladderRunner = new LadderRunner(ladderCreator.create());
+        ladderRunner.run(Position.initOf(0, NaturalNumber.from(4)));
     }
 }
